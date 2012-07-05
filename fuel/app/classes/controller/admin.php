@@ -1,19 +1,52 @@
 <?php
 
-abstract class Controller_Admin extends Controller_Base {
+class Controller_Admin extends Controller_Template {
 
-   // public $template = 'admin/template';
+    //public $template = 'common/layout';
 
     public function before()
     {
         parent::before();
 
-        if ( ! Auth::member(100) and Request::active()->action != 'login')
+        if ($this->request->action != null)
+        {
+            $action = array($this->request->action);
+        }
+        else
+        {
+            $action = array('index');
+        }
+
+        // Check user access
+        $access = Auth::has_access(\Request::active()->controller . "." . \Request::active()->action);
+
+
+        if ($access != true)
         {
             Response::redirect('user/login');
         }
+        else
+        {
+            if (Auth::check())
+            {
+                $this->user_id = Auth::instance()->get_user_id();
+                $this->user_id = $this->user_id[1];
+            }
+        }
     }
 
-    // ....
+    public function action_404()
+    {
+        $messages = array('
+			Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?'
+        );
 
+        $data['title'] = $messages[array_rand($messages)];
+
+        // Set a HTTP 404 output header
+        $this->response->status = 404;
+        $this->template->content = View::factory('common/404', $data);
+    }
 }
+
+/* End of file common.php */

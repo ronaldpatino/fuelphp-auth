@@ -49,7 +49,9 @@
 
                     <li class="divider"></li>
 
-                    <li><a href="#">Sign Out</a></li>
+                    <li>
+                        <?php echo Html::anchor('user/logout/','Salir'); ?>
+                    </li>
 
                 </ul>
 

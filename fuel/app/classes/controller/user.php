@@ -5,11 +5,6 @@ class Controller_User extends Controller_Template
 
 	public function action_login()
 	{
-        if(Auth::check())
-        {
-            Response::redirect('welcome'); // user already logged in
-        }
-
 
         $val = Validation::forge('my_validation');
         $val->add_field('username', 'Your username', 'required');
@@ -17,23 +12,23 @@ class Controller_User extends Controller_Template
 
         if ($val->run())
         {
-            $auth = Auth::instance();
-            if($auth->login($val->validated('username'), $val->validated('password')))
+            // Authenticate user
+            if (Auth::instance()->login($val->validated('username'),
+                $val->validated('password')))
             {
-                Session::set_flash('notice', 'FLASH: logged in');
-                Response::redirect('welcome');
+                Response::redirect('articulo');
             }
             else
             {
-                $data['username'] = $val->validated('username');
-                $data['errors'] = 'Wrong username/password. Try again';
+                Session::set_flash('error', 'Incorrect username or password.'.
+                    ' Please try again.');
+
+                Response::redirect('user/login');
             }
         }
 
-        $data['errors'] = null;
         $this->template->title = 'Login';
-        $this->template->errors = $data['errors'];
-        $this->template->content = View::forge('user/login', $data);
+        $this->template->content = View::forge('user/login')->set('val', $val, false);
 	}
 
     public function action_logout()
