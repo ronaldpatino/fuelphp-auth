@@ -63,7 +63,7 @@ class Controller_Articulo extends Controller_Admin
 		}
 
 		$this->template->title = "Articulos";
-		$this->template->content = View::forge('articulo/create');
+		$this->template->content = View::forge('articulo/index');
 
 	}
 
