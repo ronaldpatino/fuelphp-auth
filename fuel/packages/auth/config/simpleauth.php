@@ -74,8 +74,8 @@ return array(
             'fotos' => array('create', 'read','delete','view')
         ),
         'admin'  => array(
-            'Controller_Articulo' => array('index'),
-            'fotos' => array('create', 'read','delete','update  ')
+            'Controller_Articulo' => array('index','view','create','edit','delete'),
+            'Controller_Foto' => array('index','view','create','edit','delete')
         ),
 
         /**

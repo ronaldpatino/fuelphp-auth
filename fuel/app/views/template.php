@@ -32,12 +32,12 @@
             </a>
 
             <a class="brand" href="#">Cat&aacute;logo</a>
-
+            <?php if(isset($usuario)): ?>
             <div class="btn-group pull-right">
 
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 
-                    <i class="icon-user"></i> Username
+                    <i class="icon-user"></i> <?php echo $usuario;?>
 
                     <span class="caret"></span>
 
@@ -56,6 +56,7 @@
                 </ul>
 
             </div>
+            <?php endif;?>
 
             <div class="nav-collapse">
 
@@ -88,20 +89,21 @@
     <div class="row"><!-- begin content-->
 
         <div class="span12" id="content"><!-- begin title messages-->
-            <h1><?php echo $title; ?></h1>
+            <h3><?php echo $title; ?></h3>
             <hr>
             <?php if (Session::get_flash('success')): ?>
-            <div class="alert-message success">
-                <p>
-                    <?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-                </p>
+            <div class="alert alert-success">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+                <h4 class="alert-heading">Atenci&oacute;n!</h4>
+                <?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
+
             </div>
             <?php endif; ?>
             <?php if (Session::get_flash('error')): ?>
-            <div class="alert-message error">
-                <p>
-                    <?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-                </p>
+            <div class="alert alert-error">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+                <h4 class="alert-heading">Atenci&oacute;n!</h4>
+                <?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
             </div>
             <?php endif; ?>
         </div> <!-- end title messages-->

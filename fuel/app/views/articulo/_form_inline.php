@@ -1,33 +1,17 @@
-<?php echo Form::open(array('class' => 'form-stacked')); ?>
+<?php echo Form::open(array('class' => 'well form-inline')); ?>
 
 	<fieldset>
-		<div class="clearfix">
-			<?php echo Form::label('Nombre', 'nombre'); ?>
 
-			<div class="input">
-				<?php echo Form::input('nombre', Input::post('nombre', isset($articulo) ? $articulo->nombre : ''), array('class' => 'span6')); ?>
+            <?php echo Form::input('nombre', Input::post('nombre', isset($articulo) ? $articulo->nombre : ''), array('class' => 'input-xlarge', 'placeholder'=>'Nombre del Articulo')); ?>
+    		<?php echo Form::hidden('periodista_id', $user_id); ?>
+            <?php echo Form::select('seccion_id', 'none', array(
+                                                        'none' => '-Elija una secci&oacute;n-',
+                                                        'us' => 'Deportes',
+                                                        'cr' => 'Cultural'
+                                                        ));?>
 
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('Periodista id', 'periodista_id'); ?>
+			<?php echo Form::submit('submit', 'Crear Articulo', array('class' => 'btn btn-primary')); ?>
 
-			<div class="input">
-				<?php echo Form::input('periodista_id', Input::post('periodista_id', isset($articulo) ? $articulo->periodista_id : ''), array('class' => 'span6')); ?>
 
-			</div>
-		</div>
-		<div class="clearfix">
-			<?php echo Form::label('Seccion id', 'seccion_id'); ?>
-
-			<div class="input">
-				<?php echo Form::input('seccion_id', Input::post('seccion_id', isset($articulo) ? $articulo->seccion_id : ''), array('class' => 'span6')); ?>
-
-			</div>
-		</div>
-		<div class="actions">
-			<?php echo Form::submit('submit', 'Save', array('class' => 'btn primary')); ?>
-
-		</div>
 	</fieldset>
 <?php echo Form::close(); ?>

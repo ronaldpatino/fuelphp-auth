@@ -127,7 +127,7 @@ class Controller_Foto extends Controller_Template
 			Session::set_flash('error', 'Could not delete foto #'.$id);
 		}
 
-		Response::redirect('foto');
+		Response::redirect('articulo');
 
 	}
 

@@ -3,9 +3,19 @@ class Controller_Articulo extends Controller_Admin
 {
 	public function action_index()
 	{
-		$data['articulos'] = Model_Articulo::find('all', array('related' => array('fotos')));
-		$this->template->title = "Articulos";
+
+        $data['articulos'] = Model_Articulo::find('all', array('related' => array('fotos')));
+		/*
+        $this->template->title = "Articulos";
 		$this->template->content = View::forge('articulo/index', $data);
+		*/
+
+        $view = View::forge('template');
+        $view->set_global('user_id', $this->user_id);
+        $view->set_global('data', $data);
+        $view->set_global('title', 'Articulos');
+        $view->content = View::forge('articulo/index',$data);
+        return $view;
 
 	}
 

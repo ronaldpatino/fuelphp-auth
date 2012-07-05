@@ -1,3 +1,5 @@
+<?php echo render('articulo/_form_inline'); ?>
+
 <?php if ($articulos): ?>
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
@@ -42,9 +44,9 @@
                                 <?php if ($foto->estado == 0): ?>
                                 <?php echo Html::anchor('#', '<i class="icon-question-sign"></i>', array('class' => 'btn btn-warning', 'rel' => 'tooltip', 'data-original-title' => 'Foto a aprobar por el editor')); ?>
                                 <?php elseif ($foto->estado == 1): ?>
-                                <?php echo Html::anchor('#', '<i class="icon-question-sign"></i>', array('class' => 'btn btn-success', 'rel' => 'tooltip', 'data-original-title' => 'Foto aprobada por el editor')); ?>
+                                <?php echo Html::anchor('#', '<i class="icon-ok-sign"></i>', array('class' => 'btn btn-success', 'rel' => 'tooltip', 'data-original-title' => 'Foto aprobada por el editor')); ?>
                                 <?php elseif ($foto->estado == 2): ?>
-                                <?php echo Html::anchor('#', '<i class="icon-question-sign"></i>', array('class' => 'btn btn-warning', 'rel' => 'tooltip', 'data-original-title' => 'Foto rechazada por el editor')); ?>
+                                <?php echo Html::anchor('#', '<i class="icon-ban-circle"></i>', array('class' => 'btn btn-danger', 'rel' => 'tooltip', 'data-original-title' => 'Foto rechazada por el editor')); ?>
                                 <?php endif;?>
                         </span>
 
