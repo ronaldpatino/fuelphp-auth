@@ -93,7 +93,7 @@
             <hr>
             <?php if (Session::get_flash('success')): ?>
             <div class="alert alert-success">
-                <a class="close" data-dismiss="alert" href="#">×</a>
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
                 <h4 class="alert-heading">Atenci&oacute;n!</h4>
                 <?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
 
@@ -101,7 +101,7 @@
             <?php endif; ?>
             <?php if (Session::get_flash('error')): ?>
             <div class="alert alert-error">
-                <a class="close" data-dismiss="alert" href="#">×</a>
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
                 <h4 class="alert-heading">Atenci&oacute;n!</h4>
                 <?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
             </div>
