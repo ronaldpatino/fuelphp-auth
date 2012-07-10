@@ -1,5 +1,7 @@
 <?php
-class Controller_Foto extends Controller_Template 
+
+
+class Controller_Foto extends Controller_Template
 {
 
 	public function action_index()
@@ -131,5 +133,43 @@ class Controller_Foto extends Controller_Template
 
 	}
 
+    public function action_add()
+    {
+        $this->template = '';
+
+
+
+        $foto_existe = Model_Foto::find('all',array(
+                                                    'where' =>
+                                                        array(  'articulo_id' => Input::post('articulo_id'),
+                                                                'imagen' => Input::post('imagen')
+                                                             )
+                                                        )
+                                        );
+
+        if ($foto_existe == null)
+        {
+            $foto = Model_Foto::forge(array(
+                'imagen' => Input::post('imagen'),
+                'width' => 110,
+                'height' => 110,
+                'articulo_id' => Input::post('articulo_id'),
+                'dimension_id' => Input::post('dimension_id'),
+                'estado' => 0,
+            ));
+
+            if ($foto and $foto->save())
+            {
+                echo '0';
+                return;
+            }
+
+            echo '1';
+            return;
+        }
+
+        echo '2';
+        return;
+    }
 
 }
