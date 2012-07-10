@@ -68,7 +68,4 @@
 <?php else: ?>
 <p>No Articulos.</p>
 
-<?php endif; ?><p>
-	<?php echo Html::anchor('articulo/create', 'Add new Articulo', array('class' => 'btn success')); ?>
-
-</p>
+<?php endif; ?>
