@@ -30,7 +30,7 @@ return array(
 	'auto_initialize'	=> true,
 
 	// if no session type is requested, use the default
-	'driver'			=> 'cookie',
+	'driver'			=> 'db',
 
 	// check for an IP address match after loading the cookie (optional, default = false)
 	'match_ip'			=> false,
