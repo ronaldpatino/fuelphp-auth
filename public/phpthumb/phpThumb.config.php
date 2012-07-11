@@ -24,17 +24,17 @@ ob_end_clean();
 // but has been known to be broken on some servers. This value allows you to override the default value.
 // Do not modify from the auto-detect default value unless you are having problems.
 //$PHPTHUMB_CONFIG['document_root'] = '/home/httpd/httpdocs';
-//$PHPTHUMB_CONFIG['document_root'] = 'c:\\webroot\\example.com\\www';
+$PHPTHUMB_CONFIG['document_root'] = 'c:\\wamp\\apache2\\htdocs';
 //$PHPTHUMB_CONFIG['document_root'] = $_SERVER['DOCUMENT_ROOT'];
 //$PHPTHUMB_CONFIG['document_root'] = realpath((@$_SERVER['DOCUMENT_ROOT'] && file_exists(@$_SERVER['DOCUMENT_ROOT'].$_SERVER['PHP_SELF'])) ? $_SERVER['DOCUMENT_ROOT'] : str_replace(dirname(@$_SERVER['PHP_SELF']), '', str_replace(DIRECTORY_SEPARATOR, '/', realpath('.'))));
-$PHPTHUMB_CONFIG['document_root'] = realpath((getenv('DOCUMENT_ROOT') && preg_match('#^'.preg_quote(realpath(getenv('DOCUMENT_ROOT'))).'#', realpath(__FILE__))) ? getenv('DOCUMENT_ROOT') : str_replace(dirname(@$_SERVER['PHP_SELF']), '', str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))));
+//$PHPTHUMB_CONFIG['document_root'] = realpath((getenv('DOCUMENT_ROOT') && preg_match('#^'.preg_quote(realpath(getenv('DOCUMENT_ROOT'))).'#', realpath(__FILE__))) ? getenv('DOCUMENT_ROOT') : str_replace(dirname(@$_SERVER['PHP_SELF']), '', str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))));
 
 // * Cache directory configuration (choose only one of these - leave the other lines commented-out):
 // Note: this directory must be writable (usually chmod 777 is neccesary) for caching to work.
 // If the directory is not writable no error will be generated but caching will be disabled.
-$PHPTHUMB_CONFIG['cache_directory'] = dirname(__FILE__).'/cache/';                            // set the cache directory relative to the phpThumb() installation
+//$PHPTHUMB_CONFIG['cache_directory'] = dirname(__FILE__).'/cache/';                            // set the cache directory relative to the phpThumb() installation
 //$PHPTHUMB_CONFIG['cache_directory'] = $PHPTHUMB_CONFIG['document_root'].'/phpthumb/cache/'; // set the cache directory to an absolute directory for all source images
-//$PHPTHUMB_CONFIG['cache_directory'] = './cache/';                                           // set the cache directory relative to the source image - must start with '.' (will not work to cache URL- or database-sourced images, please use an absolute directory name)
+$PHPTHUMB_CONFIG['cache_directory'] = $PHPTHUMB_CONFIG['document_root'] . '\\photos\\cache';                                           // set the cache directory relative to the source image - must start with '.' (will not work to cache URL- or database-sourced images, please use an absolute directory name)
 //$PHPTHUMB_CONFIG['cache_directory'] = null;                                                 // disable thumbnail caching (not recommended)
 //if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 //	$PHPTHUMB_CONFIG['cache_directory'] = dirname(__FILE__).'/cache/'; // set the cache directory to an absolute directory for all source images
