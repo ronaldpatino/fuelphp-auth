@@ -23,7 +23,7 @@ class Controller_Admin extends Controller_Template {
 
         if ($access != true)
         {
-            Response::redirect('articulo');
+            Response::redirect('user/login');
         }
         else
         {
@@ -31,6 +31,7 @@ class Controller_Admin extends Controller_Template {
             {
                 $this->user_id = Auth::instance()->get_user_id();
                 $this->user_id = $this->user_id[1];
+                //$this->template->set('usuario',Auth::instance()->get_screen_name(), false);
                 View::set_global('usuario', Auth::instance()->get_screen_name());
             }
         }
