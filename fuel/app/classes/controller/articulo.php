@@ -67,10 +67,7 @@ class Controller_Articulo extends Controller_Admin
 				Session::set_flash('error', $val->error());
 			}
 		}
-
-		$this->template->title = "Articulos";
-		$this->template->content = View::forge('articulo/index');
-
+        Response::redirect('articulo');
 	}
 
 	public function action_edit($id = null)
