@@ -172,4 +172,45 @@ class Controller_Foto extends Controller_Template
         return;
     }
 
+    public function action_getarticulos($pid=null)
+    {
+        $this->template = '';
+
+        if($pid != null)
+        {
+            $articulos = Model_Articulo::find('all',array(
+                    'where' =>
+                    array(  'periodista_id' => $pid )
+                )
+            );
+
+           $select = array();
+
+            if ($articulos)
+            {
+                foreach($articulos as $articulo)
+                {
+                    $ago = Date::time_ago($articulo->created_at,null,'hour');
+                    $ago = explode(" ",$ago);
+
+                    if ($ago[0] <= 24 )
+                    {
+                        $select[$articulo->id] = $articulo->nombre;
+                    }
+                }
+
+                if(count($select)< 1)
+                {
+                    $select = array('none'=>'Aun no tiene articulos creados');
+                }
+            }
+            else
+            {
+                $select = array('none'=>'Aun no tiene articulos creados');
+            }
+
+            echo Form::select('articulo_id', 'none', $select);
+        }
+    }
+
 }
