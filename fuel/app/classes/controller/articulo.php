@@ -4,11 +4,18 @@ class Controller_Articulo extends Controller_Admin
 	public function action_index()
 	{
 
-        $data['articulos'] = Model_Articulo::find('all', array('related' => array('fotos')));
-		/*
-        $this->template->title = "Articulos";
-		$this->template->content = View::forge('articulo/index', $data);
-		*/
+        $fecha_inicio   = Date::create_from_string(date("m/d/Y") . " 01:00");
+        $fecha_fin   = Date::create_from_string(date("m/d/Y") . " 24:00");
+
+        $data['articulos'] = Model_Articulo::find('all',
+            array(  'related' => array('fotos'),
+                'where' =>
+                array(
+                    array('periodista_id', '=', '1'),
+                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                )
+            )
+        );
 
         $view = View::forge('template');
         $view->set_global('user_id', $this->user_id);
@@ -16,7 +23,6 @@ class Controller_Articulo extends Controller_Admin
         $view->set_global('title', 'Articulos');
         $view->content = View::forge('articulo/index',$data);
         return $view;
-
 	}
 
 	public function action_view($id = null)
