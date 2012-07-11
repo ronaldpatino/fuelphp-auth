@@ -28,7 +28,7 @@
                     <ul class="thumbnails">
                         <?php foreach ($articulo->fotos as $foto): ?>
                         <li class="thumbnail">
-                            <?php echo Asset::img($foto->imagen, array('width' => '110',
+                            <?php echo Myhtml::img($foto->imagen, array('width' => '110',
                             'height' => '110',
                             'class' => 'detalle',
                             'data-content' => "Dimensiones: media<br/>Seccion:deportes",
