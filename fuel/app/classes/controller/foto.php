@@ -178,10 +178,17 @@ class Controller_Foto extends Controller_Template
 
         if($pid != null)
         {
-            $articulos = Model_Articulo::find('all',array(
-                    'where' =>
-                    array(  'periodista_id' => $pid )
-                )
+            $fecha_inicio   = Date::create_from_string(date("m/d/Y") . " 01:00");
+            $fecha_fin   = Date::create_from_string(date("m/d/Y") . " 24:00");
+
+            $articulos = Model_Articulo::find('all',
+                                                    array(
+                                                            'where' =>
+                                                            array(
+                                                                array('periodista_id', '=', '1'),
+                                                                array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                                                            )
+                                                    )
             );
 
            $select = array();
@@ -190,13 +197,7 @@ class Controller_Foto extends Controller_Template
             {
                 foreach($articulos as $articulo)
                 {
-                    $ago = Date::time_ago($articulo->created_at,null,'hour');
-                    $ago = explode(" ",$ago);
-
-                    if ($ago[0] <= 24 )
-                    {
                         $select[$articulo->id] = $articulo->nombre;
-                    }
                 }
 
                 if(count($select)< 1)
