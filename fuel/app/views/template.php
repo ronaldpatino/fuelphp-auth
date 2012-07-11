@@ -31,7 +31,7 @@
 
             </a>
 
-            <a class="brand" href="#">Cat&aacute;logo</a>
+            <a class="brand" href="/gr">Cat&aacute;logo</a>
             <?php if(isset($usuario)): ?>
             <div class="btn-group pull-right">
 
@@ -62,9 +62,9 @@
 
                 <ul class="nav">
 
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="/gr/articulo">Home</a></li>
 
-                    <li><a href="../album">Cat&aacute;logo</a></li>
+                    <li><a href="/mg">Cat&aacute;logo</a></li>
 
                     <li><a href="#contact">Ayuda</a></li>
 
