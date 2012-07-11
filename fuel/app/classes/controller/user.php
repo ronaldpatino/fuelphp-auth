@@ -37,4 +37,21 @@ class Controller_User extends Controller_Template
         Response::redirect('user/login');
     }
 
+    public function action_estaactivo()
+    {
+        $this->template = '';
+        if (Auth::check())
+        {
+            $user_id = Auth::instance()->get_user_id();
+            $user_id = $user_id[1];
+            $usuario = Auth::instance()->get_screen_name();
+            $respuesta = array('user_id'=>$user_id, 'usuario'=>$usuario);
+        }
+        else
+        {
+            $respuesta = array('user_id'=>0, 'usuario'=>'No logeado');
+        }
+        $respuesta =  Format::forge($respuesta)->to_json();
+        echo $respuesta;
+    }
 }
