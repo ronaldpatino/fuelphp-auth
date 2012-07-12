@@ -95,7 +95,25 @@ class Controller_Articulo extends Controller_Admin
 
 		$articulo = Model_Articulo::find($id);
 
-		$val = Model_Articulo::validate('edit');
+        $select_secciones = array();
+
+        $secciones = Model_Seccion::find('all');
+        if ($secciones)
+        {
+            foreach($secciones as $seccion)
+            {
+                $select_secciones[$seccion->id] = $seccion->descripcion;
+            }
+
+        }
+        else
+        {
+            $select_secciones = array('none'=>'No existen secciones creadas');
+        }
+
+        $this->template->set_global('select_secciones', $select_secciones, false);
+
+        $val = Model_Articulo::validate('edit');
 
 		if ($val->run())
 		{
