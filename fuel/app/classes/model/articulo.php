@@ -33,6 +33,16 @@ class Model_Articulo extends Model
         )
     );
 
+    protected static $_has_one = array(
+        'seccion' => array(
+            'key_from' => 'seccion_id',
+            'model_to' => 'Model_Seccion',
+            'key_to' => 'id',
+            'cascade_save' => true,
+            'cascade_delete' => false,
+        )
+    );
+
     public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
