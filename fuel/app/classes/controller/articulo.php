@@ -8,7 +8,7 @@ class Controller_Articulo extends Controller_Admin
         $fecha_fin   = Date::create_from_string(date("m/d/Y") . " 24:00");
 
         $data['articulos'] = Model_Articulo::find('all',
-            array(  'related' => array('fotos'),
+            array(  'related' => array('fotos','seccion'),
                 'where' =>
                 array(
                     array('periodista_id', '=', '1'),
@@ -17,9 +17,28 @@ class Controller_Articulo extends Controller_Admin
             )
         );
 
+        $select_secciones = array();
+
+        $secciones = Model_Seccion::find('all');
+        if ($secciones)
+        {
+            foreach($secciones as $seccion)
+            {
+                $select_secciones[$seccion->id] = $seccion->descripcion;
+            }
+
+        }
+        else
+        {
+            $select_secciones = array('none'=>'No existen secciones creadas');
+        }
+
+        $data['select_secciones'] = $select_secciones;
+
         $view = View::forge('template');
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $data);
+        $view->set_global('select_secciones', $select_secciones);
         $view->set_global('title', 'Articulos');
         $view->content = View::forge('articulo/index',$data);
         return $view;
