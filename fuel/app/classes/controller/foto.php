@@ -150,7 +150,7 @@ class Controller_Foto extends Controller_Template
         if ($foto_existe == null)
         {
             $foto = Model_Foto::forge(array(
-                'imagen' => Input::post('imagen'),
+                'imagen' => parse_url(Input::post('imagen'), PHP_URL_PATH),
                 'width' => 110,
                 'height' => 110,
                 'articulo_id' => Input::post('articulo_id'),
