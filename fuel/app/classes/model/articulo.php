@@ -29,11 +29,11 @@ class Model_Articulo extends Model
             'model_to' => 'Model_Foto',
             'key_to' => 'articulo_id',
             'cascade_save' => true,
-            'cascade_delete' => false,
+            'cascade_delete' => true,
         )
     );
 
-    protected static $_has_one = array(
+    protected static $_belongs_to  = array(
         'seccion' => array(
             'key_from' => 'seccion_id',
             'model_to' => 'Model_Seccion',
