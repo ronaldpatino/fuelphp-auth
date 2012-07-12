@@ -25,7 +25,7 @@
 
 
                 <?php if ($articulo->fotos): ?>
-                    <ul class="thumbnails">
+                    <ul class="thumbnails" data-toggle="modal-gallery" data-target="#modal-gallery">
                         <?php foreach ($articulo->fotos as $foto): ?>
                         <li class="thumbnail">
                             <?php echo Myhtml::img($foto->imagen, array('width' => '110',
@@ -37,8 +37,9 @@
                         )); ?>
 
                             <span class="btn-group">
-                            <?php echo Html::anchor('#', ' <i class="icon-eye-open"></i>', array('class' => 'btn detalles_foto', 'rel' => 'tooltip', 'data-original-title' => 'Ver detalles foto')); ?>
-
+                                <a href="<?php echo $foto->imagen?>" class='btn detalles_foto' rel ='gallery' title = 'Ver detalles foto' alt='Ver detalles foto'>
+                                    <i class="icon-eye-open"></i>
+                                </a>
                                 <?php echo Html::anchor('foto/delete/' . $foto->id, '<i class="icon-trash"></i>', array('class' => 'btn', 'rel' => 'tooltip', 'data-original-title' => 'Borrar foto del articulo', 'onclick' => "return confirm('Seguro desea Borrar la foto?')")); ?>
 
                                 <?php if ($foto->estado == 0): ?>
@@ -64,6 +65,30 @@
 <?php endforeach; ?>
 </tbody>
 </table>
+
+<!-- modal-gallery is the modal dialog used for the image gallery -->
+<div id="modal-gallery" class="modal modal-gallery hide fade">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+
+        <form class="well form-inline" id="searchForm" action="/gr/foto/add/">
+            <a class="btn modal-download" target="_blank">
+                <i class="icon-download"></i>
+                <span>Descargar</span>
+            </a>
+            <input name='periodista_id' id="form_periodista_id"  type="hidden"/>
+
+            <span id="articulo_container"></span>
+            <span id="dimension_container"></span>
+
+        </form>
+    </div>
+</div>
+<!-- modal-gallery is the modal dialog used for the image gallery -->
 
 <?php else: ?>
 <p>No Articulos.</p>
