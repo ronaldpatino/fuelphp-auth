@@ -17,7 +17,7 @@ class Gallery
         'sortdir_files' => "ASC", // Sort direction of files: [ASC][DESC]
 
 //LANGUAGE STRINGS
-        'label_home' => "Inicio Galer&iacute,a", //Name of home link in breadcrumb navigation
+        'label_home' => "Inicio Galeria", //Name of home link in breadcrumb navigation
         'label_new' => "Nueva", //Text to display for new images. Use with 'display_new variable
         'label_page' => "P&aacute,gina", //Text used for page navigation
         'label_all' => "Todas", //Text used for link to display all images in one page
@@ -46,7 +46,7 @@ class Gallery
 
     public static function generate()
     {
-        is_null(Input::get('dir')) and Response::redirect('user/login');
+        //is_null(Input::get('dir')) and Response::redirect('user/login');
         static::$default_config['thumbdir'] = rtrim('c:/wamp/apache2/htdocs/photos' . "/" .Input::get('dir'),"/");
 
         $currentdir = static::$default_config['thumbdir'];
@@ -238,9 +238,38 @@ class Gallery
             static::$default_config['breadcrumb_navigation'] .= static::$default_config['label_home'];
         }
 
+        //-----------------------
+        // DISPLAY FOLDERS
+        //-----------------------
+        if (count($dirs) + count($files) == 0) {
+            static::$default_config['thumbnails'] .= "<li  class='thumbnail'>" . static::$default_config['label_noimages'] . "</li>"; //Display 'no images' text
+            //if($currentdir == "photos") $messages = "It looks like you have just installed MiniGal Nano. Please run the <a href='system_check.php'>system check tool</a>";
+        }
+        $offset_current = $offset_start;
+        for ($x = $offset_start; $x < sizeof($dirs) && $x < $offset_end; $x++)
+        {
+            $offset_current++;
+            static::$default_config['thumbnails'] .= $dirs[$x]["html"];
+        }
+
+        //-----------------------
+        // DISPLAY FILES
+        //-----------------------
+        for ($i = $offset_start - sizeof($dirs); $i < $offset_end && $offset_current < $offset_end; $i++)
+        {
+            if ($i >= 0)
+            {
+                $offset_current++;
+                static::$default_config['thumbnails'] .= $files[$i]["html"];
+            }
+        }
+
+        $data['thumbnails'] = html_entity_decode(static::$default_config['thumbnails'],ENT_QUOTES);
+        $data['breadcrumb_navigation'] = static::$default_config['breadcrumb_navigation'];
+        $data['page_navigation'] = static::$default_config['page_navigation'];
 
 
-        print_r($files);
+        return $data;
     }
 
 // private static functionS
