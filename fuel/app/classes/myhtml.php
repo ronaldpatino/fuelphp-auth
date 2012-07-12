@@ -17,7 +17,7 @@ class Myhtml  extends \Fuel\Core\Html
         {
             //$src = \Uri::base(false).$src;
         }
-        $attr['src'] = 'phpthumb/phpThumb.php?src=' . $src . '&amp;w=120&amp;h=120&amp;zc=1';
+        $attr['src'] = 'public/phpthumb/phpThumb.php?src=' . $src . '&amp;w=120&amp;h=120&amp;zc=1';
         $attr['alt'] = (isset($attr['alt'])) ? $attr['alt'] : pathinfo($src, PATHINFO_FILENAME);
         return html_tag('img', $attr);
     }
