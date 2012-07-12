@@ -16,6 +16,7 @@
                 <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
                     <span class="btn-group">
                         <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
+                        <a class="btn" href="/mg"><i class="icon-picture"></i> Foto</a>
                         <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
                     </span>
             </td>
