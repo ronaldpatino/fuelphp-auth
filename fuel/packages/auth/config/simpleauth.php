@@ -76,7 +76,8 @@ return array(
         'admin'  => array(
             'Controller_Articulo' => array('index','view','create','edit','delete'),
             'Controller_Foto' => array('index','view','create','edit','delete'),
-            'Controller_Galeria' => array('index','view','create','edit','delete')
+            'Controller_Galeria' => array('index','view','create','edit','delete'),
+            'Controller_Profile' => array('index','changepassword')
         ),
 
         /**
