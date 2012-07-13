@@ -46,7 +46,9 @@ return array(
      * Groups as id => array(name => <string>, roles => <array>)
      */
     'groups' => array(
+        0    => array('name' => 'Guests', 'roles' => array()),
         1    => array('name' => 'Users', 'roles' => array('user')),
+        50   => array('name' => 'Editors', 'roles' => array('user', 'editor')),
         100  => array('name' => 'Administrators', 'roles' => array('user', 'admin'))
         /**
          * Examples
@@ -64,20 +66,24 @@ return array(
      * Roles as name => array(location => rights)
      */
     'roles' => array(
-        '#' => array(
-            'Controller_User' => array(
-                'index',
-            ),
+        'guest' => array(
+            'Controller_User' => array('login')
         ),
         'user'  => array(
-            'articulos' => array('create', 'read','delete','view'),
-            'fotos' => array('create', 'read','delete','view')
+            'Controller_Articulo' => array('index','view','create','edit','delete'),
+            'Controller_Foto' => array('index','view','create','edit','delete','add'),
+            'Controller_Galeria' => array('index','view','create','edit','delete'),
+            'Controller_Profile' => array('index','changepassword')
+
         ),
         'admin'  => array(
             'Controller_Articulo' => array('index','view','create','edit','delete'),
-            'Controller_Foto' => array('index','view','create','edit','delete'),
+            'Controller_Foto' => array('index','view','create','edit','delete','add'),
             'Controller_Galeria' => array('index','view','create','edit','delete'),
-            'Controller_Profile' => array('index','changepassword')
+            'Controller_Profile' => array('index','changepassword'),
+            'Controller_Seccion' => array('index','view','create','edit','delete'),
+            'Controller_Manager' => array('index','view','create','edit','delete')
+
         ),
 
         /**
