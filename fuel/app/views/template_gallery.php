@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title><?php echo $title; ?></title>
     <?php echo Asset::css(array('bootstrap.css','bootstrap-responsive.css','bootstrap-image-gallery.css','custom.css')); ?>
+    <?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
     <style>
         body {
             padding-top: 80px;
@@ -45,7 +46,9 @@
 
                 <ul class="dropdown-menu">
 
-                    <li><a href="#">Profile</a></li>
+                    <li>
+                        <?php echo Html::anchor('profile','Perfil'); ?>
+                    </li>
 
                     <li class="divider"></li>
 
@@ -64,7 +67,7 @@
 
                     <li class="active"><a href="/gr/articulo">Home</a></li>
 
-                    <li><a href="/mg">Cat&aacute;logo</a></li>
+                    <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
                     <li><a href="#contact">Ayuda</a></li>
 
@@ -131,12 +134,6 @@
 
 
 ================================================== -->
-
-<!-- Placed at the end of the document so the pages load faster -->
-
-<script type="text/javascript" src="http://localhost/fotos//assets/js/app/lib/head.js"></script>
-<?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
-
 
 </body>
 

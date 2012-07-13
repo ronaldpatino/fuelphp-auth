@@ -20,7 +20,7 @@
     </div>
 </div>
 <br />
-<div id="page_nav"><% page_navigation %></div>
+<div id="page_nav"><?php echo html_entity_decode($page_navigation, ENT_QUOTES); ?></div>
 <br />
 
 <!-- modal-gallery is the modal dialog used for the image gallery -->
@@ -32,56 +32,27 @@
     <div class="modal-body"><div class="modal-image"></div></div>
     <div class="modal-footer">
 
-        <form class="well form-inline" id="searchForm" action="/gr/foto/add/">
+        <?php echo Form::open(array('action'=>'foto/add', 'class'=>'well form-inline','id'=>'fotoarticuloform'));?>
             <a class="btn modal-download" target="_blank">
                 <i class="icon-download"></i>
                 <span>Descargar</span>
             </a>
-            <input name='periodista_id' id="form_periodista_id"  type="hidden"/>
+            <input name='periodista_id' id="form_periodista_id"  type="hidden" value="<?php echo $periodista_id?>"/>
 
-            <span id="articulo_container"></span>
-            <span id="dimension_container"></span>
+            <?php echo Form::select('articulo_id', 'none', $select_articulos);?>
+            <?php echo Form::select('dimension_id', 'none', $select_dimensiones);?>
 
             <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Agregar Imagen</button>
-        </form>
+        <?php echo Form::close();?>
     </div>
 </div>
 
 <script>
 
-    $(document).ready(function() {
-        $.ajax({
-            url: '/gr/user/estaactivo/',
-            success:
-                function(data) {
-                    console.log(data);
-                    if(data.user_id != 0)
-                    {
-                        $("#form_periodista_id").val(data.user_id),
 
-                            $.get('/gr/foto/getarticulos/1',
-                                function(data) {
-                                    $('#articulo_container').html(data);
-                                });
-                        $.get('/gr/dimension/getdimensiones/',
-                            function(data) {
-                                $('#dimension_container').html(data);
-                            });
-                    }
-                    else
-                    {
-                        alert("no logeado");
-                        var url = "http://localhost/gr/";
-                        $(location).attr('href',url);
-                    }
-                },
-            dataType: 'json'
-        });
-
-    });
 
     /* attach a submit handler to the form */
-    $("#searchForm").submit(function(event) {
+    $("#fotoarticuloform").submit(function(event) {
         /* stop form from submitting normally */
         event.preventDefault();
 
@@ -89,9 +60,9 @@
         var $form = $( this ),
             term =  $("#form_articulo_id option:selected").val(),
             imagen = $('img.in').attr("src"),
-            url = $form.attr( 'action' );
-        periodista_id = $("#periodista_id").val(),
-            dimension_id = $("#form_dimension_id option:selected").val()
+            url = $form.attr( 'action'),
+            periodista_id = $("#periodista_id").val(),
+            dimension_id = $("#form_dimension_id option:selected").val();
 
         /* Send the data using post and put the results in a div */
         $.post( url,
@@ -105,20 +76,20 @@
 
                 switch(data){
                     case '0':
-                        console.log(data);
-                        $("#mensaje_alerta" ).html("La imagen " + imagen + " ha sido agregada al articulo: " + $("#articulo_id option:selected").val());
+
+                        $("#mensaje_alerta" ).html("La imagen " + imagen + " ha sido agregada al articulo: " + $("#form_articulo_id option:selected").val());
                         $( "#alerta" ).show();
                         $('#modal-gallery').modal('hide');
                         break;
                     case '1':
-                        console.log(data);
-                        $("#mensaje_error" ).html("La imagen " + imagen + " no pudo ser agregada al articulo: " + $("#articulo_id option:selected").val());
+
+                        $("#mensaje_error" ).html("La imagen " + imagen + " no pudo ser agregada al articulo: " + $("#form_articulo_id option:selected").val());
                         $( "#alerta_error" ).show();
                         $('#modal-gallery').modal('hide');
                         break;
                     case '2':
-                        console.log(data);
-                        $("#mensaje_error" ).html("La imagen " + imagen + " ya esta agregada al articulo: " + $("#articulo_id option:selected").val());
+
+                        $("#mensaje_error" ).html("La imagen " + imagen + " ya esta agregada al articulo: " + $("#form_articulo_id option:selected").val());
                         $( "#alerta_error" ).show();
                         $('#modal-gallery').modal('hide');
                         break;
