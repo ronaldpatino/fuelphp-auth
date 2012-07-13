@@ -1,4 +1,3 @@
-
 <div class="span6">
     <h3>Cambio de Password</h3>
     <p>Para cambiar su password use el formulario siguiente.</p>
