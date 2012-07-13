@@ -687,7 +687,28 @@ class Validation
 		return true;
 	}
 
-	/**
+
+    /**
+     * Match specific other submitted field string value
+     * (must be both strings, check is type sensitive)
+     *
+     * @param   string
+     * @param   string
+     * @return  bool
+     */
+    public function _validation_not_match_field($val, $field)
+    {
+        if ($this->input($field) === $val)
+        {
+            $validating = $this->active_field();
+            throw new \Validation_Error($validating, $val, array('not_match_field' => array($field)), array($this->field($field)->label));
+        }
+
+        return true;
+    }
+
+
+    /**
 	 * Minimum string length
 	 *
 	 * @param   string
