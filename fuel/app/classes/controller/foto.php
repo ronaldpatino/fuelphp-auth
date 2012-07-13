@@ -1,7 +1,7 @@
 <?php
 
 
-class Controller_Foto extends Controller_Template
+class Controller_Foto extends Controller_Admin
 {
 
 	public function action_index()

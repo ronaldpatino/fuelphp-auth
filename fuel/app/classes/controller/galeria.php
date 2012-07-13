@@ -18,7 +18,7 @@ class Controller_Galeria  extends Controller_Admin
             array(  'related' => array('fotos','seccion'),
                 'where' =>
                 array(
-                    array('periodista_id', '=', '1'),
+                    array('periodista_id', '=', $this->user_id),
                     array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
                 )
             )
