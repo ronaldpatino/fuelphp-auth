@@ -2,39 +2,30 @@
 
 class Controller_Admin extends Controller_Template {
 
-    //public $template = 'common/layout';
-
     public function before()
     {
         parent::before();
 
-        if ($this->request->action != null)
+        if(\Auth::check())
         {
-            $action = array($this->request->action);
-        }
-        else
-        {
-            $action = array('index');
-        }
-
-        // Check user access
-        $access = Auth::has_access(\Request::active()->controller . "." . \Request::active()->action);
-
-
-        if ($access != true)
-        {
-            Response::redirect('user/login');
-        }
-        else
-        {
-            if (Auth::check())
+            $access = Auth::has_access(\Request::active()->controller . "." . \Request::active()->action);
+            if ($access)
             {
                 $this->user_id = Auth::instance()->get_user_id();
                 $this->user_id = $this->user_id[1];
-                //$this->template->set('usuario',Auth::instance()->get_screen_name(), false);
                 View::set_global('usuario', Auth::instance()->get_screen_name());
             }
+            else
+            {
+
+                Response::redirect('welcome/404');
+            }
         }
+        else
+        {
+            Response::redirect('user/login');
+        }
+
     }
 
     public function action_404()
