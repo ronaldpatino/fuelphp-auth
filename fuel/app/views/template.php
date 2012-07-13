@@ -45,7 +45,9 @@
 
                 <ul class="dropdown-menu">
 
-                    <li><a href="#">Profile</a></li>
+                    <li>
+                        <?php echo Html::anchor('profile','Perfil'); ?>
+                    </li>
 
                     <li class="divider"></li>
 
@@ -64,7 +66,7 @@
 
                     <li class="active"><a href="/gr/articulo">Home</a></li>
 
-                    <li><a href="/mg">Cat&aacute;logo</a></li>
+                    <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
                     <li><a href="#contact">Ayuda</a></li>
 
