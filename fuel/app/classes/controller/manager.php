@@ -19,22 +19,23 @@ class Controller_Manager extends Controller_Admin
             $val = Validation::forge('createuser');
             $val->add_field('username', 'Usuario', 'required');
             $val->add_field('password', 'Password', 'required|min_length[8]|max_length[10]');
-            $val->add_field('password_confirm', 'Confime Password ', 'required|min_length[8]|max_length[10]|match_field[password]');
+            $val->add_field('password_confirm', 'Confime Password ', 'required|match_field[password]');
             $val->add_field('email', 'Email', 'required|valid_email');
 
 
             if ($val->run())
             {
-                if (Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array()))
+
+                try
                 {
+                    $user = Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array());
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . 'creado correctamente' );
-
                     Response::redirect('manager');
-                }
 
-                else
+                }
+                catch (\SimpleUserUpdateException $e)
                 {
-                    Session::set_flash('error', 'No se pudo crear el usuario.');
+                        Session::set_flash('error', $e->getMessage());
                 }
             }
             else
