@@ -13,10 +13,10 @@
 
         <td><?php echo $usuario->username; ?></td>
         <td>
-            <?php echo Html::anchor('seccion/view/'.$usuario->id, 'Ver'); ?> |
-            <?php echo Html::anchor('seccion/edit/'.$usuario->id, 'Editar'); ?> |
+            <?php echo Html::anchor('manager/view/'.$usuario->id, 'Ver'); ?> |
+            <?php echo Html::anchor('manager/edit/'.$usuario->id, 'Editar'); ?> |
             <?php if ($usuario->username !== "admin"):?>
-                <?php echo Html::anchor('seccion/delete/'.$usuario->id, 'Borrar', array('onclick' => "return confirm('Seguro desea borrar el usuario {$usuario->username}')")); ?>
+                <?php echo Html::anchor('manager/delete/'.$usuario->id, 'Borrar', array('onclick' => "return confirm('Seguro desea borrar el usuario {$usuario->username}')")); ?>
             <?php endif;?>
 
         </td>

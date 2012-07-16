@@ -49,4 +49,23 @@ class Controller_Manager extends Controller_Admin
 
 
     }
+
+    public function action_delete($id = null)
+    {
+        if ($user = Model_User::find($id))
+        {
+            $usuario_nombre = $user->username;
+            $user->delete();
+
+            Session::set_flash('success', 'Borrado usuario seccion #'.$usuario_nombre);
+        }
+
+        else
+        {
+            Session::set_flash('error', 'No se pudo borrar el usuario');
+        }
+
+        Response::redirect('manager');
+
+    }
 }
