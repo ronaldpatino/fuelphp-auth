@@ -68,4 +68,31 @@ class Controller_Manager extends Controller_Admin
         Response::redirect('manager');
 
     }
+
+    public function action_view($id = null)
+    {
+        is_null($id) and Response::redirect('manager');
+        $data['usuario'] = Model_User::find($id);
+
+        switch ($data['usuario']->group)
+        {
+
+            case 1:
+                $data['seccion'] = 'Periodista';
+                break;
+            case 50:
+                $data['seccion'] = 'Editor';
+                break;
+
+            case 100:
+                $data['seccion'] = 'Administrador';
+                break;
+        }
+
+
+        $this->template->title = "Ver Usuario";
+        $this->template->content = View::forge('manager/view', $data);
+
+    }
+
 }
