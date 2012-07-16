@@ -13,5 +13,5 @@
 </div>
  
 <div class="input submit">
-<?php echo Form::submit('login', 'Login'); ?>
+<?php echo Form::submit('login', 'Login',array('class'=>'btn btn-primary')); ?>
 </div>
