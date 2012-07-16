@@ -25,7 +25,6 @@ class Controller_Manager extends Controller_Admin
 
             if ($val->run())
             {
-
                 try
                 {
                     $user = Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array());
@@ -57,7 +56,7 @@ class Controller_Manager extends Controller_Admin
             $usuario_nombre = $user->username;
             $user->delete();
 
-            Session::set_flash('success', 'Borrado usuario seccion #'.$usuario_nombre);
+            Session::set_flash('success', 'Usuario '.$usuario_nombre . ' borrado del sistema');
         }
 
         else
@@ -95,4 +94,53 @@ class Controller_Manager extends Controller_Admin
 
     }
 
+    public function action_edit($id = null)
+    {
+        is_null($id) and Response::redirect('manager');
+
+        $user =  Model_User::find($id);
+
+        $val = Validation::forge('edituser');
+        $val->add_field('password', 'Password', 'min_length[8]|max_length[10]');
+        $val->add_field('password_confirm', 'Confime Password ', 'match_field[password]');
+        $val->add_field('email', 'Email', 'required|valid_email');
+
+        if ($val->run())
+        {
+            try
+            {
+
+                if (!is_null(Input::post('password')))
+                {
+                    Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
+                }
+
+                Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group')),Input::post('username'));
+                Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
+                Response::redirect('manager');
+
+            }
+            catch (\SimpleUserUpdateException $e)
+            {
+                Session::set_flash('error', $e->getMessage());
+            }
+        }
+        else
+        {
+            if (Input::method() == 'POST')
+            {
+                //$user->password = $val->validated('password');
+                //$user->email = $val->validated('email');
+
+                Session::set_flash('error', $val->error());
+            }
+
+            $this->template->set_global('user', $user, false);
+        }
+
+        $this->template->title = "Usuario";
+        $this->template->content = View::forge('manager/edit');
+
+
+    }
 }
