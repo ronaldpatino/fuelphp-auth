@@ -63,6 +63,7 @@
 
             <div class="nav-collapse">
 
+                <?php if(isset($usuario)): ?>
                 <ul class="nav">
 
                     <li class="active"><a href="/gr/articulo">Home</a></li>
@@ -72,6 +73,7 @@
                     <li><a href="#contact">Ayuda</a></li>
 
                 </ul>
+                <?php endif;?>
 
             </div>
 

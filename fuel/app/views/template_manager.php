@@ -64,15 +64,18 @@
 
                 <ul class="nav">
 
-                    <li class="active"><a href="/gr/articulo">Home</a></li>
+                    <?php if(isset($usuario)): ?>
+                    <ul class="nav">
 
-                    <li><a href="/gr/galeria">Galer&iacute;a</a></li>
+                        <li class="active"><a href="/gr/articulo">Home</a></li>
 
-                    <li><a href="/gr/manager">Usuarios</a></li>
+                        <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
-                    <li><a href="#contact">Ayuda</a></li>
+                        <li><a href="#contact">Ayuda</a></li>
 
-                </ul>
+                    </ul>
+                    <?php endif;?>
+
 
             </div>
 
