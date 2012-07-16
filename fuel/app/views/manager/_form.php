@@ -3,7 +3,7 @@
         <div class="control-group">
             <label>Nombre de Usuario</label>
             <div class="controls">
-                <?php echo Form::input(array('class' => 'span3', 'name'=>'username','type '=>'text', 'placeholder'=>'Ingrese el nombre de usuario'));?>
+                <?php echo Form::input(array('class' => 'span3', 'name'=>'username','type '=>'text', 'value'=>Input::post('username')?Input::post('username'):'','placeholder'=>'Ingrese el nombre de usuario'));?>
             </div>
         </div>
         <div class="control-group">
@@ -22,7 +22,7 @@
         <div class="control-group">
             <label>Email</label>
             <div class="controls">
-                <?php echo Form::input(array('class' => 'span3', 'name'=>'email','type '=>'text', 'placeholder'=>'Ingrese el email del usuario'));?>
+                <?php echo Form::input(array('class' => 'span3', 'name'=>'email','type '=>'text', 'value'=>Input::post('email')?Input::post('email'):'', 'placeholder'=>'Ingrese el email del usuario'));?>
             </div>
         </div>
 
