@@ -1,7 +1,7 @@
-<h2>Nuevo Usuario</h2>
+<h2>Editar Usuario</h2>
 <br>
 
-<?php echo render('manager/_form'); ?>
+<?php echo render('manager/_form_edit'); ?>
 
 
-<p><?php echo Html::anchor('seccion', 'Back'); ?></p>
+<p><?php echo Html::anchor('manager', 'Regresar'); ?></p>
