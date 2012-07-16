@@ -67,9 +67,8 @@
                     <?php if(isset($usuario)): ?>
                     <ul class="nav">
 
-                        <li class="active"><a href="/gr/articulo">Home</a></li>
 
-                        <li><a href="/gr/galeria">Galer&iacute;a</a></li>
+                        <li><?php echo Html::anchor('manager', 'Usuarios'); ?></li>
 
                         <li><a href="#contact">Ayuda</a></li>
 
