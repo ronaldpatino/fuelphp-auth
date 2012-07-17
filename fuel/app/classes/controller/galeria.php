@@ -8,6 +8,8 @@
  */
 class Controller_Galeria  extends Controller_Admin
 {
+    public $template = 'template_gallery';
+
     public function action_index()
     {
         //Incio articulos
