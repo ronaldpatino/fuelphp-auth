@@ -5,6 +5,19 @@ class Controller_User extends Controller_Template
 
 	public function action_login()
 	{
+        if(\Auth::check())
+        {
+            if (Auth::instance()->has_access('Controller_Manager.index'))
+            {
+                Response::redirect('manager');
+            }
+            else
+            {
+                Response::redirect('articulo');
+            }
+
+        }
+
 
         $val = Validation::forge('my_validation');
         $val->add_field('username', 'Su nombre de usuario', 'required');
