@@ -64,7 +64,7 @@ class Date
 				if ($ts = strtotime($input))
 				{
 					return array(
-						'tm_year' => date('Y', $ts),
+                        'tm_year' => date('Y', $ts) - 1900,
 						'tm_mon'  => date('n', $ts) - 1,
 						'tm_mday' => date('j', $ts),
 						'tm_hour' => date('H', $ts),
@@ -159,14 +159,14 @@ class Date
 		{
 			throw new \UnexpectedValueException('Input was not recognized by pattern.');
 		}
-
+        /*
 		$timestamp = mktime($time['tm_hour'], $time['tm_min'], $time['tm_sec'],
 						$time['tm_mon'] + 1, $time['tm_mday'], $time['tm_year']);
+         */
 
-        /*
         $timestamp = mktime($time['tm_hour'], $time['tm_min'], $time['tm_sec'],
             $time['tm_mon'] + 1, $time['tm_mday'], $time['tm_year'] + 1900);
-         */
+
         if ($timestamp === false)
 		{
 			throw new \OutOfBoundsException('Input was invalid.'.(PHP_INT_SIZE == 4?' A 32-bit system only supports dates between 1901 and 2038.':''));
