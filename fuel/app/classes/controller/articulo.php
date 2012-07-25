@@ -4,8 +4,8 @@ class Controller_Articulo extends Controller_Admin
 	public function action_index()
 	{
 
-	$fi = date("Y-m-d") .' 01:00:00';
-	$ff = date("Y-m-d") .' 23:59:00';
+        $fi = date("Y-m-d") .' 01:00:00';
+        $ff = date("Y-m-d") .' 23:59:00';
         $fecha_inicio   = Date::create_from_string($fi,"mysql");
         $fecha_fin   = Date::create_from_string($ff,"mysql");
 
