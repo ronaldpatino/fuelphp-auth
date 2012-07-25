@@ -4,8 +4,10 @@ class Controller_Articulo extends Controller_Admin
 	public function action_index()
 	{
 
-        $fecha_inicio   = Date::create_from_string(date("m/d/Y") . " 01:00","us");
-        $fecha_fin   = Date::create_from_string(date("m/d/Y") . " 24:00", "us");
+	$fi = date("Y-m-d") .' 01:00:00';
+	$ff = date("Y-m-d") .' 23:59:00';
+        $fecha_inicio   = Date::create_from_string($fi,"mysql");
+        $fecha_fin   = Date::create_from_string($ff,"mysql");
 
         $data['articulos'] = Model_Articulo::find('all',
             array(  'related' => array('fotos','seccion'),
