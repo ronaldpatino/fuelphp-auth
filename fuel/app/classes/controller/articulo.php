@@ -161,12 +161,12 @@ class Controller_Articulo extends Controller_Admin
 		{
 			$articulo->delete();
 
-			Session::set_flash('success', 'Deleted articulo #'.$id);
+			Session::set_flash('success', 'Borrado articulo #'.$id);
 		}
 
 		else
 		{
-			Session::set_flash('error', 'Could not delete articulo #'.$id);
+			Session::set_flash('error', 'No se pudo borrar el articulo #'.$id);
 		}
 
 		Response::redirect('articulo');

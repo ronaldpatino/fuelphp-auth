@@ -43,10 +43,11 @@ class Gallery
 
 //
 
+
     public static function generate()
     {
         //is_null(Input::get('dir')) and Response::redirect('user/login');
-        static::$default_config['thumbdir'] = rtrim('c:/wamp/apache2/htdocs/photos' . "/" .Input::get('dir'),"/");
+        static::$default_config['thumbdir'] = rtrim(Config::get('photos_path') . "/" .Input::get('dir'),"/");
 
         $currentdir = static::$default_config['thumbdir'];
 

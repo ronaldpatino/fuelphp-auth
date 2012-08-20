@@ -11,6 +11,12 @@
 //////////////////////////////////////////////////////////////
 
 ob_start();
+
+if (!file_exists('../../fuel/app/config/phpthumb.php') || ! $config = include_once('../../fuel/app/config/phpthumb.php')) {
+    ob_end_flush();
+    die('failed to include_once(../../fuel/app/config/phpthumb.php) - realpath="'.realpath(dirname(__FILE__).'/phpthumb.functions.php').'"');
+}
+
 if (!file_exists(dirname(__FILE__).'/phpthumb.functions.php') || !include_once(dirname(__FILE__).'/phpthumb.functions.php')) {
 	ob_end_flush();
 	die('failed to include_once(phpthumb.functions.php) - realpath="'.realpath(dirname(__FILE__).'/phpthumb.functions.php').'"');
@@ -24,7 +30,7 @@ ob_end_clean();
 // but has been known to be broken on some servers. This value allows you to override the default value.
 // Do not modify from the auto-detect default value unless you are having problems.
 //$PHPTHUMB_CONFIG['document_root'] = '/home/httpd/httpdocs';
-$PHPTHUMB_CONFIG['document_root'] = 'c:\\wamp\\apache2\\htdocs';
+$PHPTHUMB_CONFIG['document_root'] = $config['document_root'];//'c:\\wamp\\apache2\\htdocs';
 //$PHPTHUMB_CONFIG['document_root'] = $_SERVER['DOCUMENT_ROOT'];
 //$PHPTHUMB_CONFIG['document_root'] = realpath((@$_SERVER['DOCUMENT_ROOT'] && file_exists(@$_SERVER['DOCUMENT_ROOT'].$_SERVER['PHP_SELF'])) ? $_SERVER['DOCUMENT_ROOT'] : str_replace(dirname(@$_SERVER['PHP_SELF']), '', str_replace(DIRECTORY_SEPARATOR, '/', realpath('.'))));
 //$PHPTHUMB_CONFIG['document_root'] = realpath((getenv('DOCUMENT_ROOT') && preg_match('#^'.preg_quote(realpath(getenv('DOCUMENT_ROOT'))).'#', realpath(__FILE__))) ? getenv('DOCUMENT_ROOT') : str_replace(dirname(@$_SERVER['PHP_SELF']), '', str_replace(DIRECTORY_SEPARATOR, '/', dirname(__FILE__))));
@@ -34,7 +40,7 @@ $PHPTHUMB_CONFIG['document_root'] = 'c:\\wamp\\apache2\\htdocs';
 // If the directory is not writable no error will be generated but caching will be disabled.
 //$PHPTHUMB_CONFIG['cache_directory'] = dirname(__FILE__).'/cache/';                            // set the cache directory relative to the phpThumb() installation
 //$PHPTHUMB_CONFIG['cache_directory'] = $PHPTHUMB_CONFIG['document_root'].'/phpthumb/cache/'; // set the cache directory to an absolute directory for all source images
-$PHPTHUMB_CONFIG['cache_directory'] = $PHPTHUMB_CONFIG['document_root'] . '\\photos\\cache';                                           // set the cache directory relative to the source image - must start with '.' (will not work to cache URL- or database-sourced images, please use an absolute directory name)
+$PHPTHUMB_CONFIG['cache_directory'] = $PHPTHUMB_CONFIG['document_root'] . $config['photos_cache'];                                           // set the cache directory relative to the source image - must start with '.' (will not work to cache URL- or database-sourced images, please use an absolute directory name)
 //$PHPTHUMB_CONFIG['cache_directory'] = null;                                                 // disable thumbnail caching (not recommended)
 //if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
 //	$PHPTHUMB_CONFIG['cache_directory'] = dirname(__FILE__).'/cache/'; // set the cache directory to an absolute directory for all source images
