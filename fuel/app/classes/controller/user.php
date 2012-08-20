@@ -11,6 +11,10 @@ class Controller_User extends Controller_Template
             {
                 Response::redirect('manager');
             }
+            elseif (Auth::instance()->has_access('Controller_Editor.index'))
+            {
+                Response::redirect('editor');
+            }
             else
             {
                 Response::redirect('articulo');
@@ -31,6 +35,10 @@ class Controller_User extends Controller_Template
                 if (Auth::instance()->has_access('Controller_Manager.index'))
                 {
                     Response::redirect('manager');
+                }
+                elseif (Auth::instance()->has_access('Controller_Editor.index'))
+                {
+                    Response::redirect('editor');
                 }
                 else
                 {

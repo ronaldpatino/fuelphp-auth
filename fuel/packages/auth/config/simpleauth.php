@@ -76,6 +76,13 @@ return array(
             'Controller_Profile' => array('index','changepassword')
 
         ),
+
+        'editor'  => array(
+            'Controller_Editor' => array('index','revisar','aprobar','rechazar'),
+            'Controller_Profile' => array('index','changepassword')
+
+        ),
+
         'admin'  => array(
             'Controller_Articulo' => array('index','view','create','edit','delete'),
             'Controller_Foto' => array('index','view','create','edit','delete','add'),

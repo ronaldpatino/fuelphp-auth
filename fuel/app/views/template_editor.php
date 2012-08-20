@@ -68,7 +68,7 @@
                     <ul class="nav">
 
 
-                        <li  class="active"><?php echo Html::anchor('manager', 'Usuarios'); ?></li>
+                        <li  class="active"><?php echo Html::anchor('editor', 'Periodistas'); ?></li>
 
                         <li><a href="#contact">Ayuda</a></li>
 
