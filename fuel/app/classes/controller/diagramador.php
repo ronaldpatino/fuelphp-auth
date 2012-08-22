@@ -84,4 +84,28 @@ class Controller_Diagramador extends Controller_Template
         $this->template->title = 'Diagramador &raquo; Index';
         $this->template->content = View::forge('diagramador/seccion', $data);
     }
+
+    public function action_zip($articulo_id = null)
+    {
+        is_null($articulo_id) and Response::redirect('diagramador');
+
+        $articulos = Model_Articulo::find('all',
+            array(
+                'related' => array('fotos', 'seccion'),
+                'where' =>
+                array(
+                    array('id', '=', $articulo_id)
+                )
+            )
+        );
+
+        $files_to_zip = array();
+        foreach($articulos as $articulo)
+        {
+            array_push($files_to_zip, $articulo->imagen);
+        }
+
+        $result = Zip::create_zip($files_to_zip,'my-archive.zip');
+    }
+
 }
