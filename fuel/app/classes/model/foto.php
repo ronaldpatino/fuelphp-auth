@@ -26,7 +26,17 @@ class Model_Foto extends Model
 		),
 	);
 
-	public static function validate($factory)
+    protected static $_belongs_to  = array(
+        'dimension' => array(
+            'key_from' => 'dimension_id',
+            'model_to' => 'Model_Dimension',
+            'key_to' => 'id',
+            'cascade_save' => true,
+            'cascade_delete' => false,
+        )
+    );
+
+    public static function validate($factory)
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('imagen', 'Imagen', 'required');
