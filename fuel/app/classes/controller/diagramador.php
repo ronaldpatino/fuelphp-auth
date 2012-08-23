@@ -100,6 +100,7 @@ class Controller_Diagramador extends Controller_Template
         );
 
         $files_to_zip = array();
+
         foreach($articulos as $articulo)
         {
             foreach($articulo->fotos as $foto)
@@ -112,10 +113,6 @@ class Controller_Diagramador extends Controller_Template
         }
 
         Zip::create_zip($files_to_zip, $articulo_id);
-
-        // $this->template = null;
-
-        //$this->template->content = View::forge('diagramador/zip', $data);
     }
 
 }

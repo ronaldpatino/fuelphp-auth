@@ -15,6 +15,9 @@
         }
 
     </style>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
+
 </head>
 <body>
 <!-- begin header -->
@@ -127,17 +130,6 @@
 
 </div>
 
-
-<!-- Le javascript
-
-
-
-================================================== -->
-
-<!-- Placed at the end of the document so the pages load faster -->
-
-<script type="text/javascript" src="http://localhost/fotos//assets/js/app/lib/head.js"></script>
-<?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
 
 
 </body>

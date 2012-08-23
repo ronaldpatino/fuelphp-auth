@@ -73,6 +73,7 @@ return array(
             'Controller_Articulo' => array('index','view','create','edit','delete'),
             'Controller_Foto' => array('index','view','create','edit','delete','add'),
             'Controller_Galeria' => array('index','view','create','edit','delete'),
+            'Controller_Buscar' => array('buscar'),
             'Controller_Profile' => array('index','changepassword')
 
         ),

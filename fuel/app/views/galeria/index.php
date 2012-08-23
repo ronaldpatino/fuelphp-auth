@@ -13,6 +13,7 @@
 
 
 <div id="container">
+
     <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
         <ul class="thumbnails">
             <?php echo html_entity_decode($thumbnails, ENT_QUOTES) ?>
@@ -47,55 +48,55 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript" >
+    $(document).ready(function() {
 
+        /* attach a submit handler to the form */
+        $("#fotoarticuloform").submit(function(event) {
+            /* stop form from submitting normally */
+            event.preventDefault();
 
+            /* get some values from elements on the page: */
+            var $form = $( this ),
+                term =  $("#form_articulo_id option:selected").val(),
+                imagen = $('img.in').attr("src"),
+                url = $form.attr( 'action'),
+                periodista_id = $("#periodista_id").val(),
+                dimension_id = $("#form_dimension_id option:selected").val();
 
-    /* attach a submit handler to the form */
-    $("#fotoarticuloform").submit(function(event) {
-        /* stop form from submitting normally */
-        event.preventDefault();
+            /* Send the data using post and put the results in a div */
+            $.post( url,
+                {
+                    articulo_id: term,
+                    imagen: imagen,
+                    periodista_id:periodista_id,
+                    dimension_id: dimension_id
+                },
+                function( data ) {
 
-        /* get some values from elements on the page: */
-        var $form = $( this ),
-            term =  $("#form_articulo_id option:selected").val(),
-            imagen = $('img.in').attr("src"),
-            url = $form.attr( 'action'),
-            periodista_id = $("#periodista_id").val(),
-            dimension_id = $("#form_dimension_id option:selected").val();
+                    switch(data){
+                        case '0':
 
-        /* Send the data using post and put the results in a div */
-        $.post( url,
-            {
-                articulo_id: term,
-                imagen: imagen,
-                periodista_id:periodista_id,
-                dimension_id: dimension_id
-            },
-            function( data ) {
+                            $("#mensaje_alerta" ).html("La imagen " + imagen + " ha sido agregada al articulo: " + $("#form_articulo_id option:selected").val());
+                            $( "#alerta" ).show();
+                            $('#modal-gallery').modal('hide');
+                            break;
+                        case '1':
 
-                switch(data){
-                    case '0':
+                            $("#mensaje_error" ).html("La imagen " + imagen + " no pudo ser agregada al articulo: " + $("#form_articulo_id option:selected").val());
+                            $( "#alerta_error" ).show();
+                            $('#modal-gallery').modal('hide');
+                            break;
+                        case '2':
 
-                        $("#mensaje_alerta" ).html("La imagen " + imagen + " ha sido agregada al articulo: " + $("#form_articulo_id option:selected").val());
-                        $( "#alerta" ).show();
-                        $('#modal-gallery').modal('hide');
-                        break;
-                    case '1':
+                            $("#mensaje_error" ).html("La imagen " + imagen + " ya esta agregada al articulo: " + $("#form_articulo_id option:selected").val());
+                            $( "#alerta_error" ).show();
+                            $('#modal-gallery').modal('hide');
+                            break;
+                    }
 
-                        $("#mensaje_error" ).html("La imagen " + imagen + " no pudo ser agregada al articulo: " + $("#form_articulo_id option:selected").val());
-                        $( "#alerta_error" ).show();
-                        $('#modal-gallery').modal('hide');
-                        break;
-                    case '2':
-
-                        $("#mensaje_error" ).html("La imagen " + imagen + " ya esta agregada al articulo: " + $("#form_articulo_id option:selected").val());
-                        $( "#alerta_error" ).show();
-                        $('#modal-gallery').modal('hide');
-                        break;
                 }
-
-            }
-        );
+            );
+        });
     });
 </script>

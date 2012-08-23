@@ -33,6 +33,7 @@
             </a>
 
             <a class="brand" href="/gr">Cat&aacute;logo</a>
+
             <?php if(isset($usuario)): ?>
             <div class="btn-group pull-right">
 
@@ -59,6 +60,13 @@
                 </ul>
 
             </div>
+
+            <form class="navbar-search pull-right" action="buscar/buscar/" method="post">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-search"></i></span><input name="p" type="text" class="span2" placeholder="Buscar en Galer&iacute;a">
+                </div>
+            </form>
+
             <?php endif;?>
 
             <div class="nav-collapse">

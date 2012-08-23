@@ -23,14 +23,15 @@ class Search
 
     private static function searchfile($dirs, $pattern)
     {
-        $resultado = array();
+        $resultado = false;
+
         foreach($dirs as $dir)
         {
             $files = glob($dir.'/'.$pattern);
 
-            if (count($files))
+            if (count($files)>0)
             {
-                array_push($resultado, $files);
+                $resultado[] = $files;
             }
         }
 
@@ -42,13 +43,15 @@ class Search
     {
         $directorios = Search::rglob($path, GLOB_ONLYDIR);
         $archivos = Search::searchfile($directorios, $cadena);
-        if (count($archivos))
+        if ($archivos)
         {
+            $document_root = str_replace("\\", "/", Config::get('document_root'));
+
             foreach($archivos as $ars)
             {
                 foreach($ars as $a)
                 {
-                    $resultado[] = $a;
+                    $resultado[] = str_replace($document_root , "", $a);
                 }
             }
             return $resultado;
