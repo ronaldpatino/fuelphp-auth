@@ -44,7 +44,14 @@ class Search
         $archivos = Search::searchfile($directorios, $cadena);
         if (count($archivos))
         {
-            return $archivos;
+            foreach($archivos as $ars)
+            {
+                foreach($ars as $a)
+                {
+                    $resultado[] = $a;
+                }
+            }
+            return $resultado;
         }
         return false;
 
