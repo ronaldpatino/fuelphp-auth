@@ -58,6 +58,7 @@ class Zip
                 header('Content-type: application/zip');
                 header('Content-Disposition: attachment; filename="'.$zip_dowload.'"');
                 readfile($destination);
+                unlink($destination);
 
             }
             else
