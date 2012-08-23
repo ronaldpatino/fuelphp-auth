@@ -8,7 +8,16 @@
  */
 class Zip
 {
-    public static function create_zip($files = array(),$destination = '',$overwrite = false) {
+    public static function create_zip($files = array(),$destination = '',$overwrite = true) {
+
+        \Config::load('phpthumb');
+
+        $document_root = str_replace("\\", "/", Config::get('document_root'));
+        //$document_root = Config::get('document_root');
+        $time = time();
+
+        $zip_dowload = $destination . '_' . $time . '.zip';
+        $destination = $document_root . "\\gr\\public\\zip\\" . $destination. '_' . time() . '  .zip';
         //if the zip file already exists and overwrite is false, return false
         if(file_exists($destination) && !$overwrite) { return false; }
         //vars
@@ -18,8 +27,10 @@ class Zip
             //cycle through each file
             foreach($files as $file) {
                 //make sure the file exists
-                if(file_exists($file)) {
-                    $valid_files[] = $file;
+                $thefile = $document_root .$file;
+
+                if(file_exists($thefile)) {
+                    $valid_files[$file] = $thefile;
                 }
             }
         }
@@ -31,8 +42,8 @@ class Zip
                 return false;
             }
             //add the files
-            foreach($valid_files as $file) {
-                $zip->addFile($file,$file);
+            foreach($valid_files as $key => $value) {
+                $zip->addFile($value,$key);
             }
             //debug
             //echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
@@ -41,7 +52,19 @@ class Zip
             $zip->close();
 
             //check to make sure the file exists
-            return file_exists($destination);
+
+            if ($destination)
+            {
+                header('Content-type: application/zip');
+                header('Content-Disposition: attachment; filename="'.$zip_dowload.'"');
+                readfile($destination);
+
+            }
+            else
+            {
+                return false;
+            }
+
         }
         else
         {

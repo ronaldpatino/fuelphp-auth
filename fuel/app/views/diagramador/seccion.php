@@ -12,6 +12,9 @@
         <td>
             <p><?php echo $articulo->nombre; ?></p>
             <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
+            <p>
+                <?php echo Html::anchor('diagramador/zip/'.$articulo->id, '<i class="icon-arrow-down"></i> Descargar Zip', array('class' => 'btn btn-success'));?>
+            </p>
         </td>
 
         <td>

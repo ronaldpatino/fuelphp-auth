@@ -102,10 +102,20 @@ class Controller_Diagramador extends Controller_Template
         $files_to_zip = array();
         foreach($articulos as $articulo)
         {
-            array_push($files_to_zip, $articulo->imagen);
+            foreach($articulo->fotos as $foto)
+            {
+                if ($foto->estado == 1)
+                {
+                    array_push($files_to_zip, $foto->imagen);
+                }
+            }
         }
 
-        $result = Zip::create_zip($files_to_zip,'my-archive.zip');
+        Zip::create_zip($files_to_zip, $articulo_id);
+
+        // $this->template = null;
+
+        //$this->template->content = View::forge('diagramador/zip', $data);
     }
 
 }
