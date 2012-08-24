@@ -5,7 +5,7 @@ return array(
     'photos_path' => 'c:\\wamp\\apache2\\htdocs\\photos',
     'photos_cache' => '\\photos\\cache',
     'galleryroot' => '\\photos',
-    'phpthumbroot'=> '\\gr\\public\\phpthumb\\',
+    'phpthumbroot'=> '/gr/public/phpthumb/',
     'thumb_size'    => 120
 );
 
