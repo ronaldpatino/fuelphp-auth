@@ -27,7 +27,8 @@ class Search
 
         foreach($dirs as $dir)
         {
-            $files = glob($dir.'/'.$pattern);
+            $patron = $dir.'/'.$pattern."*.{jpg,gif,png}";
+            $files = glob($patron, GLOB_BRACE);
 
             if (count($files)>0)
             {
@@ -42,6 +43,15 @@ class Search
     public static function buscar($path, $cadena)
     {
         $directorios = Search::rglob($path, GLOB_ONLYDIR);
+
+        foreach($directorios as $key => $value)
+        {
+            if (strstr($value,'cache') != false)
+            {
+                unset($directorios[$key]);
+            }
+        }
+
         $archivos = Search::searchfile($directorios, $cadena);
         if ($archivos)
         {
