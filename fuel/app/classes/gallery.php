@@ -132,6 +132,7 @@ class Gallery
                                     ."</a>"
                                     ."</li>");
                         }
+                        /*
                         // Other filetypes
                         $extension = "";
                         if (preg_match("/.pdf$/i", $file)) $extension = "PDF"; // PDF
@@ -151,6 +152,7 @@ class Gallery
                                 "size" => filesize($currentdir . "/" . $file),
                                 "html" => "<li  class='thumbnail'><a href='" . $currentdir . "/" . $file . "' title='$file'><em-pdf>" . Gallery::padstring($file, 20) . "</em-pdf><span></span><img src='" . static::$default_config['phpthumbroot'] . "images/filetype_" . $extension . ".png' width='" . static::$default_config['thumb_size'] . "' height='" . static::$default_config['thumb_size'] . "' alt='$file' /></a></li>");
                         }
+                        */
                     }
 
 
