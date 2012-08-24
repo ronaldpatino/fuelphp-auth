@@ -24,7 +24,7 @@ class Controller_Buscar extends Controller_Admin
                         ."<a href='http://" . gethostname() . $file . "' rel='gallery' title='$file'>"
                         ."<img class='detalle' data-original-title='".$file."' "
                         ."data-content='Dimensiones: {$img_width} por {$img_height} pixels' src='"
-                        . Config::get('phpthumbroot') . "phpThumb.php?src=" . Config::get('document_root') . "/" . $file . "&amp;w=" . Config::get('thumb_size') . "&amp;h="  . Config::get('thumb_size') . "&amp;zc=1' />"
+                        . Config::get('phpthumbroot') . "phpThumb.php?src=" . $document_root  . $file . "&w=" . Config::get('thumb_size') . "&h="  . Config::get('thumb_size') . "&zc=1' />"
                         ."</a>"
                         ."</li>";
             }
