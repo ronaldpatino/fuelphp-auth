@@ -8,16 +8,16 @@
  */
 class Zip
 {
-    public static function create_zip($files = array(),$destination = '',$overwrite = true) {
+    public static function create_zip($files = array(),$destination = '',$overwrite = true, $time) {
 
         \Config::load('phpthumb');
 
         $document_root = str_replace("\\", "/", Config::get('document_root'));
         //$document_root = Config::get('document_root');
-        $time = time();
 
         $zip_dowload = $destination . '_' . $time . '.zip';
-        $destination = $document_root . "\\gr\\public\\zip\\" . $destination. '_' . time() . '  .zip';
+        $destination = $document_root . "/gr/public/zip/" . $destination. '_' . $time . '  .zip';
+
         //if the zip file already exists and overwrite is false, return false
         if(file_exists($destination) && !$overwrite) { return false; }
         //vars

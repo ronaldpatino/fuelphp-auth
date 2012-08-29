@@ -33,6 +33,16 @@
                                 'data-original-title' => $foto->imagen
                             )); ?>
                             </a>
+                            <br/>
+                            <br/>
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Medida</strong></td>
+                                    <td><?php echo $foto->dimension->descipcion;?></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </li>
                     <?php endif;?>
                 <?php endforeach; ?>

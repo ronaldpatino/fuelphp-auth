@@ -8,6 +8,14 @@
  */
 class Controller_Profile extends Controller_Admin
 {
+    public $template = 'template';
+
+    public function before()
+    {
+        $this->template = Session::get('template');
+        parent::before();
+    }
+
     public function action_index()
     {
         $data['usuario'] = Auth::instance()->get_screen_name();

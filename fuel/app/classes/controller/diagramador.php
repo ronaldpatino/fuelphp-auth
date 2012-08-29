@@ -1,8 +1,15 @@
 <?php
 
-class Controller_Diagramador extends Controller_Template
+class Controller_Diagramador extends Controller_Admin
 {
-    //public $template = 'template_diagramador';
+    public $template = 'template_diagramador';
+
+    public function before()
+    {
+        $this->template = Session::get('template');
+        parent::before();
+    }
+
 
     public function action_index()
     {
@@ -108,11 +115,19 @@ class Controller_Diagramador extends Controller_Template
                 if ($foto->estado == 1)
                 {
                     array_push($files_to_zip, $foto->imagen);
+                    $archivo_informacion = $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n ==========================\n";
+
                 }
             }
         }
 
-        Zip::create_zip($files_to_zip, $articulo_id);
+        $time = time();
+
+        File::create(DOCROOT . "zip/" , "info_{$articulo_id}_{$time}.txt", $archivo_informacion);
+
+        array_push($files_to_zip, "/gr/public/zip/info_{$articulo_id}_{$time}.txt");
+
+        Zip::create_zip($files_to_zip, $articulo_id, true ,$time);
     }
 
 }

@@ -7,16 +7,25 @@ class Controller_User extends Controller_Template
 	{
         if(\Auth::check())
         {
+
             if (Auth::instance()->has_access('Controller_Manager.index'))
             {
+                Session::set('template', 'template_manager');
                 Response::redirect('manager');
             }
             elseif (Auth::instance()->has_access('Controller_Editor.index'))
             {
+                Session::set('template', 'template_editor');
                 Response::redirect('editor');
+            }
+            elseif (Auth::instance()->has_access('Controller_Diagramador.index'))
+            {
+                Session::set('template', 'template_diagramador');
+                Response::redirect('diagramador');
             }
             else
             {
+                Session::set('template', 'template_gallery');
                 Response::redirect('articulo');
             }
 
@@ -34,14 +43,22 @@ class Controller_User extends Controller_Template
             {
                 if (Auth::instance()->has_access('Controller_Manager.index'))
                 {
+                    Session::set('template', 'template_manager');
                     Response::redirect('manager');
                 }
                 elseif (Auth::instance()->has_access('Controller_Editor.index'))
                 {
+                    Session::set('template', 'template_editor');
                     Response::redirect('editor');
+                }
+                elseif (Auth::instance()->has_access('Controller_Diagramador.index'))
+                {
+                    Session::set('template', 'template_diagramador');
+                    Response::redirect('diagramador');
                 }
                 else
                 {
+                    Session::set('template', 'template_gallery');
                     Response::redirect('articulo');
                 }
 

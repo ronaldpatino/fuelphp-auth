@@ -48,6 +48,7 @@ return array(
     'groups' => array(
         0    => array('name' => 'Guests', 'roles' => array()),
         1    => array('name' => 'Users', 'roles' => array('user')),
+        25    => array('name' => 'Diagramators', 'roles' => array('diagramador')),
         50   => array('name' => 'Editors', 'roles' => array('user', 'editor')),
         100  => array('name' => 'Administrators', 'roles' => array('user', 'admin'))
         /**
@@ -76,6 +77,11 @@ return array(
             'Controller_Buscar' => array('buscar'),
             'Controller_Profile' => array('index','changepassword')
 
+        ),
+
+        'diagramador'  => array(
+            'Controller_Diagramador' => array('index','seccion','zip'),
+            'Controller_Profile' => array('index','changepassword')
         ),
 
         'editor'  => array(

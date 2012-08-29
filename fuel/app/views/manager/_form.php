@@ -29,7 +29,7 @@
         <div class="control-group">
             <label>Grupo </label>
             <div class="controls">
-                <?php echo Form::select('group', 'none', array('1'=>'Periodista','50'=>'Editor','100'=>'Administrador'));?>
+                <?php echo Form::select('group', 'none', array('1'=>'Periodista','25'=>'Diagramador','50'=>'Editor','100'=>'Administrador'));?>
             </div>
         </div>
 

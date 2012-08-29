@@ -2,7 +2,13 @@
 
 class Controller_Buscar extends Controller_Admin
 {
-    //public $template = 'template_diagramador';
+    public $template = 'template';
+
+    public function before()
+    {
+        $this->template = Session::get('template');
+        parent::before();
+    }
 
     public function action_buscar()
     {
@@ -88,7 +94,7 @@ class Controller_Buscar extends Controller_Admin
         $data['select_dimensiones'] = $select_dimensiones;
 
         $data['periodista_id'] = $this->user_id;
-        $view = View::forge('template');
+        $view = View::forge(Session::get('template'));
 
         $view->set_global('user_id', 1);
         $view->set_global('data', $data);
