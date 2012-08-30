@@ -1,7 +1,7 @@
-<h2>Listing Seccions</h2>
+<h2>Listado de Secciones</h2>
 <br>
 <?php if ($seccions): ?>
-<table class="zebra-striped">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
 			<th>Descripcion</th>
@@ -13,9 +13,8 @@
 
 			<td><?php echo $seccion->descripcion; ?></td>
 			<td>
-				<?php echo Html::anchor('seccion/view/'.$seccion->id, 'View'); ?> |
-				<?php echo Html::anchor('seccion/edit/'.$seccion->id, 'Edit'); ?> |
-				<?php echo Html::anchor('seccion/delete/'.$seccion->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+				<?php echo Html::anchor('seccion/edit/'.$seccion->id, 'Editar'); ?> |
+				<?php echo Html::anchor('seccion/delete/'.$seccion->id, 'Borrar', array('onclick' => "return confirm('Esta seguro?')")); ?>
 
 			</td>
 		</tr>
@@ -23,9 +22,9 @@
 </table>
 
 <?php else: ?>
-<p>No Seccions.</p>
+<p>No existen Secciones creadas.</p>
 
 <?php endif; ?><p>
-	<?php echo Html::anchor('seccion/create', 'Add new Seccion', array('class' => 'btn success')); ?>
+	<?php echo Html::anchor('seccion/create', 'Crear nueva Seccion', array('class' => 'btn success')); ?>
 
 </p>

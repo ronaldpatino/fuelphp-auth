@@ -1,11 +1,18 @@
 <?php
 class Controller_Dimension extends Controller_Admin
 {
+    public $template = 'template_manager';
 
-	public function action_index()
+    public function before()
+    {
+        $this->template = Session::get('template');
+        parent::before();
+    }
+
+    public function action_index()
 	{
 		$data['dimensions'] = Model_Dimension::find('all');
-		$this->template->title = "Dimensions";
+		$this->template->title = "Dimensiones";
 		$this->template->content = View::forge('dimension/index', $data);
 
 	}
@@ -51,7 +58,7 @@ class Controller_Dimension extends Controller_Admin
 			}
 		}
 
-		$this->template->title = "Dimensions";
+		$this->template->title = "Dimensiones";
 		$this->template->content = View::forge('dimension/create');
 
 	}
@@ -93,7 +100,7 @@ class Controller_Dimension extends Controller_Admin
 			$this->template->set_global('dimension', $dimension, false);
 		}
 
-		$this->template->title = "Dimensions";
+		$this->template->title = "Dimensiones";
 		$this->template->content = View::forge('dimension/edit');
 
 	}

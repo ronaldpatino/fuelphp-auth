@@ -1,7 +1,7 @@
-<h2>Listing Dimensions</h2>
+<h2>Listado de  Dimensiones</h2>
 <br>
 <?php if ($dimensions): ?>
-<table class="zebra-striped">
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
 			<th>Descipcion</th>
@@ -13,9 +13,8 @@
 
 			<td><?php echo $dimension->descipcion; ?></td>
 			<td>
-				<?php echo Html::anchor('dimension/view/'.$dimension->id, 'View'); ?> |
-				<?php echo Html::anchor('dimension/edit/'.$dimension->id, 'Edit'); ?> |
-				<?php echo Html::anchor('dimension/delete/'.$dimension->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+				<?php echo Html::anchor('dimension/edit/'.$dimension->id, 'Editar'); ?> |
+				<?php echo Html::anchor('dimension/delete/'.$dimension->id, 'Borrar', array('onclick' => "return confirm('Esta seguro?')")); ?>
 
 			</td>
 		</tr>
@@ -23,9 +22,9 @@
 </table>
 
 <?php else: ?>
-<p>No Dimensions.</p>
+<p>No existen Dimensiones Definidas.</p>
 
 <?php endif; ?><p>
-	<?php echo Html::anchor('dimension/create', 'Add new Dimension', array('class' => 'btn success')); ?>
+	<?php echo Html::anchor('dimension/create', 'Crear nueva Dimension', array('class' => 'btn success')); ?>
 
 </p>

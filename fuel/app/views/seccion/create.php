@@ -1,7 +1,7 @@
-<h2>New Seccion</h2>
+<h2>Nueva Seccion</h2>
 <br>
 
 <?php echo render('seccion/_form'); ?>
 
 
-<p><?php echo Html::anchor('seccion', 'Back'); ?></p>
+<p><?php echo Html::anchor('seccion', 'Regresar'); ?></p>

@@ -1,11 +1,18 @@
 <?php
 class Controller_Seccion extends Controller_Admin
 {
+    public $template = 'template_manager';
+
+    public function before()
+    {
+        $this->template = Session::get('template');
+        parent::before();
+    }
 
 	public function action_index()
 	{
 		$data['seccions'] = Model_Seccion::find('all');
-		$this->template->title = "Seccions";
+		$this->template->title = "Secciones";
 		$this->template->content = View::forge('seccion/index', $data);
 
 	}
@@ -51,7 +58,7 @@ class Controller_Seccion extends Controller_Admin
 			}
 		}
 
-		$this->template->title = "Seccions";
+		$this->template->title = "Secciones";
 		$this->template->content = View::forge('seccion/create');
 
 	}
@@ -93,7 +100,7 @@ class Controller_Seccion extends Controller_Admin
 			$this->template->set_global('seccion', $seccion, false);
 		}
 
-		$this->template->title = "Seccions";
+		$this->template->title = "Secciones";
 		$this->template->content = View::forge('seccion/edit');
 
 	}

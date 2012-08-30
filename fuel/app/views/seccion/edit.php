@@ -1,7 +1,8 @@
-<h2>Editing Seccion</h2>
+<h2>Editar Seccion</h2>
 <br>
 
 <?php echo render('seccion/_form'); ?>
 <p>
-	<?php echo Html::anchor('seccion/view/'.$seccion->id, 'View'); ?> |
-	<?php echo Html::anchor('seccion', 'Back'); ?></p>
+
+	<?php echo Html::anchor('seccion', 'Regresar'); ?>
+</p>

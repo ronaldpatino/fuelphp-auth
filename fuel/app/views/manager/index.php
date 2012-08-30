@@ -25,7 +25,7 @@
 </table>
 
 <?php else: ?>
-<p>No Seccions.</p>
+<p>No existen usuarios.</p>
 
 <?php endif; ?><p>
     <?php echo Html::anchor('manager/create', 'Crear usuario', array('class' => 'btn success')); ?>
