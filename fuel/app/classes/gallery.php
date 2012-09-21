@@ -101,7 +101,7 @@ class Gallery
                                         "name" => $file,
                                         "date" => filemtime($currentdir . "/" . $file),
                                         "html" => "<li class='thumbnail'>"
-                                            . "<a href='?dir=" . ltrim($_GET['dir'] . "/" . $file, "/") . "'>"
+                                            . "<a href='?dir=" . ltrim(Input::get('dir') . "/" . $file, "/") . "'>"
                                             . "<img src='public/assets/img/folder_" . strtolower(static::$default_config['folder_color']) . ".png' width='" . static::$default_config['thumb_size'] ."' height='" . static::$default_config['thumb_size'] . "' />"
                                             . "<h5>". Gallery::padstring($file, static::$default_config['label_max_length'])."</h5>"
                                             . "</li>");
