@@ -38,11 +38,13 @@ class Controller_Galeria  extends Controller_Admin
             {
                 $select_articulos[$articulo->id] = $articulo->nombre;
             }
-
+            $data['boton_activo'] = 1;
         }
         else
         {
             $select_articulos = array('none'=>'No existen articulos creados');
+            $data['boton_activo'] = 0;
+
         }
         $data['select_articulos'] = $select_articulos;
 

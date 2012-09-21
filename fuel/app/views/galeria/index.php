@@ -41,9 +41,11 @@
             <input name='periodista_id' id="form_periodista_id"  type="hidden" value="<?php echo $periodista_id?>"/>
 
             <?php echo Form::select('articulo_id', 'none', $select_articulos);?>
+        <?php if($boton_activo):?>
             <?php echo Form::select('dimension_id', 'none', $select_dimensiones);?>
-
             <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Agregar Imagen</button>
+        <?php endif;?>
+
         <?php echo Form::close();?>
     </div>
 </div>

@@ -32,7 +32,7 @@
                             <?php echo Myhtml::img($foto->imagen, array('width' => '110',
                             'height' => '110',
                             'class' => 'detalle',
-                            'data-content' => "Dimensiones: media<br/>Seccion:deportes",
+                            'data-content' => "Dimensiones:{$foto->dimension->descipcion}<br/>Seccion:deportes",
                             'alt' => $foto->imagen,
                             'data-original-title' => $foto->imagen
                         )); ?>
