@@ -119,19 +119,24 @@ class Gallery
                         {
 
                             Gallery::checkpermissions($currentdir . "/" . $file);
-                            list($img_width, $img_height, $img_type, $img_attr) = getimagesize($currentdir . "/" . $file);
+                            list($img_width, $img_height, $img_type, $img_attr) = getimagesize($currentdir . "/" . $file);									
+							$imagen_destino = static::$default_config['galleryroot'] . Input::get('dir') . "/" . $file;
                             $files[] = array (
                                 "name" => $file,
                                 "date" => filemtime($currentdir . "/" . $file),
                                 "size" => filesize($currentdir . "/" . $file),
-                                "html" => 	"<li  class='thumbnail'>"
-                                    ."<a href='http://" . gethostname() . static::$default_config['galleryroot'] . Input::get('dir') . "/" . $file . "' rel='gallery' title='$file'>"
-                                    ."<img class='detalle' data-original-title='".$file."' "
+                                "html" => 	"<li  class='thumbnail'>"                                    
+									."<a href='" . Myhtml::img_watermark($imagen_destino) . "' rel='gallery' title='$file'>"
+									//."<a href='http://" . gethostname() . static::$default_config['galleryroot'] . Input::get('dir') . "/" . Myhtml::img_watermark($file) . "' rel='gallery' title='$file'>"
+                                    
+									."<img class='detalle' data-original-title='".$file."' "
                                     ."data-content='Dimensiones: {$img_width} por {$img_height} pixels' src='"
                                     . static::$default_config['phpthumbroot'] . "phpThumb.php?src=" . static::$default_config['thumbdir'] . "/" . $file . "&amp;w=" . static::$default_config['thumb_size'] . "&amp;h="  . static::$default_config['thumb_size'] . "&amp;zc=1' />"
                                     ."</a>"
-                                    ."</li>");
+                                    ."</li>");															
                         }
+
+							
                         /*
                         // Other filetypes
                         $extension = "";
