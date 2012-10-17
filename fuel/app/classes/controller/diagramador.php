@@ -20,7 +20,7 @@ class Controller_Diagramador extends Controller_Admin
         {
             $fi = date("Y-m-d") .' 01:00:00';
             $ff = date("Y-m-d") .' 23:59:00';
-            $fecha_inicio   = Date::create_from_string($fi,"us");
+            $fecha_inicio   = Date::create_from_string($fi,"mysql");
             $fecha_fin   = Date::create_from_string($ff,"mysql");
             $cuantos_array = array();
             foreach($secciones as $s){
@@ -66,7 +66,7 @@ class Controller_Diagramador extends Controller_Admin
 
         $fi = date("Y-m-d") .' 01:00:00';
         $ff = date("Y-m-d") .' 23:59:00';
-        $fecha_inicio   = Date::create_from_string($fi,"us");
+        $fecha_inicio   = Date::create_from_string($fi,"mysql");
         $fecha_fin   = Date::create_from_string($ff,"mysql");
 
         $articulos = Model_Articulo::find('all',
