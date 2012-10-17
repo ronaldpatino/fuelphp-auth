@@ -33,11 +33,7 @@
     <div class="modal-body"><div class="modal-image"></div></div>
     <div class="modal-footer">
 
-        <?php echo Form::open(array('action'=>'foto/add', 'class'=>'well form-inline','id'=>'fotoarticuloform'));?>
-            <a class="btn modal-download" target="_blank">
-                <i class="icon-download"></i>
-                <span>Descargar</span>
-            </a>
+        <?php echo Form::open(array('action'=>'foto/add', 'class'=>'well form-inline','id'=>'fotoarticuloform'));?>            
             <input name='periodista_id' id="form_periodista_id"  type="hidden" value="<?php echo $periodista_id?>"/>
 
             <?php echo Form::select('articulo_id', 'none', $select_articulos);?>
@@ -65,7 +61,11 @@
                 url = $form.attr( 'action'),
                 periodista_id = $("#periodista_id").val(),
                 dimension_id = $("#form_dimension_id option:selected").val();
-
+				
+				var inicio = imagen.indexOf("=") + 1;
+				var fin = imagen.indexOf("&");				
+				imagen = imagen.slice(inicio,fin);
+				
             /* Send the data using post and put the results in a div */
             $.post( url,
                 {
