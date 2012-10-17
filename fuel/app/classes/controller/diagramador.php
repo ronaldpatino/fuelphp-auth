@@ -108,14 +108,19 @@ class Controller_Diagramador extends Controller_Admin
 
         $files_to_zip = array();
 
+		
+		$archivo_informacion = '';
         foreach($articulos as $articulo)
         {
+		$archivo_informacion .= "Nombre del Articulo: ".$articulo->nombre."\n";
+		$archivo_informacion .= "Seccion del Articulo: ".$articulo->seccion->descripcion."\n";
+		$archivo_informacion .= "\n ==========================\n";		
             foreach($articulo->fotos as $foto)
             {
                 if ($foto->estado == 1)
                 {
                     array_push($files_to_zip, $foto->imagen);
-                    $archivo_informacion = $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n ==========================\n";
+                    $archivo_informacion .= $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n ==========================\n";
 
                 }
             }

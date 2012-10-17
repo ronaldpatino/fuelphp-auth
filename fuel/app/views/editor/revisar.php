@@ -29,7 +29,7 @@
                 )); ?>
 
                     <span class="btn-group">
-                        <a href="<?php echo $foto->imagen?>" class='btn detalles_foto' rel ='gallery' title = 'Ver detalles foto' alt='Ver detalles foto'>
+                        <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '<?php echo $articulo->nombre; ?>' alt='<?php echo $articulo->nombre; ?>'>
                             <i class="icon-eye-open"></i>
                         </a>
 
@@ -69,19 +69,6 @@
         <h3 class="modal-title"></h3>
     </div>
     <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-
-        <form class="well form-inline" id="searchForm" action="/gr/foto/add/">
-            <a class="btn modal-download" target="_blank">
-                <i class="icon-download"></i>
-                <span>Descargar</span>
-            </a>
-            <input name='periodista_id' id="form_periodista_id"  type="hidden"/>
-
-            <span id="articulo_container"></span>
-            <span id="dimension_container"></span>
-
-        </form>
     </div>
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->
