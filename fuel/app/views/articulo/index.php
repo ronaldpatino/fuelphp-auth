@@ -38,7 +38,7 @@
                         )); ?>
 
                             <span class="btn-group">
-                                <a href="<?php echo $foto->imagen?>" class='btn detalles_foto' rel ='gallery' title = 'Ver detalles foto' alt='Ver detalles foto'>
+                                <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '' alt=''>
                                     <i class="icon-eye-open"></i>
                                 </a>
                                 <?php echo Html::anchor('foto/delete/' . $foto->id, '<i class="icon-trash"></i>', array('class' => 'btn', 'rel' => 'tooltip', 'data-original-title' => 'Borrar foto del articulo', 'onclick' => "return confirm('Seguro desea Borrar la foto?')")); ?>
@@ -73,21 +73,7 @@
         <a class="close" data-dismiss="modal">&times;</a>
         <h3 class="modal-title"></h3>
     </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-
-        <form class="well form-inline" id="searchForm" action="/gr/foto/add/">
-            <a class="btn modal-download" target="_blank">
-                <i class="icon-download"></i>
-                <span>Descargar</span>
-            </a>
-            <input name='periodista_id' id="form_periodista_id"  type="hidden"/>
-
-            <span id="articulo_container"></span>
-            <span id="dimension_container"></span>
-
-        </form>
-    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>    
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->
 
