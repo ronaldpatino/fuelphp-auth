@@ -24,7 +24,7 @@
                 <?php foreach ($articulo->fotos as $foto): ?>
                     <?php if ($foto->estado == 1):?>
                         <li class="thumbnail">
-                            <a href="<?php echo $foto->imagen?>"  rel ='gallery' title = 'Ver detalles foto' alt='Ver detalles foto'>
+                            <a href="<?php echo $foto->imagen?>"  rel ='gallery' title = '<?php echo $articulo->nombre; ?>' alt='<?php echo $articulo->nombre; ?>'>
                                 <?php echo Myhtml::img($foto->imagen, array('width' => '110',
                                 'height' => '110',
                                 'class' => 'btn detalles_foto',
