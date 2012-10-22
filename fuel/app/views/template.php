@@ -68,13 +68,13 @@
                 <?php if(isset($usuario)): ?>
                 <ul class="nav">
 
-                    <li class="active"><a href="/gr/articulo">Articulos</a></li>
+                    <li <?echo isset($menu_articulo)?'class="active"':''?>><a href="/gr/articulo">Articulos</a></li>
 					
-					<li ><a href="/gr/articulo/archivo">Historial</a></li>
+					<li <?echo isset($menu_archivo)?'class="active"':''?>><a href="/gr/articulo/archivo">Historial</a></li>
 
                     <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
-                    <li><a href="#contact">Ayuda</a></li>
+                    <li <?echo isset($menu_ayuda)?'class="active"':''?>><a href="#contact">Ayuda</a></li>
 
                 </ul>
                 <?php endif;?>
