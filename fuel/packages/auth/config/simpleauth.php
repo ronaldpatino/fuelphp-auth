@@ -71,7 +71,7 @@ return array(
             'Controller_User' => array('login')
         ),
         'user'  => array(
-            'Controller_Articulo' => array('index','view','create','edit','delete'),
+            'Controller_Articulo' => array('index','view','create','edit','delete','archivo','republicar'),
             'Controller_Foto' => array('index','view','create','edit','delete','add'),
             'Controller_Galeria' => array('index','view','create','edit','delete'),
             'Controller_Buscar' => array('buscar'),
