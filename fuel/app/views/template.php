@@ -69,6 +69,8 @@
                 <ul class="nav">
 
                     <li class="active"><a href="/gr/articulo">Articulos</a></li>
+					
+					<li ><a href="/gr/articulo/archivo">Historial</a></li>
 
                     <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
