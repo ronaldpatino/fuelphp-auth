@@ -12,6 +12,7 @@
         <td>
             <p><?php echo $articulo->nombre; ?></p>
             <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
+			<p><?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
         </td>
 
         <td>
