@@ -14,6 +14,7 @@
             <td>
                 <p><?php echo $articulo->nombre; ?></p>
                 <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
+				<p><?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
                     <span class="btn-group">
                         <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
                         <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
@@ -38,7 +39,7 @@
                         )); ?>
 
                             <span class="btn-group">
-                                <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '' alt=''>
+                                <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '<?php echo $articulo->nombre; ?>' alt='<?php echo $articulo->nombre; ?>'>
                                     <i class="icon-eye-open"></i>
                                 </a>
                                 <?php echo Html::anchor('foto/delete/' . $foto->id, '<i class="icon-trash"></i>', array('class' => 'btn', 'rel' => 'tooltip', 'data-original-title' => 'Borrar foto del articulo', 'onclick' => "return confirm('Seguro desea Borrar la foto?')")); ?>
