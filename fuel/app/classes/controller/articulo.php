@@ -37,11 +37,14 @@ class Controller_Articulo extends Controller_Admin
 
         $data['select_secciones'] = $select_secciones;
 
-        $view = View::forge('template');
+        $view = View::forge('template');		
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $data);
         $view->set_global('select_secciones', $select_secciones);
         $view->set_global('title', 'Articulos');
+		
+		$view->set_global('menu_articulo', 1);
+		
         $view->content = View::forge('articulo/index',$data);
         return $view;
 	}
@@ -51,7 +54,7 @@ class Controller_Articulo extends Controller_Admin
 		$data['articulo'] = Model_Articulo::find($id);
 
 		is_null($id) and Response::redirect('Articulo');
-
+		$view->set_global('menu_articulo', 1);
 		$this->template->title = "Articulo";
 		$this->template->content = View::forge('articulo/view', $data);
 
@@ -150,6 +153,8 @@ class Controller_Articulo extends Controller_Admin
 			$this->template->set_global('articulo', $articulo, false);
 		}
 
+		$this->template->set_global('menu_articulo', 1);
+		
 		$this->template->title = "Articulos";
 		$this->template->content = View::forge('articulo/edit');
 
@@ -222,6 +227,7 @@ class Controller_Articulo extends Controller_Admin
         $view->set_global('data', $data);
         $view->set_global('select_secciones', $select_secciones);
         $view->set_global('title', 'Historial de Art&iacute;culos');
+		$view->set_global('menu_archivo', 1);
         $view->content = View::forge('articulo/archivo',$data);
         return $view;		
 		
