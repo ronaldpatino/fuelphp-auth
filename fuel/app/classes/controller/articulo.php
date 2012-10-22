@@ -173,5 +173,79 @@ class Controller_Articulo extends Controller_Admin
 
 	}
 
+	public function action_archivo()
+	{
+		
+		$ff = date("Y-m-d") .' 01:00:00';        
+		$ff = strtotime ( '-1 day' , strtotime ( $ff ) ) ;
+		$ff = date ( 'Y-m-d' , $ff )  . ' 01:00:00';
+		
+		$fi = strtotime ( '-6 day' , strtotime ( $ff ) ) ;
+		$fi = date ( 'Y-m-d' , $fi )  . ' 01:00:00';
+		
+		$fecha_fin   = Date::create_from_string($ff,"mysql");				
+		$fecha_inicio = Date::create_from_string($fi,"mysql");				
+		
+		$data['articulos'] = Model_Articulo::find('all',
+            array(  
+				'related' => array('fotos','seccion'),
+                'where' =>
+                array(
+                    array('periodista_id', '=', $this->user_id),
+                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                ),								
+				'order_by' => array('created_at' => 'asc'),
+				
+            )
+        );		
+
+		$select_secciones = array();
+
+        $secciones = Model_Seccion::find('all');
+        if ($secciones)
+        {
+            foreach($secciones as $seccion)
+            {
+                $select_secciones[$seccion->id] = $seccion->descripcion;
+            }
+
+        }
+        else
+        {
+            $select_secciones = array('none'=>'No existen secciones creadas');
+        }
+
+        $data['select_secciones'] = $select_secciones;
+
+        $view = View::forge('template');
+        $view->set_global('user_id', $this->user_id);
+        $view->set_global('data', $data);
+        $view->set_global('select_secciones', $select_secciones);
+        $view->set_global('title', 'Historial de Art&iacute;culos');
+        $view->content = View::forge('articulo/archivo',$data);
+        return $view;		
+		
+	}
+	
+	public function action_republicar($id)
+	{
+		is_null($id) and Response::redirect('Articulo/archivo');
+		
+		$articulo = Model_Articulo::find($id);		
+		$articulo->created_at = time();
+
+		if ($articulo->save())
+		{
+			Session::set_flash('success', 'Articulo republicado #' . $id);
+			Response::redirect('Articulo/archivo');
+		}
+
+		else
+		{
+			Session::set_flash('error', 'No se pudo republicar el articulo #' . $id);
+		}		
+
+		Response::redirect('Articulo/archivo');
+	}
 
 }
