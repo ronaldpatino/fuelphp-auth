@@ -10,11 +10,14 @@ class Controller_Editor extends Controller_Admin
         $ff = date("Y-m-d") .' 23:59:00';
         $fecha_inicio   = Date::create_from_string($fi,"mysql");
         $fecha_fin   = Date::create_from_string($ff,"mysql");
+        $padre_id = Auth::instance()->get_user_id();
 
         $query_periodistas = "
             SELECT
                 id,
-                username
+                username,
+                empresa,
+                padre
             FROM
                 users
             WHERE
@@ -32,6 +35,8 @@ class Controller_Editor extends Controller_Admin
                     AND
                       '{$fecha_fin->get_timestamp()}'
                 )
+            AND
+                padre = {$padre_id[1]}
             ";
 
 
