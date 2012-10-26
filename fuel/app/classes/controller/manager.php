@@ -29,6 +29,14 @@ class Controller_Manager extends Controller_Admin
                 {
                     $user = Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array());
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . 'creado correctamente' );
+					if ($user)
+					{
+						$usuario = Model_User::find($user);										
+						$usuario->padre = Input::post('padre');
+						$usuario->empresa = Input::post('empresa');
+						$usuario->save();
+					}
+
                     Response::redirect('manager');
 
                 }
@@ -43,8 +51,26 @@ class Controller_Manager extends Controller_Admin
             }
         }
 
+		$editores = Model_User::find('all',
+				array(
+                'where' =>
+                array(
+                    array('group', '=', 50),
+					array('padre', '=', 0),
+                    array('empresa', 'like', 'mercurio')
+                )
+            ));
+		
+		$select_editores = array();
+		
+		foreach($editores as $e)
+		{
+			$select_editores[$e->id] = $e->username;
+		}
+		$data['select_editores'] = $select_editores;
+		
         $this->template->title = "Crear Usuario";
-        $this->template->content = View::forge('manager/create');
+        $this->template->content = View::forge('manager/create', $data);
 
 
     }
@@ -53,10 +79,18 @@ class Controller_Manager extends Controller_Admin
     {
         if ($user = Model_User::find($id))
         {
-            $usuario_nombre = $user->username;
-            $user->delete();
-
-            Session::set_flash('success', 'Usuario '.$usuario_nombre . ' borrado del sistema');
+            
+			$usuario_nombre = $user->username;
+			
+			if ($this->tiene_hijos($user->id))
+			{
+				Session::set_flash('error', 'El Usuario '.$usuario_nombre . ' tiene periodistas a su cargo, NO puede ser borrado');
+			}
+			else
+			{
+				$user->delete();
+				Session::set_flash('success', 'Usuario '.$usuario_nombre . ' borrado del sistema');			
+			}            
         }
 
         else
@@ -110,19 +144,31 @@ class Controller_Manager extends Controller_Admin
             try
             {
 
-                if (!is_null(Input::post('password')))
+                if ($this->tiene_hijos($user->id) && Input::post('group') != $user->group)
                 {
-                    Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
+                    Session::set_flash('error', 'El Usuario '.$user->username . ' tiene periodistas a su cargo, NO puede ser cambiado de grupo');
+                }
+                else
+                {
+
+                    $ipassword = Input::post('password');
+                    if (!empty($ipassword))
+                    {
+                        Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
+                    }
+
+                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group')),Input::post('username'));
+                    Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
+
                 }
 
-                Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group')),Input::post('username'));
-                Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
                 Response::redirect('manager');
 
             }
             catch (\SimpleUserUpdateException $e)
             {
-                Session::set_flash('error', $e->getMessage());
+                
+				Session::set_flash('error', $e->getMessage());
             }
         }
         else
@@ -143,4 +189,21 @@ class Controller_Manager extends Controller_Admin
 
 
     }
+	
+	private function tiene_hijos($id)
+	{
+		$hijos = Model_User::find('all',
+				array(
+                'where' =>
+                array(                    
+					array('padre', '=', $id)
+                )
+            ));
+		
+		if ($hijos)
+		{
+			return 1;
+		}
+		return 0;
+	}
 }
