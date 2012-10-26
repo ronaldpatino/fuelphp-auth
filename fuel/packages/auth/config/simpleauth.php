@@ -97,7 +97,7 @@ return array(
             'Controller_Profile' => array('index','changepassword'),
             'Controller_Dimension' => array('index','view','create','edit','delete','getdimensiones'),
             'Controller_Seccion' => array('index','view','create','edit','delete'),
-            'Controller_Manager' => array('index','view','create','edit','delete')
+            'Controller_Manager' => array('index','view','create','edit','delete','editores')
 
         ),
 
