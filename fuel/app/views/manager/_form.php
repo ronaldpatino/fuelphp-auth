@@ -33,9 +33,24 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <label>Diario </label>
+            <div class="controls">
+                <?php echo Form::select('empresa', 'none', array('mercurio'=>'El Mercurio','tarde'=>'La Tarde'));?>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Editor Gr&aacute;fico Responsable </label>
+            <div class="controls">
+                <?php echo Form::select('padre', 'none', $select_editores);?>
+            </div>
+        </div>
+
+		
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Crear Usuario</button>
         </div>
     </fieldset>
     <?php  echo Form::close();?>
-
+	
