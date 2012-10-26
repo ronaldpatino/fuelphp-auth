@@ -28,7 +28,7 @@ abstract class Controller_Rest extends \Controller
 	/**
 	 * @var  string  the detected response format
 	 */
-	protected $format = null;
+	protected $format = 'json';
 
 	/**
 	 * @var  array  List all supported methods
