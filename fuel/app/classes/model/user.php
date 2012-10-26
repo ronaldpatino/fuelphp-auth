@@ -8,6 +8,8 @@ class Model_User extends \Orm\Model
 		'password',
 		'group',
 		'email',
+		'padre',
+		'empresa',
 		'last_login',
 		'login_hash',
 		'profile_fields',
