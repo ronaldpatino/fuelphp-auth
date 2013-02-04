@@ -71,6 +71,7 @@
 
                         <li  class="active"><?php echo Html::anchor('manager', 'Usuarios'); ?></li>
                         <li  ><?php echo Html::anchor('seccion', 'Secciones'); ?></li>
+                        <li  ><?php echo Html::anchor('pagina', 'P&aacute;ginas'); ?></li>
                         <li  ><?php echo Html::anchor('dimension', 'Dimensiones'); ?></li>
 
                         <li><a href="#contact">Ayuda</a></li>
