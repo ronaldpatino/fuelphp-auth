@@ -49,6 +49,45 @@ class Controller_Editor extends Controller_Admin
             $data['periodistas'] = $periodistas->as_array();
         }
 
+        //Otros Cronistas
+        $query_periodistas_otros = "
+            SELECT
+                id,
+                username,
+                empresa,
+                padre
+            FROM
+                users
+            WHERE
+                id
+            IN
+                (
+                    SELECT DISTINCT
+                        periodista_id
+                    FROM
+                        articulos
+                    WHERE
+                        created_at
+                    BETWEEN
+                      '{$fecha_inicio->get_timestamp()}'
+                    AND
+                      '{$fecha_fin->get_timestamp()}'
+                )
+            AND
+              padre <> {$padre_id[1]}
+            ";
+
+
+        $periodistas_otros = DB::query($query_periodistas_otros)->execute();
+
+        $data['periodistas_otros'] = null;
+
+        if($periodistas_otros)
+        {
+            $data['periodistas_otros'] = $periodistas_otros->as_array();
+        }
+
+        //
         $this->template->title = 'Editor &raquo; Index';
 		$this->template->content = View::forge('editor/index', $data);
 	}
