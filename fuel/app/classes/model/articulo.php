@@ -8,6 +8,7 @@ class Model_Articulo extends Model
 		'nombre',
 		'periodista_id',
 		'seccion_id',
+        'pagina_id',
 		'created_at',
 		'updated_at',
 	);
@@ -40,7 +41,16 @@ class Model_Articulo extends Model
             'key_to' => 'id',
             'cascade_save' => true,
             'cascade_delete' => false,
+        ),
+
+        'pagina' => array(
+            'key_from' => 'pagina_id',
+            'model_to' => 'Model_Pagina',
+            'key_to' => 'id',
+            'cascade_save' => true,
+            'cascade_delete' => false,
         )
+
     );
 
     public static function validate($factory)

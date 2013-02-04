@@ -10,7 +10,7 @@ class Controller_Articulo extends Controller_Admin
         $fecha_fin   = Date::create_from_string($ff,"mysql");
 
         $data['articulos'] = Model_Articulo::find('all',
-            array(  'related' => array('fotos','seccion'),
+            array(  'related' => array('fotos','seccion','pagina'),
                 'where' =>
                 array(
                     array('periodista_id', '=', $this->user_id),
@@ -35,12 +35,32 @@ class Controller_Articulo extends Controller_Admin
             $select_secciones = array('none'=>'No existen secciones creadas');
         }
 
-        $data['select_secciones'] = $select_secciones;
 
-        $view = View::forge('template');		
+
+        /******************************************************/
+        $select_paginas = array();
+
+        $paginas = Model_Pagina::find('all');
+        if ($paginas)
+        {
+            foreach($paginas as $pagina)
+            {
+                $select_paginas[$pagina->id] = $pagina->descripcion;
+            }
+        }
+        else
+        {
+            $select_paginas = array('none'=>'No existen paginas creadas');
+        }
+
+
+        /******************************************************/
+
+        $view = View::forge('template');
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $data);
         $view->set_global('select_secciones', $select_secciones);
+        $view->set_global('select_paginas', $select_paginas);
         $view->set_global('title', 'Articulos');
 		
 		$view->set_global('menu_articulo', 1);
