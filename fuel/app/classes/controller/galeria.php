@@ -10,6 +10,7 @@ class Controller_Galeria  extends Controller_Admin
 {
     public $template = 'template_gallery';
 
+
     public function action_index()
     {
         \Config::load('phpthumb');
@@ -19,33 +20,118 @@ class Controller_Galeria  extends Controller_Admin
         $fecha_inicio   = Date::create_from_string($fi,"mysql");
         $fecha_fin   = Date::create_from_string($ff,"mysql");
 
-        $articulos = Model_Articulo::find('all',
-            array(  'related' => array('fotos','seccion'),
-                'where' =>
-                array(
-                    array('periodista_id', '=', $this->user_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                )
-            )
-        );
-
-        $select_articulos = array();
-
-
-        if ($articulos)
+        $articulos = null;
+        if(Auth::instance()->has_access('Controller_Editor.index'))
         {
-            foreach($articulos as $articulo)
-            {
-                $select_articulos[$articulo->id] = $articulo->nombre;
+            $padre_id = Auth::instance()->get_user_id();
+            $query_periodistas = "
+                                    SELECT
+                                        id,
+                                        username,
+                                        empresa,
+                                        padre
+                                    FROM
+                                        users
+                                    WHERE
+                                        id
+                                    IN
+                                        (
+                                            SELECT DISTINCT
+                                                periodista_id
+                                            FROM
+                                                articulos
+                                            WHERE
+                                                created_at
+                                            BETWEEN
+                                              '{$fecha_inicio->get_timestamp()}'
+                                            AND
+                                              '{$fecha_fin->get_timestamp()}'
+                                        )
+                                    AND
+                                        padre = {$padre_id[1]}
+                                    ";
+
+
+            $periodistas = DB::query($query_periodistas)->execute();
+
+
+            $periodistas_id = null;
+            if ($periodistas){
+                foreach($periodistas as $periodista)
+                {
+                    $periodistas_id[] = $periodista['id'];
+                }
+
+
             }
-            $data['boton_activo'] = 1;
+
+            $articulos = Model_Articulo::find('all',
+                array(  'related' => array('fotos','seccion'),
+                    'where' =>
+                    array(
+                        array('periodista_id', 'in', $periodistas_id),
+                        array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                    )
+                )
+            );
+
+            $select_articulos = array();
+
+
+            if ($articulos)
+            {
+                foreach($articulos as $articulo)
+                {
+                    $cronista = Model_User::find($articulo->periodista_id);
+                    $select_articulos[$articulo->id] = $articulo->nombre . ' -> ' . $cronista->username;
+                }
+                $data['boton_activo'] = 1;
+            }
+            else
+            {
+                $select_articulos = array('none'=>'No existen articulos creados');
+                $data['boton_activo'] = 0;
+
+            }
+
+
         }
         else
         {
-            $select_articulos = array('none'=>'No existen articulos creados');
-            $data['boton_activo'] = 0;
+            $articulos = Model_Articulo::find('all',
+                array(  'related' => array('fotos','seccion'),
+                    'where' =>
+                    array(
+                        array('periodista_id', '=', $this->user_id),
+                        array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                    )
+                )
+            );
+
+            $select_articulos = array();
+
+
+            if ($articulos)
+            {
+                foreach($articulos as $articulo)
+                {
+                    $select_articulos[$articulo->id] = $articulo->nombre;
+                }
+                $data['boton_activo'] = 1;
+            }
+            else
+            {
+                $select_articulos = array('none'=>'No existen articulos creados');
+                $data['boton_activo'] = 0;
+
+            }
 
         }
+
+
+
+
+
         $data['select_articulos'] = $select_articulos;
 
         // Fin articulos
@@ -74,7 +160,17 @@ class Controller_Galeria  extends Controller_Admin
         $galeria = Gallery::generate();
         $data['thumbnails'] = $galeria['thumbnails'];
         $data['periodista_id'] = $this->user_id;
-        $view = View::forge('template_gallery');
+
+        if(Auth::instance()->has_access('Controller_Editor.index'))
+        {
+            $view = View::forge('template_gallery_editor');
+        }
+        else
+        {
+            $view = View::forge('template_gallery');
+        }
+
+
 
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $galeria['thumbnails']);

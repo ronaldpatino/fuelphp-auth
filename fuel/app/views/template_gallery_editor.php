@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title><?php echo $title; ?></title>
     <?php echo Asset::css(array('bootstrap.css','bootstrap-responsive.css','bootstrap-image-gallery.css','custom.css')); ?>
+    <?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
     <style>
         body {
             padding-top: 80px;
@@ -32,6 +33,7 @@
             </a>
 
             <a class="brand" href="/gr">Cat&aacute;logo</a>
+
             <?php if(isset($usuario)): ?>
             <div class="btn-group pull-right">
 
@@ -58,6 +60,14 @@
                 </ul>
 
             </div>
+
+
+            <form class="navbar-search pull-right" action="buscar/buscar/" method="post">
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-search"></i></span><input name="p" type="text" class="span2" placeholder="Buscar en Galer&iacute;a">
+                </div>
+            </form>
+
             <?php endif;?>
 
             <div class="nav-collapse">
@@ -68,8 +78,8 @@
                     <ul class="nav">
 
 
-                        <li  class="active"><?php echo Html::anchor('editor', 'Periodistas'); ?></li>
-                        <li  class=""><?php echo Html::anchor('galeria', 'Galer&iacute;a'); ?></li>
+                        <li  class=""><?php echo Html::anchor('editor', 'Periodistas'); ?></li>
+                        <li  class="active"><?php echo Html::anchor('galeria', 'Galer&iacute;a'); ?></li>
                         <li><a href="#contact">Ayuda</a></li>
 
                     </ul>
@@ -77,13 +87,15 @@
 
 
             </div>
-
             <!--/.nav-collapse -->
 
         </div>
 
     </div>
 
+    <?php if(isset($breadcrumb_navigation)):?>
+        <ul class="breadcrumb"><?php echo html_entity_decode($breadcrumb_navigation, ENT_QUOTES) ?></ul>
+    <?php endif;?>
     <!--breadcrumb-->
 
 </div>
@@ -135,11 +147,6 @@
 
 
 ================================================== -->
-
-<!-- Placed at the end of the document so the pages load faster -->
-
-<?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
-
 
 </body>
 
