@@ -13,6 +13,7 @@
             <p><?php echo $articulo->nombre; ?></p>
 
             <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
+            <p>P&aacute;gina: <?php echo $articulo->pagina->descripcion; ?></p>
 
             <p><?php echo date('Y-m-d H:i:s', $articulo->created_at); ?></p>
             <span class="btn-group">
@@ -29,7 +30,7 @@
                     <?php echo Myhtml::img($foto->imagen, array('width' => '110',
                     'height' => '110',
                     'class' => 'detalle',
-                    'data-content' => "Dimensiones: {$foto->dimension->descipcion}<br/>Seccion:{$articulo->seccion->descripcion}",
+                    'data-content' => "Dimensiones: {$foto->dimension->descipcion}<br/>Seccion: {$articulo->seccion->descripcion}<br/>P&aacute;gina: {$articulo->pagina->descripcion}",
                     'alt' => $foto->imagen,
                     'data-original-title' => $foto->imagen
                 )); ?>
