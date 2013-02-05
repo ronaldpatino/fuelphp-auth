@@ -63,7 +63,7 @@ class Gallery
                     // 1. LOAD FOLDERS
                     if (Gallery::is_directory($currentdir . "/" . $file))
                     {
-                        if ($file != "." && $file != ".."  & $file != "cache")
+                        if ($file != "." && $file != ".."  & $file != "cache" && !Gallery::startsWith($currentdir,'.'))
                         {
                             Gallery::checkpermissions($currentdir . "/" . $file); // Check for correct file permission
                             // Set thumbnail to folder.jpg if found:
@@ -352,5 +352,8 @@ class Gallery
         if (substr(decoct(fileperms($file)), -1, strlen(fileperms($file))) < 4 OR substr(decoct(fileperms($file)), -3, 1) < 4) $messages = "At least one file or folder has wrong permissions. Learn how to <a href='http://minigal.dk/faq-reader/items/how-do-i-change-file-permissions-chmod.html' target='_blank'>set file permissions</a>";
     }
 
-
+    private static function startsWith($haystack, $needle)
+    {
+        return strpos($haystack, $needle) === 0;
+    }
 }
