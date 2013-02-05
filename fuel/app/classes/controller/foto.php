@@ -149,13 +149,16 @@ class Controller_Foto extends Controller_Admin
 
         if ($foto_existe == null)
         {
+
+            $estado = (Auth::instance()->has_access('Controller_Editor.index'))?1:0;
+
             $foto = Model_Foto::forge(array(
                 'imagen' => parse_url(Input::post('imagen'), PHP_URL_PATH),
                 'width' => 110,
                 'height' => 110,
                 'articulo_id' => Input::post('articulo_id'),
                 'dimension_id' => Input::post('dimension_id'),
-                'estado' => 0,
+                'estado' => $estado,
             ));
 
             if ($foto and $foto->save())
