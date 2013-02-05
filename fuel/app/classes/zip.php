@@ -43,7 +43,8 @@ class Zip
             }
             //add the files
             foreach($valid_files as $key => $value) {
-                $zip->addFile($value,$key);
+                $nombre_archivo = str_ireplace(".jpg", "-".$pagina.".jpg",$key);
+                $zip->addFile($value, $nombre_archivo);
             }
             //debug
             //echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
