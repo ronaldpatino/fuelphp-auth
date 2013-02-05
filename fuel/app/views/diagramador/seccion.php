@@ -12,6 +12,8 @@
         <td>
             <p><?php echo $articulo->nombre; ?></p>
             <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
+            <p>P&aacute;gina: <?php echo $articulo->pagina->descripcion; ?></p>
+            <p>Fecha Creaci&oacute;n: <?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
             <p>
                 <?php echo Html::anchor('diagramador/zip/'.$articulo->id, '<i class="icon-arrow-down"></i> Descargar Zip', array('class' => 'btn btn-success'));?>
             </p>
@@ -40,6 +42,10 @@
                                 <tr>
                                     <td><strong>Medida</strong></td>
                                     <td><?php echo $foto->dimension->descipcion;?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>P&aacute;gina</strong></td>
+                                    <td><?php echo $articulo->pagina->descripcion;?></td>
                                 </tr>
                                 </tbody>
                             </table>
