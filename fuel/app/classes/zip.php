@@ -8,7 +8,7 @@
  */
 class Zip
 {
-    public static function create_zip($files = array(),$destination = '',$overwrite = true, $time) {
+    public static function create_zip($files = array(),$destination = '',$overwrite = true, $time, $pagina) {
 
         \Config::load('phpthumb');
 
