@@ -63,7 +63,7 @@ class Gallery
                     // 1. LOAD FOLDERS
                     if (Gallery::is_directory($currentdir . "/" . $file))
                     {
-                        if ($file != "." && $file != ".."  & $file != "cache" && !Gallery::startsWith($currentdir,'.'))
+                        if ($file != "." && $file != ".."  & $file != "cache" && !Gallery::startsWith($file,'.'))
                         {
                             Gallery::checkpermissions($currentdir . "/" . $file); // Check for correct file permission
                             // Set thumbnail to folder.jpg if found:
@@ -112,7 +112,7 @@ class Gallery
                     }
 
                     // 2. LOAD FILES
-                    if ($file != "." && $file != ".." && $file != "folder.jpg")
+                    if ($file != "." && $file != ".." && $file !== "folder.jpg" && !Gallery::startsWith($file,'.'))
                     {
                         // JPG, GIF and PNG
                         if (preg_match("/.jpg$|.gif$|.png$/i", $file))
