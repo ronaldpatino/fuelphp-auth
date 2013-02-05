@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2012-10-26 13:55:20
+Date: 2013-02-05 12:02:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,6 +24,7 @@ CREATE TABLE `articulos` (
   `nombre` varchar(255) NOT NULL,
   `periodista_id` int(11) NOT NULL,
   `seccion_id` int(11) NOT NULL,
+  `pagina_id` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -96,6 +97,25 @@ INSERT INTO `migration` VALUES ('app', 'default', '006_create_dimensions');
 INSERT INTO `migration` VALUES ('app', 'default', '007_create_seccions');
 
 -- ----------------------------
+-- Table structure for `paginas`
+-- ----------------------------
+DROP TABLE IF EXISTS `paginas`;
+CREATE TABLE `paginas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of paginas
+-- ----------------------------
+INSERT INTO `paginas` VALUES ('1', '1A', '1360003206', '1360003206');
+INSERT INTO `paginas` VALUES ('2', '2A', '1360003303', '1360003303');
+INSERT INTO `paginas` VALUES ('3', '3A', '1360003312', '1360003312');
+
+-- ----------------------------
 -- Table structure for `seccions`
 -- ----------------------------
 DROP TABLE IF EXISTS `seccions`;
@@ -133,6 +153,7 @@ CREATE TABLE `sessions` (
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
+INSERT INTO `sessions` VALUES ('467dcbc00eaef8b34d8654c79a6d5e90', '467dcbc00eaef8b34d8654c79a6d5e90', 'Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0', '4869e012aa045958bdf5c461577cf02d', '1360083685', '1360083685', 'a:2:{i:0;a:3:{s:8:\"username\";s:5:\"admin\";s:10:\"login_hash\";s:40:\"1d2b50190c7f73e702c31a8dfff87364aed685b7\";s:8:\"template\";s:16:\"template_manager\";}i:1;a:0:{}}');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -153,12 +174,12 @@ CREATE TABLE `users` (
   `updated_at` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com', '0', '', '1351275573', '8f470631e6c64f88752ee7c5aca39b5520905df5', '', '1341514271', '0');
-INSERT INTO `users` VALUES ('6', 'editor', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editor@elmercurio.com', '0', 'mercurio', '1351275630', '185725078565a622b0d7452d7d84d82a06b80219', '', '1342473649', '0');
-INSERT INTO `users` VALUES ('7', 'periodista', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'periodista@elmercurio.com.ec', '6', 'mercurio', '1351275519', 'e2ef6eecf153605eb8cdb8eaa719a539dbf4ffa4', 'a:2:{s:7:\"empresa\";s:5:\"tarde\";s:5:\"padre\";s:1:\"6\";}', '1346273528', '0');
-INSERT INTO `users` VALUES ('8', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '6', 'mercurio', '1351275414', '30639885ccce4b0607ecf86089573c4fac1fd88e', 'a:0:{}', '1346275067', '0');
+INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com', '0', '', '1360083685', '1d2b50190c7f73e702c31a8dfff87364aed685b7', '', '1341514271', '0');
+INSERT INTO `users` VALUES ('2', 'editor', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editor@elmercurio.com', '0', 'mercurio', '1360077939', '425559f90a6e6db5498332065ddd2780cacd463f', '', '1342473649', '0');
+INSERT INTO `users` VALUES ('3', 'periodista', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'periodista@elmercurio.com.ec', '6', 'mercurio', '1360077663', '060ce500865ddc4f66bbe18ccf57031c03392a42', 'a:2:{s:7:\"empresa\";s:5:\"tarde\";s:5:\"padre\";s:1:\"6\";}', '1346273528', '0');
+INSERT INTO `users` VALUES ('4', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '6', 'mercurio', '1360080525', 'b761dc9422bf49d6ac9c372e4399268dcdee220c', 'a:0:{}', '1346275067', '0');
