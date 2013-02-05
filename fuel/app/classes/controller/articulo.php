@@ -92,6 +92,7 @@ class Controller_Articulo extends Controller_Admin
 					'nombre' => Input::post('nombre'),
 					'periodista_id' => Input::post('periodista_id'),
 					'seccion_id' => Input::post('seccion_id'),
+                    'pagina_id' => Input::post('pagina_id')
 				));
 
 				if ($articulo and $articulo->save())
