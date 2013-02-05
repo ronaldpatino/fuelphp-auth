@@ -75,7 +75,6 @@ class Controller_Galeria  extends Controller_Admin
                 )
             ):null;
 
-
             $articulos_otros = ( $periodistas_id != null) ? Model_Articulo::find('all',
                 array(  'related' => array('fotos','seccion'),
                     'where' =>
