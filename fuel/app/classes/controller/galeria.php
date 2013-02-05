@@ -65,7 +65,7 @@ class Controller_Galeria  extends Controller_Admin
 
             }
 
-            $articulos = Model_Articulo::find('all',
+            $articulos = ( $periodistas_id != null) ? Model_Articulo::find('all',
                 array(  'related' => array('fotos','seccion'),
                     'where' =>
                     array(
@@ -73,10 +73,10 @@ class Controller_Galeria  extends Controller_Admin
                         array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
                     )
                 )
-            );
+            ):null;
 
 
-            $articulos_otros = Model_Articulo::find('all',
+            $articulos_otros = ( $periodistas_id != null) ? Model_Articulo::find('all',
                 array(  'related' => array('fotos','seccion'),
                     'where' =>
                     array(
@@ -84,23 +84,37 @@ class Controller_Galeria  extends Controller_Admin
                         array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
                     )
                 )
-            );
+            ):
+                Model_Articulo::find('all',
+                    array(  'related' => array('fotos','seccion'),
+                        'where' =>
+                        array(
+                            array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                        )
+                    )
+                )
+            ;
 
             $select_articulos = array();
 
-
-            if ($articulos)
+            if ($articulos || $articulos_otros)
             {
-                foreach($articulos as $articulo)
+                if ($articulos)
                 {
-                    $cronista = Model_User::find($articulo->periodista_id);
-                    $select_articulos[$articulo->id] = $articulo->nombre . ' -> ' . $cronista->username;
+                    foreach($articulos as $articulo)
+                    {
+                        $cronista = Model_User::find($articulo->periodista_id);
+                        $select_articulos[$articulo->id] = $articulo->nombre . ' -> ' . $cronista->username;
+                    }
                 }
 
-                foreach($articulos_otros as $articulo)
+                if ($articulos || $articulos_otros)
                 {
-                    $cronista = Model_User::find($articulo->periodista_id);
-                    $select_articulos[$articulo->id] = '[ ' . $articulo->nombre . ' -> ' . $cronista->username . ' ]';
+                    foreach($articulos_otros as $articulo)
+                    {
+                        $cronista = Model_User::find($articulo->periodista_id);
+                        $select_articulos[$articulo->id] = '[ ' . $articulo->nombre . ' -> ' . $cronista->username . ' ]';
+                    }
                 }
 
                 $data['boton_activo'] = 1;
