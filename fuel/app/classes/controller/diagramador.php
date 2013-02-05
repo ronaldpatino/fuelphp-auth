@@ -114,6 +114,7 @@ class Controller_Diagramador extends Controller_Admin
         {
 		$archivo_informacion .= "Nombre del Articulo: ".$articulo->nombre."\n";
 		$archivo_informacion .= "Seccion del Articulo: ".$articulo->seccion->descripcion."\n";
+        $archivo_informacion .= "Fecha del Articulo: ". date ( 'Y-m-d H:i:s' , $articulo->created_at ) . "\n";
 		$archivo_informacion .= "\n ==========================\n";		
             foreach($articulo->fotos as $foto)
             {
