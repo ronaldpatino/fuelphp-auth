@@ -120,7 +120,7 @@ class Controller_Diagramador extends Controller_Admin
                 if ($foto->estado == 1)
                 {
                     array_push($files_to_zip, $foto->imagen);
-                    $archivo_informacion .= $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n ==========================\n";
+                    $archivo_informacion .= $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n" . "Pagina: " . $articulo->pagina->descripcion  . "\n ==========================\n";
 
                 }
             }
@@ -132,7 +132,7 @@ class Controller_Diagramador extends Controller_Admin
 
         array_push($files_to_zip, "/gr/public/zip/info_{$articulo_id}_{$time}.txt");
 
-        Zip::create_zip($files_to_zip, $articulo_id, true ,$time);
+        Zip::create_zip($files_to_zip, $articulo_id, true ,$time, $articulo->pagina->descripcion);
     }
 
 }
