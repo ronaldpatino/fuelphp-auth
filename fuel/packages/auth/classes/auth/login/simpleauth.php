@@ -306,6 +306,16 @@ class Auth_Login_SimpleAuth extends \Auth_Login_Driver
 			}
 			unset($values['group']);
 		}
+
+        if (array_key_exists('padre', $values))
+        {
+            if (is_numeric($values['padre']))
+            {
+                $update['padre'] = (int) $values['padre'];
+            }
+            unset($values['padre']);
+        }
+
 		if ( ! empty($values))
 		{
 			$profile_fields = @unserialize($current_values->get('profile_fields')) ?: array();
