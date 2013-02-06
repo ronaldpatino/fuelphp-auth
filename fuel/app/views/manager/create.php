@@ -7,8 +7,10 @@
 
 <script type="text/javascript" >
     $(document).ready(function() {
-		
-		get_editor();
+
+
+        get_editor();
+
 		$('#form_group').change(function() {
 			var group = $('#form_group').find(":selected").val();
 			if (group == 50)

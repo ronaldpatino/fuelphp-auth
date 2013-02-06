@@ -47,6 +47,16 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <label>Puede descargar im&aacute;genes para web</label>
+            <div class="controls">
+                <?php echo Form::label('SI', 'acceso_web',array('style'=>'display:inline;'));?>
+                <?php echo Form::radio('acceso_web', '1', false);?>
+                &nbsp;
+                <?php echo Form::label('NO', 'acceso_web',array('style'=>'display:inline;'));?>
+                <?php echo Form::radio('acceso_web', '0', true);?>
+            </div>
+        </div>
 		
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Crear Usuario</button>

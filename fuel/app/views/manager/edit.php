@@ -1,15 +1,20 @@
 <h2>Editar Usuario</h2>
 <br>
 
+<?php if($user->group != 100):?>
 <?php echo render('manager/_form_edit'); ?>
-
+<?php else:?>
+<?php echo render('manager/_form_edit_admin'); ?>
+<?php endif;?>
 
 <p><?php echo Html::anchor('manager', 'Regresar'); ?></p>
 
 <script type="text/javascript" >
     $(document).ready(function() {
 
-        get_editor();
+        <?php if($user->padre != 0):?>
+            get_editor();
+        <?php endif;?>
         $('#form_group').change(function() {
             var group = $('#form_group').find(":selected").val();
             if (group == 50)

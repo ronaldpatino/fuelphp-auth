@@ -27,7 +27,7 @@ class Controller_Manager extends Controller_Admin
             {
                 try
                 {
-                    $user = Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array());
+                    $user = Auth::instance()->create_user(Input::post('username'), Input::post('password'), Input::post('email'), Input::post('group'),array('acceso_web'=>Input::post('acceso_web')));
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . 'creado correctamente' );
 					if ($user)
 					{
@@ -142,7 +142,7 @@ class Controller_Manager extends Controller_Admin
                         Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
                     }
 
-                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group'),'padre'=>Input::post('padre')),Input::post('username'));
+                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group'),'padre'=>Input::post('padre'),'acceso_web'=>Input::post('acceso_web')),Input::post('username'));
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
 
                 }
@@ -166,7 +166,22 @@ class Controller_Manager extends Controller_Admin
                 Session::set_flash('error', $val->error());
             }
 
-            $this->template->set_global('select_editores', $this->get_editores(array('mercurio')), false);
+            $profile_fields = $this->get_profile_fields($user)?$this->get_profile_fields($user):null;
+
+            if ($profile_fields['acceso_web'] == 1)
+            {
+                $acceso_web['si'] = Form::radio('acceso_web', '1', true);
+                $acceso_web['no'] = Form::radio('acceso_web', '0');
+            }
+            else
+            {
+                $acceso_web['si'] = Form::radio('acceso_web', '1');
+                $acceso_web['no'] = Form::radio('acceso_web', '0', true);
+            }
+
+            $this->template->set_global('acceso_web', $acceso_web, false);
+            $this->template->set_global('select_editores', array('0'=>'Editor'), false);
+
             $this->template->set_global('user', $user, false);
         }
 
@@ -196,7 +211,6 @@ class Controller_Manager extends Controller_Admin
     private function get_editores($empresa=null)
     {
 
-
         $editores =
 
             ($empresa) ?
@@ -222,6 +236,7 @@ class Controller_Manager extends Controller_Admin
 
         $select_editores = array();
 
+
         foreach($editores as $e)
         {
             $select_editores[$e->id] = $e->username;
@@ -229,4 +244,24 @@ class Controller_Manager extends Controller_Admin
 
         return $select_editores;
     }
+
+    private function get_profile_fields($user)
+    {
+        if (is_null($user))
+        {
+            return false;
+        }
+
+        if (isset($user['profile_fields']))
+        {
+            is_array($user['profile_fields']) or $user['profile_fields'] = @unserialize($user['profile_fields']);
+        }
+        else
+        {
+            $user['profile_fields'] = array();
+        }
+
+        return $user['profile_fields'];
+    }
+
 }

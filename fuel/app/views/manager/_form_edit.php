@@ -47,6 +47,17 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <label>Puede descargar im&aacute;genes para web</label>
+            <div class="controls">
+                <?php echo Form::label('SI', 'acceso_web',array('style'=>'display:inline;'));?>
+                <?php echo $acceso_web['si'];?>
+                &nbsp;
+                <?php echo Form::label('NO', 'acceso_web',array('style'=>'display:inline;'));?>
+                <?php echo $acceso_web['no'];?>
+            </div>
+        </div>
+
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Modificar Usuario</button>
             <?php echo Html::anchor('manager', 'Cancelar', array('id' => 'a1', 'class' => 'btn'));?>
