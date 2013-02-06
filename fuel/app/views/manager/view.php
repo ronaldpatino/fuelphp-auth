@@ -22,6 +22,13 @@
         </div>
     </div>
 
+    <div class="control-group">
+        <label>Editor </label>
+        <div class="controls">
+            <?php echo Form::input(array('class' => 'span3', 'name'=>'email','type '=>'text', 'value'=>$padre->username, 'readonly'=>'readonly'));?>
+        </div>
+    </div>
+
 </fieldset>
 <?php  echo Form::close();?>
 <?php echo Html::anchor('manager', 'Regresar a Usuarios'); ?>

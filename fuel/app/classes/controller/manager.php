@@ -51,23 +51,8 @@ class Controller_Manager extends Controller_Admin
             }
         }
 
-		$editores = Model_User::find('all',
-				array(
-                'where' =>
-                array(
-                    array('group', '=', 50),
-					array('padre', '=', 0),
-                    array('empresa', 'like', 'mercurio')
-                )
-            ));
-		
-		$select_editores = array();
-		
-		foreach($editores as $e)
-		{
-			$select_editores[$e->id] = $e->username;
-		}
-		$data['select_editores'] = $select_editores;
+
+		$data['select_editores'] = $this->get_editores(array('mercurio'));
 		
         $this->template->title = "Crear Usuario";
         $this->template->content = View::forge('manager/create', $data);
@@ -106,7 +91,7 @@ class Controller_Manager extends Controller_Admin
     {
         is_null($id) and Response::redirect('manager');
         $data['usuario'] = Model_User::find($id);
-
+        $data['padre'] = Model_User::find($data['usuario']->padre);
         switch ($data['usuario']->group)
         {
 
@@ -157,7 +142,7 @@ class Controller_Manager extends Controller_Admin
                         Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
                     }
 
-                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group')),Input::post('username'));
+                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group'),'padre'=>Input::post('padre')),Input::post('username'));
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
 
                 }
@@ -181,6 +166,7 @@ class Controller_Manager extends Controller_Admin
                 Session::set_flash('error', $val->error());
             }
 
+            $this->template->set_global('select_editores', $this->get_editores(array('mercurio')), false);
             $this->template->set_global('user', $user, false);
         }
 
@@ -206,4 +192,41 @@ class Controller_Manager extends Controller_Admin
 		}
 		return 0;
 	}
+
+    private function get_editores($empresa=null)
+    {
+
+
+        $editores =
+
+            ($empresa) ?
+            Model_User::find('all',
+                array(
+                    'where' =>
+                    array(
+                        array('group', '=', 50),
+                        array('padre', '=', 0),
+                        array('empresa', 'like', $empresa)
+                    )
+            ))
+            :
+            Model_User::find('all',
+                array(
+                    'where' =>
+                    array(
+                        array('group', '=', 50),
+                        array('padre', '=', 0)
+                    )
+                ))
+            ;
+
+        $select_editores = array();
+
+        foreach($editores as $e)
+        {
+            $select_editores[$e->id] = $e->username;
+        }
+
+        return $select_editores;
+    }
 }

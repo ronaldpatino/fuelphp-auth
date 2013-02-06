@@ -33,6 +33,20 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <label>Diario </label>
+            <div class="controls">
+                <?php echo Form::select('empresa', $user->empresa, array('mercurio'=>'El Mercurio','tarde'=>'La Tarde'));?>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Editor Gr&aacute;fico Responsable </label>
+            <div class="controls">
+                <?php echo Form::select('padre', $user->padre, $select_editores);?>
+            </div>
+        </div>
+
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Modificar Usuario</button>
             <?php echo Html::anchor('manager', 'Cancelar', array('id' => 'a1', 'class' => 'btn'));?>
