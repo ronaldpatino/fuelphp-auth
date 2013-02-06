@@ -8,7 +8,7 @@
  */
 class Zip
 {
-    public static function create_zip($files = array(),$destination = '',$overwrite = true, $time, $pagina) {
+    public static function create_zip($files = array(),$destination = '',$overwrite = true, $time, $pagina=null) {
 
         \Config::load('phpthumb');
 
@@ -16,7 +16,7 @@ class Zip
         //$document_root = Config::get('document_root');
 
         $zip_dowload = $destination . '_' . $time . '.zip';
-        $destination = $document_root . "/gr/public/zip/" . $destination. '_' . $time . '  .zip';
+        $destination = $document_root . "/gr/public/zip/" . $destination. '_' . $time . '.zip';
 
         //if the zip file already exists and overwrite is false, return false
         if(file_exists($destination) && !$overwrite) { return false; }
@@ -27,7 +27,14 @@ class Zip
             //cycle through each file
             foreach($files as $file) {
                 //make sure the file exists
-                $thefile = $document_root .$file;
+                if ($pagina)
+                {
+                    $thefile = $document_root .$file;
+                }
+                else
+                {
+                    $thefile = $file;
+                }
 
                 if(file_exists($thefile)) {
                     $valid_files[$file] = $thefile;
@@ -43,7 +50,15 @@ class Zip
             }
             //add the files
             foreach($valid_files as $key => $value) {
-                $nombre_archivo = str_ireplace(".jpg", "-".$pagina.".jpg",$key);
+                if ($pagina)
+                {
+                    $nombre_archivo = str_ireplace(".jpg", "-".$pagina.".jpg",$key);
+                }
+                else
+                {
+                    $nombre_archivo = $key;
+                }
+
                 $zip->addFile($value, $nombre_archivo);
             }
             //debug
