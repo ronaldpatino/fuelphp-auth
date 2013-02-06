@@ -72,7 +72,7 @@ return array(
         ),
         'user'  => array(
             'Controller_Articulo' => array('index','view','create','edit','delete','archivo','republicar'),
-            'Controller_Foto' => array('index','view','create','edit','delete','add'),
+            'Controller_Foto' => array('index','view','create','edit','delete','add','zip'),
             'Controller_Galeria' => array('index','view','create','edit','delete'),
             'Controller_Buscar' => array('buscar'),
             'Controller_Profile' => array('index','changepassword')
