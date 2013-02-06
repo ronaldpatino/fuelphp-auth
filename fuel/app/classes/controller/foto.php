@@ -217,4 +217,69 @@ class Controller_Foto extends Controller_Admin
         }
     }
 
+
+    public function action_zip($articulo_id)
+    {
+        include(DOCROOT.'phpthumb/phpthumb.class.php');
+        \Config::load('phpthumb');
+
+        $document_root = str_replace("\\", "/", Config::get('document_root'));
+        is_null($articulo_id) and Response::redirect('articulo');
+
+        $articulo = Model_Articulo::find('first',
+            array(
+                'related' => array('fotos', 'seccion'),
+                'where' =>
+                array(
+                    array('id', '=', $articulo_id)
+                )
+            )
+        );
+
+        $fotos_web = null;
+
+        foreach($articulo->fotos as $foto)
+        {
+            $phpThumb = new phpThumb();
+            $phpThumb->setParameter('w', Config::get('web_size'));
+            $phpThumb->setParameter('q', 75);
+            $phpThumb->setParameter('aoe', true);
+            $phpThumb->setParameter('config_output_format', 'jpeg');
+            $phpThumb->setParameter('f', 'jpeg');
+
+            $nombre_archivo = str_ireplace(".jpg", Config::get('photos_texto') . '.jpg', $foto->imagen);
+            $pieces = explode("/", $nombre_archivo);
+            $count_foto = count($pieces);
+            $nombre_archivo = $pieces[$count_foto-1];
+
+            $output_filename = $document_root . "/web/" . $nombre_archivo;
+            $phpThumb->setSourceData(file_get_contents($document_root . $foto->imagen));
+
+
+
+            if ($phpThumb->GenerateThumbnail())
+            {
+                if ($phpThumb->RenderToFile($output_filename))
+                {
+                    Log::info('Imagen para web generada con exito' . $output_filename);
+                    $fotos_web[] = $output_filename;
+                }
+                else
+                {
+                    Log::info('Error al generar imagen para web ' . $phpThumb->debugmessages);
+                }
+
+                $phpThumb->purgeTempFiles();
+            }
+            else
+            {
+                Log::info('Error Fatal al generar imagen para web ' . $phpThumb->fatalerror . "|" .$phpThumb->debugmessages);
+            }
+
+            unset($phpThumb);
+        }
+
+        $time = time();
+        Zip::create_zip($fotos_web, $articulo_id, true ,$time);
+    }
 }
