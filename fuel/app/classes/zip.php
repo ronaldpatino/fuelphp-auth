@@ -59,6 +59,10 @@ class Zip
                     $nombre_archivo = $key;
                 }
 
+                $pieces = explode("/", $nombre_archivo);
+                $count_foto = count($pieces);
+                $nombre_archivo = $pieces[$count_foto-1];
+
                 $zip->addFile($value, $nombre_archivo);
             }
             //debug
