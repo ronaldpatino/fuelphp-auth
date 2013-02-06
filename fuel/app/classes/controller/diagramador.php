@@ -121,7 +121,11 @@ class Controller_Diagramador extends Controller_Admin
                 if ($foto->estado == 1)
                 {
                     array_push($files_to_zip, $foto->imagen);
-                    $archivo_informacion .= $foto->imagen . "\n" . "Medida: ". $foto->dimension->descipcion . "\n" . "Pagina: " . $articulo->pagina->descripcion  . "\n ==========================\n";
+                    $nombre_archivo = str_ireplace(".jpg", "-".$articulo->pagina->descripcion.".jpg",$foto->imagen);
+                    $pieces = explode("/", $nombre_archivo);
+                    $count_foto = count($pieces);
+                    $nombre_archivo = $pieces[$count_foto-1];
+                    $archivo_informacion .= $nombre_archivo . "\n" . "Medida: ". $foto->dimension->descipcion . "\n" . "Pagina: " . $articulo->pagina->descripcion  . "\n ==========================\n";
 
                 }
             }
