@@ -4,7 +4,7 @@
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
-			<th width="20%">Articulo</th>
+			<th width="25%">Articulo</th>
 			<th>Fotos</th>
 		</tr>
 	</thead>
@@ -12,15 +12,19 @@
 <?php foreach ($articulos as $articulo): ?>
 <tr>
             <td>
-                <p><?php echo $articulo->nombre; ?></p>
-                <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
-                <p>P&aacute;gina: <?php echo $articulo->pagina->descripcion; ?></p>
-				<p>Fecha Creaci&oacute;n: <?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
-                    <span class="btn-group">
-                        <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
-                        <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
-                        <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
-                    </span>
+                <h4><?php echo $articulo->nombre; ?></h4>
+                <p><strong>Sección:</strong> <?php echo $articulo->seccion->descripcion; ?></p>
+                <p><strong>P&aacute;gina:</strong> <?php echo $articulo->pagina->descripcion; ?></p>
+				<p><strong>Fecha Creaci&oacute;n:</strong> <?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
+                <span class="btn-group">
+                    <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
+                    <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
+                    <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
+                    <?php if ($articulo->fotos): ?>
+                    <?php echo Html::anchor('foto/zip/'.$articulo->id, '<i class="icon-arrow-down"></i>Bajar', array('class' => 'btn btn-success'));?>
+                    <?php endif;?>
+                </span>
+
             </td>
 
 			<td>
