@@ -10,12 +10,12 @@
         <?php foreach ($articulos as $articulo): ?>
     <tr>
         <td>
-            <p><?php echo $articulo->nombre; ?></p>
+            <p><strong><?php echo $articulo->nombre; ?></strong></p>
 
-            <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
-            <p>P&aacute;gina: <?php echo $articulo->pagina->descripcion; ?></p>
+            <p><strong>Sección:</strong> <?php echo $articulo->seccion->descripcion; ?></p>
+            <p><strong>P&aacute;gina:</strong> <?php echo $articulo->pagina->descripcion; ?></p>
 
-            <p><?php echo date('Y-m-d H:i:s', $articulo->created_at); ?></p>
+            <p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date('Y-m-d H:i:s', $articulo->fecha_publicacion); ?></p>
             <span class="btn-group">
                 <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class' => 'btn')); ?>
             </span>
