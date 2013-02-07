@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $title; ?></title>
-    <?php echo Asset::css(array('bootstrap.css','bootstrap-responsive.css','bootstrap-image-gallery.css','custom.css')); ?>
+    <?php echo Asset::css(array('bootstrap.css','bootstrap-responsive.css','bootstrap-image-gallery.css','datepicker.css','custom.css')); ?>
     <style>
         body {
             padding-top: 80px;
@@ -16,7 +16,7 @@
 
     </style>
     <!-- Placed at the end of the document so the pages load faster -->
-    <?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','custom.js'))?>
+    <?php echo Asset::js(array('jquery.js','bootstrap.js','bootbox.js','load-image.min.js','bootstrap-image-gallery.js','bootstrap-datepicker.js','custom.js'))?>
 
 </head>
 <body>
