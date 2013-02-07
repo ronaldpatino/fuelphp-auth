@@ -9,6 +9,7 @@ class Model_Articulo extends Model
 		'periodista_id',
 		'seccion_id',
         'pagina_id',
+        'fecha_publicacion',
 		'created_at',
 		'updated_at',
 	);
