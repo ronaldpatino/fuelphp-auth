@@ -8,8 +8,20 @@
             <?php echo Form::select('pagina_id', 'none', $select_paginas, array('style' => 'width: 80px;'));?>
             <?php echo Form::select('seccion_id', 'none', $select_secciones );?>
 
+            <div class="input-append date" id="dp2" data-date="<?php echo date('Y-m-d');?>"  data-date-format="yyyy-mm-dd">
+                <input class="span2" size="16" type="text" value="<?php echo date('Y-m-d');?>" readonly="" name="fecha_publicacion">
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+
 			<?php echo Form::submit('submit', 'Crear Articulo', array('class' => 'btn btn-primary')); ?>
 
 
 	</fieldset>
 <?php echo Form::close(); ?>
+
+
+<script type="text/javascript" >
+$(document).ready(function() {
+    $('#dp2').datepicker({startDate: '<?php echo date('Y-m-d');?>',autoclose:true,todayHighlight:true});
+});
+</script>
