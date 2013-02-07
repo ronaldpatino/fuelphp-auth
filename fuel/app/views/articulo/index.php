@@ -15,7 +15,7 @@
                 <h4><?php echo $articulo->nombre; ?></h4>
                 <p><strong>Sección:</strong> <?php echo $articulo->seccion->descripcion; ?></p>
                 <p><strong>P&aacute;gina:</strong> <?php echo $articulo->pagina->descripcion; ?></p>
-				<p><strong>Fecha Creaci&oacute;n:</strong> <?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
+				<p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date ( 'Y-m-d H:i:s' , $articulo->fecha_publicacion ); ?></p>
                 <span class="btn-group">
                     <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
                     <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
