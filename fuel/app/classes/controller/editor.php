@@ -29,11 +29,9 @@ class Controller_Editor extends Controller_Admin
                     FROM
                         articulos
                     WHERE
-                        created_at
-                    BETWEEN
+                        fecha_publicacion
+                    >=
                       '{$fecha_inicio->get_timestamp()}'
-                    AND
-                      '{$fecha_fin->get_timestamp()}'
                 )
             AND
                 padre = {$padre_id[1]}
@@ -67,11 +65,9 @@ class Controller_Editor extends Controller_Admin
                     FROM
                         articulos
                     WHERE
-                        created_at
-                    BETWEEN
+                         fecha_publicacion
+                    >=
                       '{$fecha_inicio->get_timestamp()}'
-                    AND
-                      '{$fecha_fin->get_timestamp()}'
                 )
             AND
               padre <> {$padre_id[1]}
@@ -106,8 +102,9 @@ class Controller_Editor extends Controller_Admin
                 'where' =>
                 array(
                     array('periodista_id', '=', $user_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                )
+                    array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                ),
+                'order_by' => array('fecha_publicacion' => 'asc')
             )
         );
 

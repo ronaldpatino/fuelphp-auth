@@ -33,7 +33,7 @@ class Controller_Diagramador extends Controller_Admin
                             FROM
                                 articulos
                             WHERE
-                                created_at
+                                fecha_publicacion
                             BETWEEN
                               '{$fecha_inicio->get_timestamp()}'
                             AND
@@ -75,7 +75,7 @@ class Controller_Diagramador extends Controller_Admin
                 'where' =>
                 array(
                     array('seccion_id', '=', $seccion_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                    array('fecha_publicacion', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
                 )
             )
         );
@@ -114,7 +114,7 @@ class Controller_Diagramador extends Controller_Admin
         {
 		$archivo_informacion .= "Nombre del Articulo: ".$articulo->nombre."\n";
 		$archivo_informacion .= "Seccion del Articulo: ".$articulo->seccion->descripcion."\n";
-        $archivo_informacion .= "Fecha del Articulo: ". date ( 'Y-m-d H:i:s' , $articulo->created_at ) . "\n";
+        $archivo_informacion .= "Fecha del Articulo: ". date ( 'Y-m-d H:i:s' , $articulo->fecha_publicacion ) . "\n";
 		$archivo_informacion .= "\n ==========================\n";		
             foreach($articulo->fotos as $foto)
             {

@@ -3,7 +3,6 @@ class Controller_Articulo extends Controller_Admin
 {
 	public function action_index()
 	{
-
         $fi = date("Y-m-d") .' 01:00:00';
         $ff = date("Y-m-d") .' 23:59:00';
         $fecha_inicio   = Date::create_from_string($fi,"mysql");
@@ -14,8 +13,9 @@ class Controller_Articulo extends Controller_Admin
                 'where' =>
                 array(
                     array('periodista_id', '=', $this->user_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                )
+                    array('fecha_publicacion', '>=', array($fecha_inicio->get_timestamp()))
+                ) ,
+                'order_by' => array('fecha_publicacion' => 'asc')
             )
         );
 
@@ -72,9 +72,7 @@ class Controller_Articulo extends Controller_Admin
 	public function action_view($id = null)
 	{
 		$data['articulo'] = Model_Articulo::find($id);
-
 		is_null($id) and Response::redirect('Articulo');
-		$view->set_global('menu_articulo', 1);
 		$this->template->title = "Articulo";
 		$this->template->content = View::forge('articulo/view', $data);
 
@@ -88,11 +86,15 @@ class Controller_Articulo extends Controller_Admin
 			
 			if ($val->run())
 			{
+                $fp = Input::post('fecha_publicacion') . date(' H:i:s');
+                $fecha_publicacion   = Date::create_from_string($fp,"mysql")->get_timestamp();
+                //die($fecha_publicacion);
 				$articulo = Model_Articulo::forge(array(
 					'nombre' => Input::post('nombre'),
 					'periodista_id' => Input::post('periodista_id'),
 					'seccion_id' => Input::post('seccion_id'),
-                    'pagina_id' => Input::post('pagina_id')
+                    'pagina_id' => Input::post('pagina_id'),
+                    'fecha_publicacion' => $fecha_publicacion
 				));
 
 				if ($articulo and $articulo->save())
@@ -218,9 +220,9 @@ class Controller_Articulo extends Controller_Admin
                 'where' =>
                 array(
                     array('periodista_id', '=', $this->user_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                    array('fecha_publicacion', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
                 ),								
-				'order_by' => array('created_at' => 'asc'),
+				'order_by' => array('fecha_publicacion' => 'asc')
 				
             )
         );		
@@ -260,6 +262,7 @@ class Controller_Articulo extends Controller_Admin
 		
 		$articulo = Model_Articulo::find($id);		
 		$articulo->created_at = time();
+        $articulo->fecha_publicacion = $articulo->created_at;
 
 		if ($articulo->save())
 		{

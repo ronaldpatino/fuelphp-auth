@@ -41,11 +41,9 @@ class Controller_Galeria  extends Controller_Admin
                                             FROM
                                                 articulos
                                             WHERE
-                                                created_at
-                                            BETWEEN
+                                                fecha_publicacion
+                                            >=
                                               '{$fecha_inicio->get_timestamp()}'
-                                            AND
-                                              '{$fecha_fin->get_timestamp()}'
                                         )
                                     AND
                                         padre = {$padre_id[1]}
@@ -70,8 +68,9 @@ class Controller_Galeria  extends Controller_Admin
                     'where' =>
                     array(
                         array('periodista_id', 'in', $periodistas_id),
-                        array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                    )
+                        array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                    ),
+                    'order_by' => array('fecha_publicacion' => 'asc')
                 )
             ):null;
 
@@ -80,16 +79,18 @@ class Controller_Galeria  extends Controller_Admin
                     'where' =>
                     array(
                         array('periodista_id', 'not in', $periodistas_id),
-                        array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                    )
+                        array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                    ),
+                    'order_by' => array('fecha_publicacion' => 'asc')
                 )
             ):
                 Model_Articulo::find('all',
                     array(  'related' => array('fotos','seccion'),
                         'where' =>
                         array(
-                            array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                        )
+                            array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                        ),
+                        'order_by' => array('fecha_publicacion' => 'asc')
                     )
                 )
             ;
@@ -134,8 +135,9 @@ class Controller_Galeria  extends Controller_Admin
                     'where' =>
                     array(
                         array('periodista_id', '=', $this->user_id),
-                        array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                    )
+                        array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                    ),
+                    'order_by' => array('fecha_publicacion' => 'asc')
                 )
             );
 

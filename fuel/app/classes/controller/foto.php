@@ -189,7 +189,7 @@ class Controller_Foto extends Controller_Admin
                                                             'where' =>
                                                             array(
                                                                 array('periodista_id', '=', '1'),
-                                                                array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
+                                                                array('fecha_publicacion', '>', $fecha_inicio->get_timestamp())
                                                             )
                                                     )
             );
