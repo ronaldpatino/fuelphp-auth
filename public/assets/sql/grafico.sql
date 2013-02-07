@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-02-05 12:02:02
+Date: 2013-02-07 15:00:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,6 +25,7 @@ CREATE TABLE `articulos` (
   `periodista_id` int(11) NOT NULL,
   `seccion_id` int(11) NOT NULL,
   `pagina_id` int(11) NOT NULL,
+  `fecha_publicacion` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -153,7 +154,8 @@ CREATE TABLE `sessions` (
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES ('467dcbc00eaef8b34d8654c79a6d5e90', '467dcbc00eaef8b34d8654c79a6d5e90', 'Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0', '4869e012aa045958bdf5c461577cf02d', '1360083685', '1360083685', 'a:2:{i:0;a:3:{s:8:\"username\";s:5:\"admin\";s:10:\"login_hash\";s:40:\"1d2b50190c7f73e702c31a8dfff87364aed685b7\";s:8:\"template\";s:16:\"template_manager\";}i:1;a:0:{}}');
+INSERT INTO `sessions` VALUES ('241e013cda09088b0e160a6c73fd3e8d', '241e013cda09088b0e160a6c73fd3e8d', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1', '4869e012aa045958bdf5c461577cf02d', '1360245562', '1360245562', 'a:2:{i:0;a:3:{s:8:\"username\";s:10:\"periodista\";s:10:\"login_hash\";s:40:\"190c4159b9e9bf096022fb0bd508339d7683d6cb\";s:8:\"template\";s:16:\"template_gallery\";}i:1;a:0:{}}');
+INSERT INTO `sessions` VALUES ('c7a75f87733f539b710d746120381de1', '53adf5196fd5e04119233afb3d0ed273', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1', '4869e012aa045958bdf5c461577cf02d', '1360252191', '1360252196', 'a:2:{i:0;a:1:{s:8:\"template\";s:20:\"template_diagramador\";}i:1;a:0:{}}');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -179,7 +181,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com', '0', '', '1360083685', '1d2b50190c7f73e702c31a8dfff87364aed685b7', '', '1341514271', '0');
-INSERT INTO `users` VALUES ('2', 'editor', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editor@elmercurio.com', '0', 'mercurio', '1360077939', '425559f90a6e6db5498332065ddd2780cacd463f', '', '1342473649', '0');
-INSERT INTO `users` VALUES ('3', 'periodista', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'periodista@elmercurio.com.ec', '6', 'mercurio', '1360077663', '060ce500865ddc4f66bbe18ccf57031c03392a42', 'a:2:{s:7:\"empresa\";s:5:\"tarde\";s:5:\"padre\";s:1:\"6\";}', '1346273528', '0');
-INSERT INTO `users` VALUES ('4', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '6', 'mercurio', '1360080525', 'b761dc9422bf49d6ac9c372e4399268dcdee220c', 'a:0:{}', '1346275067', '0');
+INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com.ec', '0', '', '1360170750', '3f2639c336c75bd68c70994107942cddec203735', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1341514271', '0');
+INSERT INTO `users` VALUES ('2', 'editor', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editor@elmercurio.com', '0', 'mercurio', '1360250193', '3d07f460ee6a430a836a89658be6078a367bcff6', 'a:0:{}', '1342473649', '0');
+INSERT INTO `users` VALUES ('3', 'periodista', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'periodista@elmercurio.com', '2', 'mercurio', '1360245562', '190c4159b9e9bf096022fb0bd508339d7683d6cb', 'a:1:{s:10:\"acceso_web\";s:1:\"1\";}', '1346273528', '0');
+INSERT INTO `users` VALUES ('4', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '2', 'mercurio', '1360251026', 'cc38c8448f5824cfe18a6d106e09e252cf83c71b', '', '1346275067', '0');

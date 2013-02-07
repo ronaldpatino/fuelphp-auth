@@ -49,8 +49,9 @@ class Controller_Buscar extends Controller_Admin
                 'where' =>
                 array(
                     array('periodista_id', '=', $this->user_id),
-                    array('created_at', 'between', array($fecha_inicio->get_timestamp(), $fecha_fin->get_timestamp()))
-                )
+                    array('fecha_publicacion', '>=', $fecha_inicio->get_timestamp())
+                ),
+                'order_by' => array('fecha_publicacion' => 'asc')
             )
         );
 
