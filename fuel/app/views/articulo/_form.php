@@ -17,9 +17,29 @@
                 <?php echo Form::select('seccion_id', isset($articulo) ? $articulo->seccion_id : 'none', $select_secciones);?>
 			</div>
 		</div>
-		<div class="actions">
+
+        <div class="clearfix">
+            <?php echo Form::label('P&aacute;gina', 'pagina_id'); ?>
+            <div class="input">
+                <?php echo Form::select('pagina_id', isset($articulo) ? $articulo->pagina_id : 'none', $select_paginas);?>
+            </div>
+        </div>
+
+        <div class="input-append date" id="dp2" data-date="<?php echo Date::forge($articulo->fecha_publicacion)->format("%Y-%m-%d");?>"  data-date-format="yyyy-mm-dd">
+            <input class="span2" size="16" type="text" value="<?php echo Date::forge($articulo->fecha_publicacion)->format("%Y-%m-%d");?>" readonly="" name="fecha_publicacion">
+            <span class="add-on"><i class="icon-calendar"></i></span>
+        </div>
+
+
+        <div class="actions">
 			<?php echo Form::submit('submit', 'Save', array('class' => 'btn primary')); ?>
 
 		</div>
 	</fieldset>
 <?php echo Form::close(); ?>
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $('#dp2').datepicker({startDate: '<?php echo date('Y-m-d');?>',autoclose:true,todayHighlight:true});
+    });
+</script>

@@ -141,13 +141,36 @@ class Controller_Articulo extends Controller_Admin
 
         $this->template->set_global('select_secciones', $select_secciones, false);
 
+        $select_paginas = array();
+
+        $paginas = Model_Pagina::find('all');
+        if ($paginas)
+        {
+            foreach($paginas as $seccion)
+            {
+                $select_paginas[$seccion->id] = $seccion->descripcion;
+            }
+
+        }
+        else
+        {
+            $select_paginas = array('none'=>'No existen secciones creadas');
+        }
+
+        $this->template->set_global('select_paginas', $select_paginas, false);
+
         $val = Model_Articulo::validate('edit');
 
 		if ($val->run())
 		{
+            $fp = Input::post('fecha_publicacion') . date(' H:i:s');
+            $fecha_publicacion   = Date::create_from_string($fp,"mysql")->get_timestamp();
+
 			$articulo->nombre = Input::post('nombre');
 			$articulo->periodista_id = Input::post('periodista_id');
 			$articulo->seccion_id = Input::post('seccion_id');
+            $articulo->pagina_id = Input::post('pagina_id');
+            $articulo->fecha_publicacion = $fecha_publicacion;
 
 			if ($articulo->save())
 			{
