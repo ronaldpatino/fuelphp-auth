@@ -11,7 +11,7 @@ class Controller_Galeria  extends Controller_Admin
     public $template = 'template_gallery';
 
 
-    public function action_index()
+    public function action_index($articulo_id = null)
     {
         \Config::load('phpthumb');
         //Incio articulos
@@ -204,6 +204,14 @@ class Controller_Galeria  extends Controller_Admin
         }
 
 
+        if($articulo_id)
+        {
+            $view->set_global('articulo_id', $articulo_id);
+        }
+        else
+        {
+            $view->set_global('articulo_id', 'none');
+        }
 
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $galeria['thumbnails']);

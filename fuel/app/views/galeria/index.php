@@ -36,7 +36,7 @@
         <?php echo Form::open(array('action'=>'foto/add', 'class'=>'well form-inline','id'=>'fotoarticuloform'));?>            
             <input name='periodista_id' id="form_periodista_id"  type="hidden" value="<?php echo $periodista_id?>"/>
 
-            <?php echo Form::select('articulo_id', 'none', $select_articulos);?>
+            <?php echo Form::select('articulo_id', $articulo_id, $select_articulos);?>
         <?php if($boton_activo):?>
             <?php echo Form::select('dimension_id', 'none', $select_dimensiones);?>
             <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Agregar Imagen</button>

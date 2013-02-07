@@ -18,7 +18,7 @@
 				<p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date ( 'Y-m-d H:i:s' , $articulo->fecha_publicacion ); ?></p>
                 <span class="btn-group">
                     <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
-                    <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
+                    <?php echo Html::anchor('galeria/index/'.$articulo->id, '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
                     <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
                     <?php if ($articulo->fotos): ?>
                     <?php echo Html::anchor('foto/zip/'.$articulo->id, '<i class="icon-arrow-down"></i>Bajar', array('class' => 'btn btn-success'));?>
