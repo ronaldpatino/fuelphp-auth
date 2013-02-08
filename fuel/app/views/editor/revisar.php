@@ -17,7 +17,7 @@
 
             <p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date('Y-m-d H:i:s', $articulo->fecha_publicacion); ?></p>
             <span class="btn-group">
-                <?php echo Html::anchor('galeria', '<i class="icon-picture"></i> Foto', array('class' => 'btn')); ?>
+                <?php echo Html::anchor('galeria/index/'.$articulo->id, '<i class="icon-picture"></i> Foto', array('class' => 'btn')); ?>
             </span>
         </td>
 
