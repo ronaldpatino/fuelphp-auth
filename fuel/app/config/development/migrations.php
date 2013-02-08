@@ -13,6 +13,7 @@ return array(
 				4 => '005_create_users_3',
 				5 => '006_create_dimensions',
 				6 => '007_create_seccions',
+				7 => '008_create_ayudas',
 			),
 		),
 		'module' => 
