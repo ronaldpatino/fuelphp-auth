@@ -332,6 +332,29 @@ foreach ($_GET as $key => $value) {
 	}
 }
 
+/* *
+ * Evitamos el robo de imagenes si quitan watermark del url
+ */
+
+if (isset($_GET['w']))
+{
+    if ($_GET['w']>=400 && isset($_GET['fltr']))
+    {
+        $filtros = $_GET['fltr'];
+
+        $marca_existe = strlen(strstr($filtros[0],'watermark.png'));
+        if ($marca_existe == 0) {
+            $phpThumb->ErrorImage('Prohibido el acceso a las imagenes');
+        }
+    }
+}
+
+/* *
+ * Fin Evitamos el robo de imagenes si quitan watermark del url
+ */
+
+
+
 ////////////////////////////////////////////////////////////////
 // Debug output, to try and help me diagnose problems
 $phpThumb->DebugTimingMessage('phpThumbDebug[3]', __FILE__, __LINE__);
