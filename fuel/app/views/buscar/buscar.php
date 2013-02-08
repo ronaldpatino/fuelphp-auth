@@ -27,10 +27,7 @@
     <div class="modal-footer">
 
         <?php echo Form::open(array('action'=>'foto/add', 'class'=>'well form-inline','id'=>'fotoarticuloform'));?>
-        <a class="btn modal-download" target="_blank">
-            <i class="icon-download"></i>
-            <span>Descargar</span>
-        </a>
+
         <input name='periodista_id' id="form_periodista_id"  type="hidden" value="<?php echo $periodista_id?>"/>
 
         <?php echo Form::select('articulo_id', 'none', $select_articulos);?>
