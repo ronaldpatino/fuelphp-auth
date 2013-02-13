@@ -2,12 +2,12 @@
 /*
 Deploy
 return array(
-    'document_root' => '/Mercurio/',
-    'photos_path' => '/Mercurio/photos',
+    'document_root' => '/var/www/html',
+    'photos_path' => '/var/www/html/photos',
     'photos_cache' => '/photos/cache',
     'galleryroot' => '/photos',
     'phpthumbroot'=> '/gr/public/phpthumb/',
-    'thumb_size'    => 120
+    'thumb_size'    => 120,
     'web_size'      => 400,
     'photos_texto'  => '-elmercurio-cuenca-ecuador'
 );

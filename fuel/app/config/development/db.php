@@ -9,7 +9,7 @@ return array(
 		'connection'  => array(
 			'dsn'        => 'mysql:host=localhost;dbname=grafico',
 			'username'   => 'root',
-			'password'   => 'root',
+			'password'   => 'mercurio',
 		),
 	),
 );
