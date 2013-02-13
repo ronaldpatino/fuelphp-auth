@@ -27,4 +27,4 @@
 </fieldset>
 
 <?php  echo Form::close();?>
-<?php echo Html::anchor('ayuda', 'Back'); ?>
+<?php echo Html::anchor('ayuda/index/'.$ayuda->menu, 'Back'); ?>

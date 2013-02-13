@@ -70,7 +70,7 @@
 
                     <li class="active"><a href="/gr/diagramador">Secciones</a></li>
 
-                    <li><a href="#contact">Ayuda</a></li>
+                    <li><?php echo Html::anchor('ayuda/index/3','Ayuda',array('target'=>'_blank')); ?></li>
 
                 </ul>
                 <?php endif;?>

@@ -74,7 +74,7 @@
                         <li  ><?php echo Html::anchor('pagina', 'P&aacute;ginas'); ?></li>
                         <li  ><?php echo Html::anchor('dimension', 'Dimensiones'); ?></li>
 
-                        <li><a href="#contact">Ayuda</a></li>
+                        <li><?php echo Html::anchor('ayuda/index/4','Ayuda',array('target'=>'_blank')); ?></li>
 
                     </ul>
                     <?php endif;?>

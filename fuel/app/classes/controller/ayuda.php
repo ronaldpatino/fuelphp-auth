@@ -2,11 +2,49 @@
 class Controller_Ayuda extends Controller_Template 
 {
     public $template = 'template_ayuda';
-	public function action_index()
+	public function action_index($menu_id=null)
 	{
-		$data['ayudas'] = Model_Ayuda::find('all');
-		$this->template->title = "Ayudas";
-		$this->template->content = View::forge('ayuda/index', $data);
+
+        is_null($menu_id) and Response::redirect('User/login');
+        $data['ayudas'] = Model_Ayuda::find('all', array(
+            'where' => array(
+                array('menu', $menu_id),
+            )
+        ));
+
+		switch($menu_id)
+        {
+            case 1:
+                $data['menu'] = "Ayuda para Periodistas";
+                $this->template->title = "Ayuda para Periodistas";
+                $this->template->menu_id = 1;
+                break;
+
+            case 2:
+                $data['menu'] = "Ayuda para Editores";
+                $this->template->title = "Ayuda para Editores";
+                $this->template->menu_id = 2;
+                break;
+
+            case 3:
+                $data['menu'] = "Ayuda para Diagramadores";
+                $this->template->title = "Ayuda para Diagramadores";
+                $this->template->menu_id = 3;
+                break;
+
+            case 4:
+                $data['menu'] = "Ayuda para Administradores";
+                $this->template->title = "Ayuda para Administradores";
+                $this->template->menu_id = 4;
+                break;
+            default:
+                $data['menu'] = "Ayuda";
+                $this->template->title = "Ayuda";
+                $this->template->menu_id = null;
+                break;
+        }
+
+		$this->template->content = View::forge('ayuda/aindex', $data);
 
 	}
 
@@ -16,8 +54,40 @@ class Controller_Ayuda extends Controller_Template
 
 		is_null($id) and Response::redirect('Ayuda');
 
+        switch($data['ayuda']->menu)
+        {
+            case 1:
+                $data['menu'] = "Ayuda para Periodistas";
+                $this->template->title = "Ayuda para Periodistas";
+                $this->template->menu_id = 1;
+                break;
+
+            case 2:
+                $data['menu'] = "Ayuda para Editores";
+                $this->template->title = "Ayuda para Editores";
+                $this->template->menu_id = 2;
+                break;
+
+            case 3:
+                $data['menu'] = "Ayuda para Diagramadores";
+                $this->template->title = "Ayuda para Diagramadores";
+                $this->template->menu_id = 3;
+                break;
+
+            case 4:
+                $data['menu'] = "Ayuda para Administradores";
+                $this->template->title = "Ayuda para Administradores";
+                $this->template->menu_id = 4;
+                break;
+            default:
+                $data['menu'] = "Ayuda";
+                $this->template->title = "Ayuda";
+                $this->template->menu_id = null;
+                break;
+        }
+
 		$this->template->title = "Ayuda";
-		$this->template->content = View::forge('ayuda/view', $data);
+		$this->template->content = View::forge('ayuda/view', $data, false);
 
 	}
 

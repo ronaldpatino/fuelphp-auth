@@ -74,7 +74,7 @@
 
                     <li><a href="/gr/galeria">Galer&iacute;a</a></li>
 
-                    <li <?echo isset($menu_ayuda)?'class="active"':''?>><a href="#contact">Ayuda</a></li>
+                    <li><?php echo Html::anchor('ayuda/index/1','Ayuda',array('target'=>'_blank')); ?></li>
 
                 </ul>
                 <?php endif;?>

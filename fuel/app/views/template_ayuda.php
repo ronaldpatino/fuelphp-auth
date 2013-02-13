@@ -47,54 +47,7 @@
 
             </a>
 
-            <a class="brand" href="/gr">Cat&aacute;logo</a>
-            <?php if(isset($usuario)): ?>
-            <div class="btn-group pull-right">
-
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-
-                    <i class="icon-user"></i> <?php echo $usuario;?>
-
-                    <span class="caret"></span>
-
-                </a>
-
-                <ul class="dropdown-menu">
-
-                    <li>
-                        <?php echo Html::anchor('profile','Perfil'); ?>
-                    </li>
-
-                    <li class="divider"></li>
-
-                    <li>
-                        <?php echo Html::anchor('user/logout/','Salir'); ?>
-                    </li>
-
-                </ul>
-
-            </div>
-            <?php endif;?>
-
-            <div class="nav-collapse">
-
-                <?php if(isset($usuario)): ?>
-                <ul class="nav">
-
-                    <li <?echo isset($menu_articulo)?'class="active"':''?>><a href="/gr/articulo">Articulos</a></li>
-
-					<li <?echo isset($menu_archivo)?'class="active"':''?>><a href="/gr/articulo/archivo">Historial</a></li>
-
-                    <li><a href="/gr/galeria">Galer&iacute;a</a></li>
-
-                    <li <?echo isset($menu_ayuda)?'class="active"':''?>><a href="#contact">Ayuda</a></li>
-
-                </ul>
-                <?php endif;?>
-
-            </div>
-
-            <!--/.nav-collapse -->
+            <a class="brand" href="/gr/ayuda/index/<?php echo $menu_id; ?>">Ayuda</a>
 
         </div>
 

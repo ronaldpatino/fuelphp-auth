@@ -81,7 +81,7 @@
 					
                     <li  class="active"><a href="/gr/galeria">Galer&iacute;a</a></li>
 
-                    <li><a href="#contact">Ayuda</a></li>
+                    <li><?php echo Html::anchor('ayuda/index/1','Ayuda',array('target'=>'_blank')); ?></li>
 
                 </ul>
                 <?php endif;?>
