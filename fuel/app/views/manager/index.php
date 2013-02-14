@@ -17,7 +17,7 @@
             <?php echo $usuario->username;?>
         </td>
 
-        <?if ($usuario->group == 50): ?>
+        <?php if ($usuario->group == 50): ?>
         <td>
             Editor
         </td>
