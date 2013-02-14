@@ -1,7 +1,7 @@
 <?php
 class Controller_Articulo extends Controller_Admin
 {
-	public function action_index()
+    public function action_index()
 	{
         $fi = date("Y-m-d") .' 01:00:00';
         $ff = date("Y-m-d") .' 23:59:00';
@@ -21,7 +21,7 @@ class Controller_Articulo extends Controller_Admin
 
         $select_secciones = array();
 
-        $secciones = Model_Seccion::find('all');
+        $secciones = Model_Seccion::find('all',array('order_by' => array('descripcion' => 'asc')));
         if ($secciones)
         {
             foreach($secciones as $seccion)
@@ -56,7 +56,23 @@ class Controller_Articulo extends Controller_Admin
 
         /******************************************************/
 
-        $view = View::forge('template');
+        $usuario = Model_User::find($this->user_id);
+
+        $profile_fields = $this->get_profile_fields($usuario)?$this->get_profile_fields($usuario):null;
+
+
+        if ($usuario->group == 50)
+        {
+            $view = View::forge('template_editor');
+        }
+        else
+        {
+            $view = View::forge('template');
+        }
+
+
+
+        $view->set_global('acceso_web', $profile_fields['acceso_web']);
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $data);
         $view->set_global('select_secciones', $select_secciones);
@@ -122,6 +138,17 @@ class Controller_Articulo extends Controller_Admin
 		is_null($id) and Response::redirect('Articulo');
 
 		$articulo = Model_Articulo::find($id);
+
+        $usuario = Model_User::find($this->user_id);
+
+        if ($usuario->group == 50)
+        {
+            $this->template  = \View::forge('template_editor');
+        }
+        else
+        {
+            $this->template  = \View::forge('template');
+        }
 
         $select_secciones = array();
 
@@ -200,9 +227,10 @@ class Controller_Articulo extends Controller_Admin
 		}
 
 		$this->template->set_global('menu_articulo', 1);
-		
+
 		$this->template->title = "Articulos";
-		$this->template->content = View::forge('articulo/edit');
+
+        $this->template->content = View::forge('articulo/edit');
 
 	}
 
@@ -268,7 +296,18 @@ class Controller_Articulo extends Controller_Admin
 
         $data['select_secciones'] = $select_secciones;
 
-        $view = View::forge('template');
+        $usuario = Model_User::find($this->user_id);
+
+        if ($usuario->group == 50)
+        {
+            $view = View::forge('template_editor');
+        }
+        else
+        {
+            $view = View::forge('template');
+        }
+
+
         $view->set_global('user_id', $this->user_id);
         $view->set_global('data', $data);
         $view->set_global('select_secciones', $select_secciones);
@@ -300,5 +339,24 @@ class Controller_Articulo extends Controller_Admin
 
 		Response::redirect('Articulo/archivo');
 	}
+
+    private function get_profile_fields($user)
+    {
+        if (is_null($user))
+        {
+            return false;
+        }
+
+        if (isset($user['profile_fields']))
+        {
+            is_array($user['profile_fields']) or $user['profile_fields'] = @unserialize($user['profile_fields']);
+        }
+        else
+        {
+            $user['profile_fields'] = array();
+        }
+
+        return $user['profile_fields'];
+    }
 
 }

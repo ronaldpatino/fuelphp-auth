@@ -53,7 +53,8 @@ class Controller_Editor extends Controller_Admin
                 id,
                 username,
                 empresa,
-                padre
+                padre,
+                users.group
             FROM
                 users
             WHERE
@@ -71,6 +72,8 @@ class Controller_Editor extends Controller_Admin
                 )
             AND
               padre <> {$padre_id[1]}
+            AND
+              users.group <> 50
             ";
 
 
@@ -84,6 +87,7 @@ class Controller_Editor extends Controller_Admin
         }
 
         //
+        $this->template->menu_periodista =  1;
         $this->template->title = 'Editor &raquo; Index';
 		$this->template->content = View::forge('editor/index', $data);
 	}
