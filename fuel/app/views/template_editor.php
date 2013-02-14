@@ -68,9 +68,9 @@
                     <ul class="nav">
 
 
-                        <li  <?echo isset($menu_periodista)?'class="active"':''?>><?php echo Html::anchor('editor', 'Periodistas'); ?></li>
-                        <li  <?echo isset($menu_galeria)?'class="active"':''?>><?php echo Html::anchor('galeria', 'Galer&iacute;a'); ?></li>
-                        <li <?echo isset($menu_articulo)?'class="active"':''?>><a href="/gr/articulo">Articulos</a></li>
+                        <li  <?php echo isset($menu_periodista)?'class="active"':''?>><?php echo Html::anchor('editor', 'Periodistas'); ?></li>
+                        <li  <?php echo isset($menu_galeria)?'class="active"':''?>><?php echo Html::anchor('galeria', 'Galer&iacute;a'); ?></li>
+                        <li <?php echo isset($menu_articulo)?'class="active"':''?>><a href="/gr/articulo">Articulos</a></li>
                         <li><?php echo Html::anchor('ayuda/index/2','Ayuda',array('target'=>'_blank')); ?></li>
 
                     </ul>
