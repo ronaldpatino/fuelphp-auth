@@ -20,7 +20,7 @@
                     <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
                     <?php echo Html::anchor('galeria/index/'.$articulo->id, '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
                     <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
-                    <?php if ($articulo->fotos): ?>
+                    <?php if ($articulo->fotos && $acceso_web): ?>
                     <?php echo Html::anchor('foto/zip/'.$articulo->id, '<i class="icon-arrow-down"></i>Bajar', array('class' => 'btn btn-success'));?>
                     <?php endif;?>
                 </span>
@@ -79,7 +79,7 @@
         <a class="close" data-dismiss="modal">&times;</a>
         <h3 class="modal-title"></h3>
     </div>
-    <div class="modal-body"><div class="modal-image"></div></div>    
+    <div class="modal-body"><div class="modal-image"></div></div>
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->
 
