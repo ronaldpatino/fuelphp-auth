@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-02-13 16:05:36
+Date: 2013-02-14 11:20:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,7 +138,7 @@ CREATE TABLE `paginas` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of paginas
@@ -146,6 +146,27 @@ CREATE TABLE `paginas` (
 INSERT INTO `paginas` VALUES ('1', '1A', '1360003206', '1360003206');
 INSERT INTO `paginas` VALUES ('2', '2A', '1360003303', '1360003303');
 INSERT INTO `paginas` VALUES ('3', '3A', '1360003312', '1360003312');
+INSERT INTO `paginas` VALUES ('4', '4A', '1360857864', '1360857864');
+INSERT INTO `paginas` VALUES ('5', '5A', '1360857867', '1360857867');
+INSERT INTO `paginas` VALUES ('6', '6A', '1360857871', '1360857871');
+INSERT INTO `paginas` VALUES ('7', '7A', '1360857874', '1360857874');
+INSERT INTO `paginas` VALUES ('8', '8A', '1360857879', '1360857879');
+INSERT INTO `paginas` VALUES ('9', '1B', '1360857886', '1360857886');
+INSERT INTO `paginas` VALUES ('10', '2B', '1360857893', '1360857893');
+INSERT INTO `paginas` VALUES ('11', '3B', '1360857898', '1360857898');
+INSERT INTO `paginas` VALUES ('12', '4B', '1360857903', '1360857903');
+INSERT INTO `paginas` VALUES ('13', '5B', '1360857907', '1360857907');
+INSERT INTO `paginas` VALUES ('14', '6B', '1360857911', '1360857911');
+INSERT INTO `paginas` VALUES ('15', '7B', '1360857923', '1360857923');
+INSERT INTO `paginas` VALUES ('16', '8B', '1360857928', '1360857928');
+INSERT INTO `paginas` VALUES ('17', '1C', '1360857932', '1360857932');
+INSERT INTO `paginas` VALUES ('18', '2C', '1360857936', '1360857936');
+INSERT INTO `paginas` VALUES ('19', '3C', '1360857940', '1360857940');
+INSERT INTO `paginas` VALUES ('20', '4C', '1360857946', '1360857946');
+INSERT INTO `paginas` VALUES ('21', '5C', '1360857951', '1360857951');
+INSERT INTO `paginas` VALUES ('22', '6C', '1360857955', '1360857955');
+INSERT INTO `paginas` VALUES ('23', '7C', '1360857961', '1360857961');
+INSERT INTO `paginas` VALUES ('24', '8C', '1360857966', '1360857966');
 
 -- ----------------------------
 -- Table structure for `seccions`
@@ -157,14 +178,28 @@ CREATE TABLE `seccions` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of seccions
 -- ----------------------------
 INSERT INTO `seccions` VALUES ('1', 'Deportes', '1342106667', '1346337482');
 INSERT INTO `seccions` VALUES ('3', 'Nacional', '1342106680', '1342106680');
-INSERT INTO `seccions` VALUES ('4', 'Crónica Roja', '1342106689', '1342106689');
+INSERT INTO `seccions` VALUES ('4', 'Policiales (Crónica)', '1342106689', '1360857702');
+INSERT INTO `seccions` VALUES ('5', 'Portada', '1360857651', '1360857651');
+INSERT INTO `seccions` VALUES ('6', 'Editorial', '1360857662', '1360857662');
+INSERT INTO `seccions` VALUES ('7', 'Cultura', '1360857672', '1360857672');
+INSERT INTO `seccions` VALUES ('8', 'Local', '1360857679', '1360857679');
+INSERT INTO `seccions` VALUES ('9', 'Azuay', '1360857687', '1360857687');
+INSERT INTO `seccions` VALUES ('10', 'Cañar', '1360857710', '1360857710');
+INSERT INTO `seccions` VALUES ('11', 'Loja', '1360857717', '1360857717');
+INSERT INTO `seccions` VALUES ('12', 'Empresarial', '1360857725', '1360857725');
+INSERT INTO `seccions` VALUES ('13', 'Amenidades', '1360857735', '1360857735');
+INSERT INTO `seccions` VALUES ('14', 'Internacional', '1360857743', '1360857743');
+INSERT INTO `seccions` VALUES ('15', 'Publicidad', '1360857763', '1360857763');
+INSERT INTO `seccions` VALUES ('16', 'Clasificados', '1360857773', '1360857773');
+INSERT INTO `seccions` VALUES ('17', 'Mortuorios', '1360857783', '1360857783');
+INSERT INTO `seccions` VALUES ('18', 'Orden Indistinto', '1360857791', '1360857791');
 
 -- ----------------------------
 -- Table structure for `sessions`
@@ -185,7 +220,8 @@ CREATE TABLE `sessions` (
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES ('22cfeea0158b62cfdc8bf0125bc62b30', '1c9e9cf985e10464d4fa86120d227325', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1', '4869e012aa045958bdf5c461577cf02d', '1360779111', '1360779335', 'a:2:{i:0;a:3:{s:8:\"template\";s:16:\"template_manager\";s:8:\"username\";s:5:\"admin\";s:10:\"login_hash\";s:40:\"1641eca4f9b49db2c5a9d1adb639ed0c23df9ad3\";}i:1;a:0:{}}');
+INSERT INTO `sessions` VALUES ('04e99a8a46a74cc739ab448b5e809424', 'e7c11ef7d570d875664b6532e97f0369', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1', '4869e012aa045958bdf5c461577cf02d', '1360858651', '1360858651', 'a:2:{i:0;a:3:{s:8:\"template\";s:15:\"template_editor\";s:8:\"username\";s:8:\"cmerchan\";s:10:\"login_hash\";s:40:\"067cd688ea1485bbcc668010092f24da9b021e18\";}i:1;a:0:{}}');
+INSERT INTO `sessions` VALUES ('6b46c79d5f196705fa1ff95d073d8072', '6b46c79d5f196705fa1ff95d073d8072', 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1', '4869e012aa045958bdf5c461577cf02d', '1360855452', '1360855452', 'a:2:{i:0;a:3:{s:8:\"username\";s:5:\"admin\";s:10:\"login_hash\";s:40:\"bb3c076801f19be004c3593bb423137853d47318\";s:8:\"template\";s:16:\"template_manager\";}i:1;a:0:{}}');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -206,12 +242,32 @@ CREATE TABLE `users` (
   `updated_at` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com.ec', '0', '', '1360779112', '1641eca4f9b49db2c5a9d1adb639ed0c23df9ad3', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1341514271', '0');
-INSERT INTO `users` VALUES ('2', 'editor', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editor@elmercurio.com', '0', 'mercurio', '1360778594', 'bf6d29890da1eec2cbdc5eb60c5646490578e6df', 'a:0:{}', '1342473649', '0');
-INSERT INTO `users` VALUES ('3', 'periodista', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'periodista@elmercurio.com', '2', 'mercurio', '1360778989', '344461d381a0d5bb119e2b978a595b247c8d4645', 'a:1:{s:10:\"acceso_web\";s:1:\"1\";}', '1346273528', '0');
-INSERT INTO `users` VALUES ('4', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '2', 'mercurio', '1360766379', '72540bed26bd7ad1f6a170265f64a3e988c929dd', '', '1346275067', '0');
+INSERT INTO `users` VALUES ('1', 'admin', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '100', 'admin@elmercurio.com.ec', '0', '', '1360857998', 'dfa1f9a625c978f4d2f5fe975ff9a1e14bb55c9d', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1341514271', '0');
+INSERT INTO `users` VALUES ('4', 'diagramador', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '25', 'diagramador@elmercurio.com', '0', 'mercurio', '1360766379', '72540bed26bd7ad1f6a170265f64a3e988c929dd', '', '1346275067', '0');
+INSERT INTO `users` VALUES ('5', 'jduran', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'jduran@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360855526', '1360855526');
+INSERT INTO `users` VALUES ('6', 'dmontalvan', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'dmontalvan@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360855549', '1360855549');
+INSERT INTO `users` VALUES ('7', 'avera', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'avera@elmercurio.com.ec', '0', 'mercurio', '1360858583', 'c748b234bb9162ad8b3a4af21bc7ec89a0f5a3bd', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360855590', '1360855590');
+INSERT INTO `users` VALUES ('8', 'sgallegos', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'deportes@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360855637', '1360855637');
+INSERT INTO `users` VALUES ('9', 'cultura', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'cultura@elmercurio.com.ec', '6', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360856846', '1360856846');
+INSERT INTO `users` VALUES ('10', 'ciudad', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'jcontreras@elmercurio.com.ec', '6', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360856888', '1360856888');
+INSERT INTO `users` VALUES ('11', 'politica', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'csanchez@elmercurio.com.ec', '6', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360856977', '1360856977');
+INSERT INTO `users` VALUES ('12', 'ciudad1', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'avelez@elmercurio.com.ec', '6', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857011', '1360857011');
+INSERT INTO `users` VALUES ('13', 'region', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'azhingre@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857042', '1360857043');
+INSERT INTO `users` VALUES ('14', 'economia', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'acalle@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857070', '1360857070');
+INSERT INTO `users` VALUES ('15', 'azogues', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'azogues@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857111', '1360857111');
+INSERT INTO `users` VALUES ('16', 'cronica', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'cronica@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857148', '1360857148');
+INSERT INTO `users` VALUES ('17', 'sociales', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'sociales@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857180', '1360857181');
+INSERT INTO `users` VALUES ('18', 'loja', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'redaccionloja@elmercurio.com.ec', '7', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857214', '1360857214');
+INSERT INTO `users` VALUES ('19', 'deportes1', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'deportes1@elmercurio.com.ec', '8', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857264', '1360857264');
+INSERT INTO `users` VALUES ('20', 'deportes2', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'deportes2@elmercurio.com.ec', '8', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857294', '1360857294');
+INSERT INTO `users` VALUES ('22', 'deportes3', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'deportes3@elmercurio.com.ec', '8', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857359', '1360857360');
+INSERT INTO `users` VALUES ('23', 'deportes4', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '1', 'deportes4@elmercurio.com.ec', '8', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857385', '1360857385');
+INSERT INTO `users` VALUES ('24', 'hroman', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'editorgrafico@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857479', '1360857479');
+INSERT INTO `users` VALUES ('25', 'mroman', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'mroman@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857530', '1360857530');
+INSERT INTO `users` VALUES ('26', 'aguillermo', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'redaccion@elmercurio.com.ec', '0', 'mercurio', '', '', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857585', '1360857585');
+INSERT INTO `users` VALUES ('27', 'cmerchan', 'ZqL+S1RMW/XxZY1hOEq2wG8KkRqkrtNHBzLzN7KgJF8=', '50', 'carmen_m@elmercurio.com.ec', '0', 'mercurio', '1360858651', '067cd688ea1485bbcc668010092f24da9b021e18', 'a:1:{s:10:\"acceso_web\";s:1:\"0\";}', '1360857610', '1360857610');
