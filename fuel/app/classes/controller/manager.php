@@ -6,7 +6,7 @@ class Controller_Manager extends Controller_Admin
 
     public function action_index()
     {
-        $data['usuarios'] = Model_User::find('all');
+        $data['usuarios'] = Model_User::find('all',array('order_by' => array('group' => 'desc')));
         $this->template->title = 'Administrador';
         $this->template->content = View::forge('manager/index', $data);
     }
@@ -92,6 +92,12 @@ class Controller_Manager extends Controller_Admin
         is_null($id) and Response::redirect('manager');
         $data['usuario'] = Model_User::find($id);
         $data['padre'] = Model_User::find($data['usuario']->padre);
+        $data['hijos'] = Model_User::find('all', array(
+                                                            'where' =>
+                                                            array(
+                                                                array('padre', '=', $data['usuario']->id)
+                                                            )
+                                                        ));
         switch ($data['usuario']->group)
         {
 
