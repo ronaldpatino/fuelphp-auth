@@ -11,7 +11,7 @@ class Controller_Seccion extends Controller_Admin
 
 	public function action_index()
 	{
-		$data['seccions'] = Model_Seccion::find('all');
+		$data['seccions'] = Model_Seccion::find('all',array('order_by' => array('descripcion' => 'asc')));
 		$this->template->title = "Secciones";
 		$this->template->content = View::forge('seccion/index', $data);
 
