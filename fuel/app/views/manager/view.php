@@ -22,12 +22,29 @@
         </div>
     </div>
 
+    <?php if ($padre):?>
     <div class="control-group">
         <label>Editor </label>
         <div class="controls">
             <?php echo Form::input(array('class' => 'span3', 'name'=>'email','type '=>'text', 'value'=>$padre->username, 'readonly'=>'readonly'));?>
         </div>
     </div>
+    <?php endif;?>
+
+    <?php if ($hijos):?>
+    <div class="control-group">
+        <label>Cronistas a cargo </label>
+        <div class="controls">
+            <ul>
+                <?php foreach($hijos as $hijo):?>
+                    <li>
+                        <?php echo Html::anchor('manager/edit/' . $hijo->id, $hijo->username); ?>
+                    </li>
+                <?php endforeach?>
+            </ul>
+        </div>
+    </div>
+    <?php endif?>
 
 </fieldset>
 <?php  echo Form::close();?>
