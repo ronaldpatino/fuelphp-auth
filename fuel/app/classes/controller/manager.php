@@ -32,7 +32,7 @@ class Controller_Manager extends Controller_Admin
 					if ($user)
 					{
 						$usuario = Model_User::find($user);										
-						$usuario->padre = Input::post('padre');
+						$usuario->padre = (Input::post('group') == 100) ? 0: Input::post('padre');
 						$usuario->empresa = Input::post('empresa');
 						$usuario->save();
 					}
@@ -148,7 +148,8 @@ class Controller_Manager extends Controller_Admin
                         Auth::instance()->cambiar_password(Input::post('username'), Input::post('password'));
                     }
 
-                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group'),'padre'=>Input::post('padre'),'acceso_web'=>Input::post('acceso_web')),Input::post('username'));
+                    $padre = (Input::post('group') == 100) ? 0: Input::post('padre');
+                    Auth::instance()->update_user(array('email'=>Input::post('email'),'group'=>Input::post('group'),'padre'=>$padre,'acceso_web'=>Input::post('acceso_web')),Input::post('username'));
                     Session::set_flash('success', 'Usuario ' . Input::post('username') . ' modificado correctamente' );
 
                 }
