@@ -33,10 +33,10 @@
             </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group"  style="display:none;">
             <label>Diario </label>
             <div class="controls">
-                <?php echo Form::select('empresa', 'none', array('mercurio'=>'El Mercurio','tarde'=>'La Tarde'));?>
+                <?php echo Form::select('empresa', 'none', array('mercurio'=>'El Mercurio'));?>
             </div>
         </div>
 
