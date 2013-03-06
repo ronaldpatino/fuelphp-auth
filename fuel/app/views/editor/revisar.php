@@ -1,3 +1,9 @@
+<style type="text/css">
+    .btn-group {
+        margin-left: 0px;
+    }
+</style>
+
 <?php if ($articulos): ?>
 <table class="table table-striped table-bordered table-condensed">
     <thead>
@@ -16,9 +22,12 @@
             <p><strong>P&aacute;gina:</strong> <?php echo $articulo->pagina->descripcion; ?></p>
 
             <p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date('Y-m-d H:i:s', $articulo->fecha_publicacion); ?></p>
-            <span class="btn-group">
+            <div class="btn-group">
                 <?php echo Html::anchor('galeria/index/'.$articulo->id, '<i class="icon-picture"></i> Foto', array('class' => 'btn')); ?>
-            </span>
+                <?php if ($articulo->fotos && $acceso_web): ?>
+                <?php echo Html::anchor('foto/zip/'.$articulo->id, '<i class="icon-arrow-down"></i>Bajar', array('class' => 'btn btn-success'));?>
+                <?php endif;?>
+            </div>
         </td>
 
         <td>
@@ -35,7 +44,7 @@
                     'data-original-title' => $foto->imagen
                 )); ?>
 
-                    <span class="btn-group">
+                    <div class="btn-group">
                         <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto'
                            rel='gallery' title='<?php echo $articulo->nombre; ?>'
                            alt='<?php echo $articulo->nombre; ?>'>
@@ -54,7 +63,7 @@
                         <?php echo Html::anchor('editor/aprobar/' . $foto->id . '/' . $periodista->id, '<i class="icon-ok-sign"></i>', array('class' => 'btn', 'rel' => 'tooltip', 'data-original-title' => 'Foto Aprobada')); ?>
                         <?php echo Html::anchor('#', '<i class="icon-ban-circle"></i>', array('class' => 'btn btn-danger', 'rel' => 'tooltip', 'data-original-title' => 'Rechazar Foto')); ?>
                         <?php endif;?>
-                        </span>
+                    </div>
 
                 </li>
                 <?php endforeach; ?>

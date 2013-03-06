@@ -1,3 +1,9 @@
+<style type="text/css">
+    .btn-group {
+        margin-left: 0px;
+    }
+</style>
+
 <?php echo render('articulo/_form_inline'); ?>
 
 <?php if ($articulos): ?>
@@ -16,14 +22,14 @@
                 <p><strong>Sección:</strong> <?php echo $articulo->seccion->descripcion; ?></p>
                 <p><strong>P&aacute;gina:</strong> <?php echo $articulo->pagina->descripcion; ?></p>
 				<p><strong>Fecha de Publicaci&oacute;n:</strong> <?php echo date ( 'Y-m-d H:i:s' , $articulo->fecha_publicacion ); ?></p>
-                <span class="btn-group">
+                <div class="btn-group">
                     <?php echo Html::anchor('articulo/delete/'.$articulo->id, '<i class="icon-trash"></i> Borrar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Borrar el Articulo?')")); ?>
                     <?php echo Html::anchor('galeria/index/'.$articulo->id, '<i class="icon-picture"></i> Foto', array('class'=>'btn')); ?>
                     <?php echo Html::anchor('articulo/edit/'.$articulo->id, '<i class="icon-edit"></i> Editar',array('class'=>'btn')); ?>
                     <?php if ($articulo->fotos && $acceso_web): ?>
                     <?php echo Html::anchor('foto/zip/'.$articulo->id, '<i class="icon-arrow-down"></i>Bajar', array('class' => 'btn btn-success'));?>
                     <?php endif;?>
-                </span>
+                </div>
 
             </td>
 
@@ -43,7 +49,7 @@
                             'data-original-title' => $foto->imagen
                         )); ?>
 
-                            <span class="btn-group">
+                            <div class="btn-group">
                                 <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '<?php echo $articulo->nombre; ?>' alt='<?php echo $articulo->nombre; ?>'>
                                     <i class="icon-eye-open"></i>
                                 </a>
@@ -56,7 +62,7 @@
                                 <?php elseif ($foto->estado == 2): ?>
                                     <?php echo Html::anchor('#', '<i class="icon-ban-circle"></i>', array('class' => 'btn btn-danger', 'rel' => 'tooltip', 'data-original-title' => 'Foto rechazada por el editor')); ?>
                                 <?php endif;?>
-                        </span>
+                            </div>
 
                         </li>
                         <?php endforeach; ?>

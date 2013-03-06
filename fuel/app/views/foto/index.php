@@ -1,3 +1,9 @@
+<style type="text/css">
+    .btn-group {
+        margin-left: 0px;
+    }
+</style>
+
 <?php if ($fotos): ?>
 <ul class="thumbnails">
     <?php foreach ($fotos as $foto): ?>
@@ -10,7 +16,7 @@
             'data-original-title' => $foto->imagen
         )); ?>
 
-        <span class="btn-group">
+        <div class="btn-group">
 
             <?php echo Html::anchor('#', ' <i class="icon-eye-open"></i>',array('class'=>'btn detalles_foto', 'rel'=>'tooltip', 'data-original-title'=>'Ver detalles foto')); ?>
 
@@ -25,7 +31,7 @@
             <?php endif;?>
 
 
-    </span>
+        </div>
 
     </li>
 

@@ -112,14 +112,15 @@ class Controller_Editor extends Controller_Admin
             )
         );
 
-
+        $usuario = Model_User::find($this->user_id);
+        $profile_fields = $this->get_profile_fields($usuario)?$this->get_profile_fields($usuario):null;
         $periodista  = Model_User::find($user_id);
         $data['periodista'] = $periodista;
 
+
         $view = View::forge('template_editor');
         $view->set_global('user_id', $this->user_id);
-
-
+        $view->set_global('acceso_web', $profile_fields['acceso_web']);
         $view->set_global('data', $data);
         $view->set_global('title', 'Articulos del periodista: ' . $periodista->username);
         $view->content = View::forge('editor/revisar',$data);
@@ -150,4 +151,22 @@ class Controller_Editor extends Controller_Admin
         Response::redirect('editor/revisar/' . $user_id);
     }
 
+    private function get_profile_fields($user)
+    {
+        if (is_null($user))
+        {
+            return false;
+        }
+
+        if (isset($user['profile_fields']))
+        {
+            is_array($user['profile_fields']) or $user['profile_fields'] = @unserialize($user['profile_fields']);
+        }
+        else
+        {
+            $user['profile_fields'] = array();
+        }
+
+        return $user['profile_fields'];
+    }
 }

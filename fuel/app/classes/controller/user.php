@@ -78,6 +78,7 @@ class Controller_User extends Controller_Template
     public function action_logout()
     {
         Auth::instance()->logout();
+        Session::destroy();
         Response::redirect('user/login');
     }
 

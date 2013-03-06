@@ -71,6 +71,28 @@ class Controller_Articulo extends Controller_Admin
         }
 
 
+        $seccion_id = Session::get('seccion_id');
+        if ( $seccion_id === false )
+        {
+            $view->set_global('seccion_id', 'none');
+        }
+        else
+        {
+            $view->set_global('seccion_id', $seccion_id);
+
+        }
+
+        $pagina_id = Session::get('pagina_id');
+        if ( $pagina_id === false )
+        {
+            $view->set_global('pagina_id', 'none');
+        }
+        else
+        {
+            $view->set_global('pagina_id', $pagina_id);
+
+        }
+
 
         $view->set_global('acceso_web', $profile_fields['acceso_web']);
         $view->set_global('user_id', $this->user_id);
@@ -104,7 +126,7 @@ class Controller_Articulo extends Controller_Admin
 			{
                 $fp = Input::post('fecha_publicacion') . date(' H:i:s');
                 $fecha_publicacion   = Date::create_from_string($fp,"mysql")->get_timestamp();
-                //die($fecha_publicacion);
+
 				$articulo = Model_Articulo::forge(array(
 					'nombre' => Input::post('nombre'),
 					'periodista_id' => Input::post('periodista_id'),
@@ -112,6 +134,10 @@ class Controller_Articulo extends Controller_Admin
                     'pagina_id' => Input::post('pagina_id'),
                     'fecha_publicacion' => $fecha_publicacion
 				));
+
+
+                Session::set('seccion_id', Input::post('seccion_id'));
+                Session::set('pagina_id', Input::post('pagina_id'));
 
 				if ($articulo and $articulo->save())
 				{

@@ -1,3 +1,8 @@
+<style type="text/css">
+    .btn-group {
+        margin-left: 0px;
+    }
+</style>
 
 <?php if ($articulos): ?>
 <table class="table table-striped table-bordered table-condensed">
@@ -14,9 +19,9 @@
                 <p><?php echo $articulo->nombre; ?></p>
 				<p><?php echo date ( 'Y-m-d H:i:s' , $articulo->created_at ); ?></p>
                 <p>Sección: <?php echo $articulo->seccion->descripcion; ?></p>
-                    <span class="btn-group">
+                    <div class="btn-group">
                         <?php echo Html::anchor('articulo/republicar/'.$articulo->id, '<i class="icon-refresh"></i> Republicar', array('class'=>'btn', 'onclick' => "return confirm('Seguro desea Republicar el Articulo?')")); ?>                        
-                    </span>
+                    </div>
             </td>
 
 			<td>
@@ -35,7 +40,7 @@
                             'data-original-title' => $foto->imagen
                         )); ?>
 
-                            <span class="btn-group">
+                            <div class="btn-group">
                                 <a href="<?php echo Myhtml::img_watermark($foto->imagen);?>" class='btn detalles_foto' rel ='gallery' title = '<?php echo $articulo->nombre; ?>' alt='<?php echo $articulo->nombre; ?>'>
                                     <i class="icon-eye-open"></i>
                                 </a>
@@ -48,7 +53,7 @@
                                 <?php elseif ($foto->estado == 2): ?>
                                     <?php echo Html::anchor('#', '<i class="icon-ban-circle"></i>', array('class' => 'btn btn-danger', 'rel' => 'tooltip', 'data-original-title' => 'Foto rechazada por el editor')); ?>
                                 <?php endif;?>
-                        </span>
+                            </div>
 
                         </li>
                         <?php endforeach; ?>
